@@ -1,4 +1,4 @@
-﻿namespace Promact.TestCaseManagement.DomainModel
+﻿namespace Promact.TestCaseManagement.DomainModel.Enums
 {
     public enum TestCaseResult
     {

@@ -1,11 +1,12 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Enums;
+using Promact.TestCaseManagement.DomainModel.Models.Global;
 using System;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
     public class TestCase : TestCaseManagementBase
     {
-        public int SerialNo { get; set; }
+        public int SerialNumber { get; set; }
 
         public string TestCaseId { get; set; }
 
