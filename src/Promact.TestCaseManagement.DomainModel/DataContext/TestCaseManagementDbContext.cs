@@ -1,0 +1,45 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Promact.TestCaseManagement.DomainModel.Models.Global;
+using Promact.TestCaseManagement.DomainModel.Models.Module;
+using Promact.TestCaseManagement.DomainModel.Models.Project;
+using Promact.TestCaseManagement.DomainModel.Models.Scenario;
+using Promact.TestCaseManagement.DomainModel.Models.TestCase;
+using System;
+using System.Linq;
+
+namespace Promact.TestCaseManagement.DomainModel.DataContext
+{
+    public class TestCaseManagementDbContext : DbContext
+    {
+        public TestCaseManagementDbContext(DbContextOptions options) : base(options)
+        {
+
+        }
+
+        public DbSet<Project> Project { get; set; }
+
+        public DbSet<Module> Module { get; set; }
+
+        public DbSet<Scenario> Scenario { get; set; }
+
+        public DbSet<ModuleTestCaseMapping> ModuleTestCaseMapping { get; set; }
+
+        public DbSet<ScenarioTestCaseMapping> ScenarioTestCaseMapping { get; set; }
+
+        public DbSet<TestCase> TestCase { get; set; }
+
+        public override int SaveChanges()
+        {
+            ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Added).ToList().ForEach(x =>
+            {
+                ((TestCaseManagementBase)x.Entity).CreatedDate = DateTime.UtcNow;
+            });
+            ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Modified).ToList().ForEach(x =>
+            {
+                ((TestCaseManagementBase)x.Entity).ModifiedDate = DateTime.UtcNow;
+            });
+
+            return base.SaveChanges();
+        }
+    }
+}
