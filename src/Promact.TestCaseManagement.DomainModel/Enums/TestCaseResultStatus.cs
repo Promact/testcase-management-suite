@@ -1,6 +1,6 @@
 ﻿namespace Promact.TestCaseManagement.DomainModel.Enums
 {
-    public enum TestCaseResult
+    public enum TestCaseResultStatus
     {
         None,
         Pass,
