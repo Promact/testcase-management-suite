@@ -2,7 +2,7 @@
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 {
-    public class TestCaseBase : TestCaseManagementBase
+    public abstract class TestCaseBase : TestCaseManagementBase
     {
         #region Public Properties
 
