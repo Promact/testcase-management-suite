@@ -11,10 +11,16 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 {
     public class TestCaseManagementDbContext : DbContext
     {
+        #region Constructors
+
         public TestCaseManagementDbContext(DbContextOptions options) : base(options)
         {
 
         }
+
+        #endregion
+
+        #region Public Properties
 
         public DbSet<Project> Project { get; set; }
 
@@ -27,6 +33,18 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
         public DbSet<ScenarioTestCaseMapping> ScenarioTestCaseMapping { get; set; }
 
         public DbSet<TestCase> TestCase { get; set; }
+
+        public DbSet<TestCaseHistory> TestCaseHistory { get; set; }
+
+        public DbSet<TestCaseStepsHistory> TestCaseStepsHistory { get; set; }
+
+        public DbSet<TestCaseInputHistory> TestCaseInputHistory { get; set; }
+
+        public DbSet<TestCaseResultHistory> TestCaseResultHistory { get; set; }
+
+        #endregion
+
+        #region Overridden Methods
 
         public override int SaveChanges()
         {
@@ -41,5 +59,7 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 
             return base.SaveChanges();
         }
+
+        #endregion
     }
 }

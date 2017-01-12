@@ -1,24 +1,23 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
-using System;
+﻿using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
 using System.Collections.Generic;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseResult : TestCaseManagementBase
+    public class TestCaseResult : TestCaseResultBase
     {
+        #region Constructors
+
         public TestCaseResult()
         {
             TestCaseSteps = new List<TestCaseSteps>();
         }
 
-        public string ExpectedResult { get; set; }
+        #endregion
 
-        public DateTime ExpectedResultDate { get; set; }
-
-        public string ActualResult { get; set; }
-
-        public DateTime? ActualResultDate { get; set; }
-
+        #region Public Properties
+                
         public virtual ICollection<TestCaseSteps> TestCaseSteps { get; set; }
+
+        #endregion
     }
 }

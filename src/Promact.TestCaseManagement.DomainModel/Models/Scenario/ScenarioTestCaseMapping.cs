@@ -5,6 +5,8 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
 {
     public class ScenarioTestCaseMapping : TestCaseManagementBase
     {
+        #region Public Properties
+
         public int ScenarioId { get; set; }
 
         public int TestCaseId { get; set; }
@@ -14,5 +16,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
 
         [ForeignKey("TestCaseId")]
         public virtual TestCase.TestCase TestCase { get; set; }
+
+        #endregion
     }
 }

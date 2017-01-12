@@ -1,18 +1,13 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseTestStepsMapping : TestCaseManagementBase
+    public class TestCaseStepsHistory : TestCaseStepsBase
     {
         #region Public Properties
 
-        public int TestCaseId { get; set; }
-
         public int TestCaseStepsId { get; set; }
-
-        [ForeignKey("TestCaseId")]
-        public TestCase TestCase { get; set; }
 
         [ForeignKey("TestCaseStepsId")]
         public TestCaseSteps TestCaseSteps { get; set; }

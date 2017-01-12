@@ -1,20 +1,22 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseSteps : TestCaseManagementBase
+    public class TestCaseSteps : TestCaseStepsBase
     {
+        #region Constructors
+
         public TestCaseSteps()
         {
             TestCaseInputs = new List<TestCaseInput>();
         }
 
-        public int TestStepNumber { get; set; }
+        #endregion
 
-        public string TestStep { get; set; }
-
+        #region Public Properties
+        
         public int TestCaseResultId { get; set; }
 
         public int TestCaseId { get; set; }
@@ -26,5 +28,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
         public virtual TestCase TestCase { get; set; }
 
         public virtual ICollection<TestCaseInput> TestCaseInputs { get; set; }
+
+        #endregion
     }
 }

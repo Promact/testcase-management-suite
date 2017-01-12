@@ -4,6 +4,8 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Project
 {
     public class Project : TestCaseManagementBase
     {
+        #region Public Properties
+
         public string Name { get; set; }
 
         public string Prerequisite { get; set; }
@@ -11,5 +13,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Project
         public string TestEnvironment { get; set; }
 
         public string HardWare { get; set; }
+
+        #endregion
     }
 }
