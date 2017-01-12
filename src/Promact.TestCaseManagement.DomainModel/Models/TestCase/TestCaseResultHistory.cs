@@ -1,13 +1,18 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Promact.TestCaseManagement.DomainModel.Enums;
+using Promact.TestCaseManagement.DomainModel.Models.Global;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseResultHistory : TestCaseResultBase
+    public class TestCaseResultHistory : TestCaseManagementBase
     {
-        public int TestCaseResultId { get; set; }
+        #region Public Properties
 
-        [ForeignKey("TestCaseResultId")]
-        public TestCaseResult TestCaseResult { get; set; }
+        public int TestCaseId { get; set; }
+
+        public TestCaseResultStatus TestCaseResult { get; set; }
+
+        public virtual TestCase TestCase { get; set; }
+
+        #endregion
     }
 }

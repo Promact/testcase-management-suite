@@ -34,11 +34,11 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 
         public DbSet<TestCase> TestCase { get; set; }
 
-        public DbSet<TestCaseHistory> TestCaseHistory { get; set; }
+        public DbSet<TestCaseVersion> TestCaseVersion { get; set; }
 
-        public DbSet<TestCaseStepsHistory> TestCaseStepsHistory { get; set; }
+        public DbSet<TestCaseStepsVersion> TestCaseStepsVersion { get; set; }
 
-        public DbSet<TestCaseInputHistory> TestCaseInputHistory { get; set; }
+        public DbSet<TestCaseInputVersion> TestCaseInputVersion { get; set; }
 
         public DbSet<TestCaseResultHistory> TestCaseResultHistory { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Enums;
-using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 {
@@ -13,9 +12,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 
         public string Description { get; set; }
 
-        public string PreCondition { get; set; }
-
-        public TestCaseResultStatus TestCaseResultStatus { get; set; }
+        public string PreCondition { get; set; }        
 
         public string PostCondition { get; set; }
 

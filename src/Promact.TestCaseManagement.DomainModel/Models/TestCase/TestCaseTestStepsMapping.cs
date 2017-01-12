@@ -12,10 +12,10 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
         public int TestCaseStepsId { get; set; }
 
         [ForeignKey("TestCaseId")]
-        public TestCase TestCase { get; set; }
+        public virtual TestCase TestCase { get; set; }
 
         [ForeignKey("TestCaseStepsId")]
-        public TestCaseSteps TestCaseSteps { get; set; }
+        public virtual TestCaseSteps TestCaseSteps { get; set; }
 
         #endregion
     }

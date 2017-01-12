@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseInputHistory : TestCaseInputBase
+    public class TestCaseInputVersion : TestCaseInputBase
     {
         public int TestCaseInputId { get; set; }
 
