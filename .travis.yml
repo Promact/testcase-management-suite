@@ -12,7 +12,7 @@ dotnet: 1.0.0-preview2-003131
 install:
   - cd ./src/Promact.TestCaseManagement && npm install
   - dotnet restore
-solution: ./test.sln
+solution: "./test.sln"
 notifications:
   email:
     on_success: change
