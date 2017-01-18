@@ -1,13 +1,13 @@
 ﻿language: csharp
-dist: trusty
 branches:
   only:
   - development
-sudo: required
 node_js:
   - node
 os: linux
 mono: none
+dist: trusty
+sudo: required
 dotnet: 1.0.0-preview2-003131
 install:
   - npm install
