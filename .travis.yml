@@ -16,5 +16,5 @@ solution: test.sln
 notifications:
   email: true
 script:
-  - dotnet build --configuration Release
+  - dotnet build src/Promact.TestCaseManagement --configuration Release
   - cd src/Promact.TestCaseManagement && npm tsc
