@@ -1,0 +1,17 @@
+﻿language: csharp
+dist: trusty
+sudo: false
+node_js:
+	- node
+os: linux
+mono: none
+dotnet: 1.0.0-preview2-1-003177
+install:
+	- npm install
+	- dotnet restore
+solution: Promact.TestCaseManagement.sln
+notifications:
+	email: true
+script:
+	- dotnet build --configuration Release
+	- cd src/Promact.TestCaseManagement && npm tsc
