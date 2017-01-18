@@ -12,7 +12,7 @@ dotnet: 1.0.0-preview2-1-003177
 install:
   - npm install
   - dotnet restore
-solution: ./test.sln
+solution: test.sln
 notifications:
   email: true
 script:
