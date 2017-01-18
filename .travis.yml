@@ -5,7 +5,7 @@ branches:
   - development
 sudo: required
 node_js:
-  - 6
+  - node
 os: linux
 mono: none
 dotnet: 1.0.0-preview2-003131
@@ -14,7 +14,9 @@ install:
   - dotnet restore
 solution: test.sln
 notifications:
-  email: true
+  email:
+    on_success: change
+    on_failure: always
 script:
   - dotnet build ./src/Promact.TestCaseManagement --configuration Release
   - cd ./src/Promact.TestCaseManagement && npm tsc
