@@ -3,7 +3,7 @@ using System;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 {
-    public abstract class TestCaseStepsBase : TestCaseManagementBase
+    public class TestCaseStepsBase : TestCaseManagementBase
     {
         #region Public Properties
 

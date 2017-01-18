@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.Global
 {
-    public abstract class TestCaseManagementBase
+    public class TestCaseManagementBase
     {
         #region Public Properties
 
