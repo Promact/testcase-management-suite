@@ -8,6 +8,13 @@ using Microsoft.Extensions.Logging;
 using Promact.TestCaseManagement.DomainModel.DataContext;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.Threading.Tasks;
+using Promact.TestCaseManagement.Utility.Constants;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.IdentityModel.Tokens;
+using IdentityModel;
 
 namespace Promact.TestCaseManagement
 {
@@ -29,30 +36,61 @@ namespace Promact.TestCaseManagement
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(LogLevel.Trace);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Use(async (context, next) =>
-            {
-                await next();
-                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) && !context.Request.Path.Value.StartsWith("/node_modules/") && !context.Request.Path.Value.StartsWith("/api/"))
-                {
-                    context.Request.Path = "/index.html";
-                    await next();
-                }
-            });
-
-            app.UseDefaultFiles();
             app.UseStaticFiles();
+
             string libPath = Path.GetFullPath(Path.Combine(env.WebRootPath, @"..\node_modules\"));
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(libPath),
                 RequestPath = new PathString("/node_modules")
+            });
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationScheme = StringConstants.Cookies,
+                AutomaticAuthenticate = true
+            });
+
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            {
+                AuthenticationScheme = StringConstants.oidc,
+                SignInScheme = StringConstants.Cookies,
+                Authority = StringConstants.OAuthUrl,
+
+                ClientId = StringConstants.ClientId,
+                ClientSecret = StringConstants.ClientSecret,
+
+                RemoteSignOutPath = "/account/logoff",
+
+                ResponseType = "code id_token",
+                Scope = { StringConstants.OffLineAccess, "openid", "profile" },
+                GetClaimsFromUserInfoEndpoint = true,
+                SaveTokens = true,
+
+                Events = new OpenIdConnectEvents
+                {
+                    OnRemoteFailure = context =>
+                    {
+                        context.Response.Redirect("/");
+                        context.HandleResponse();
+                        return Task.FromResult(0);
+                    }
+                },
+
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = JwtClaimTypes.Name,
+                    RoleClaimType = JwtClaimTypes.Role,
+                }
             });
 
             app.UseMvcWithDefaultRoute();

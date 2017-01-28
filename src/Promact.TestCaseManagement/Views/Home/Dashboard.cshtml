@@ -15,5 +15,10 @@
         System.import('/app/main').then(null, console.error.bind(console));
     </script>
     <my-app>Loading...</my-app>
+    <br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Logout", "LogOff")
+    }
 </body>
 </html>
