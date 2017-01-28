@@ -2,6 +2,9 @@
 
 @Component({
     selector: 'my-app',
-    template: `<h1>Hello {{name}}</h1>`,
+    moduleId: module.id,
+    templateUrl: './index.html'
 })
-export class AppComponent { name = 'Angular'; }
+export class AppComponent {
+    name = 'Angular';
+}
