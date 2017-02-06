@@ -69,13 +69,10 @@ namespace Promact.TestCaseManagement
                 ClientId = StringConstants.ClientId,
                 ClientSecret = StringConstants.ClientSecret,
 
-                RemoteSignOutPath = "/account/logoff",
-
                 ResponseType = "code id_token",
                 Scope = { StringConstants.OffLineAccess, "openid", "profile" },
                 GetClaimsFromUserInfoEndpoint = true,
                 SaveTokens = true,
-
                 Events = new OpenIdConnectEvents
                 {
                     OnRemoteFailure = context =>
