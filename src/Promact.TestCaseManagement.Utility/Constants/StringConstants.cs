@@ -4,9 +4,17 @@
     {
         public const string oidc = "oidc";
         public const string Cookies = "Cookies";
-        public const string OAuthUrl = "https://localhost:44334/"; //"https://oauth.promactinfo.com/"; //"http://localhost:35716/";
-        public const string ClientId = "OXRYP9W3J3ZH1KP"; //"OXRYP9W3J3ZH1KP";// "HDLNMVK4X6TH7SP";
-        public const string ClientSecret = "cnHggVUFhCCMLFOzV32cq362HuHUeM"; //"cnHggVUFhCCMLFOzV32cq362HuHUeM"; //"VXqXn6cP8hek5hRWkYSV8sH3mnfsmh";
+        public const string OAuthUrl = "https://oauth.promactinfo.com/";
+        public const string ClientId = "HDLNMVK4X6TH7SP";
+        public const string ClientSecret = "VXqXn6cP8hek5hRWkYSV8sH3mnfsmh";
         public const string OffLineAccess = "offline_access";
+        public const string Email = "email";
+        public const string Sub = "sub";
+        public const string RefreshToken = "refresh_token";
+        public const string ResponseType = "code id_token";
+        public const string OpenId = "openid";
+        public const string Profile = "profile";
+        public const string TestCaseManagement = "TestCaseManagement";
+        public const string Appsettings = "appsettings.json";
     }
 }

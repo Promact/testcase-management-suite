@@ -13,11 +13,13 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// </summary>
         /// <param name="entity"></param>
         void Add(T entity);
+
         /// <summary>
         /// Add the new entity into the datacontext
         /// </summary>
         /// <param name="entity"></param>
         void AddAsync(T entity);
+
         /// <summary>
         /// Gets the list of all users
         /// </summary>
@@ -46,6 +48,7 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// </summary>
         /// <returns></returns>
         Task<int> SaveChangesAsync();
+
         /// <summary>
         /// Property gets the Entity count.
         /// </summary>
@@ -57,13 +60,11 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// <param name="entity"></param>
         void Attach(T entity);
 
-
         /// <summary>
         ///   Gets objects from database by filter.
         /// </summary>
         /// <param name="predicate"> Specified a filter </param>
         IQueryable<T> Fetch(Expression<Func<T, bool>> predicate);
-
 
         /// <summary>
         ///   Find object by specified expression.
@@ -77,8 +78,6 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// <param name="predicate"></param>
         /// <returns></returns>
         T First(Expression<Func<T, bool>> predicate);
-
-
 
         /// <summary>
         /// Method fetches the first record based on the supplied function.
@@ -99,7 +98,6 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// </summary>
         /// <returns></returns>
         IQueryable<T> GetAll();
-
 
         /// <summary>z
         /// This method is used to get maximum id.

@@ -1,20 +1,21 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IdentityModel;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
-using Promact.TestCaseManagement.DomainModel.DataContext;
-using System.IO;
-using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using System.Threading.Tasks;
-using Promact.TestCaseManagement.Utility.Constants;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
-using IdentityModel;
+using Promact.TestCaseManagement.DomainModel.DataContext;
+using Promact.TestCaseManagement.Repository.DataRepository;
+using Promact.TestCaseManagement.Repository.UserRepository;
+using Promact.TestCaseManagement.Utility.Constants;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement
 {
@@ -24,14 +25,18 @@ namespace Promact.TestCaseManagement
 
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json");
+            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile(StringConstants.Appsettings);
             Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestCaseManagement")));
+            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(StringConstants.TestCaseManagement)));
+
+            //register application services
+            services.AddScoped<IUserInfoRepository, UserInfoRepository>();
+            services.AddScoped(typeof(IDataRepository<>), typeof(DataRepository<>));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -69,8 +74,8 @@ namespace Promact.TestCaseManagement
                 ClientId = StringConstants.ClientId,
                 ClientSecret = StringConstants.ClientSecret,
 
-                ResponseType = "code id_token",
-                Scope = { StringConstants.OffLineAccess, "openid", "profile" },
+                ResponseType = StringConstants.ResponseType,
+                Scope = { StringConstants.OffLineAccess, StringConstants.OpenId, StringConstants.Profile },
                 GetClaimsFromUserInfoEndpoint = true,
                 SaveTokens = true,
                 Events = new OpenIdConnectEvents

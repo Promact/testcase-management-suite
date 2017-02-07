@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
 using Promact.TestCaseManagement.Repository.DataRepository;
+using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.UserRepository
 {
-    public class UserInfoRepository : IUserRepository
+    public class UserInfoRepository : IUserInfoRepository
     {
         #region Private Member(s)
 
@@ -17,9 +14,9 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
 
         #region Constructors
 
-        public UserInfoRepository()
+        public UserInfoRepository(IDataRepository<UserInfo> userInfoRepository)
         {
-
+            _userInfoRepository = userInfoRepository;
         }
 
         #endregion
@@ -31,9 +28,11 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// </summary>
         /// <param name="userInfo">UserInfo details</param>
         /// <returns></returns>
-        public Task<UserInfo> AddUserInfo(UserInfo userInfo)
+        public async Task<UserInfo> AddUserInfoAsync(UserInfo userInfo)
         {
-            throw new NotImplementedException();
+            _userInfoRepository.Add(userInfo);
+            await _userInfoRepository.SaveChangesAsync();
+            return userInfo;
         }
 
         /// <summary>
@@ -41,9 +40,21 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// </summary>
         /// <param name="userInfo">UserInfo details</param>
         /// <returns></returns>
-        public Task<UserInfo> UpdateUserInfo(UserInfo userInfo)
+        public async Task<UserInfo> UpdateUserInfoAsync(UserInfo userInfo)
         {
-            throw new NotImplementedException();
+            _userInfoRepository.Update(userInfo);
+            await _userInfoRepository.SaveChangesAsync();
+            return userInfo;
+        }
+
+        /// <summary>
+        /// Method used to get user info by user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<UserInfo> GetUserByUserId(string userId)
+        {
+            return await _userInfoRepository.FirstOrDefaultAsync(x => x.UserId == userId);
         }
 
         #endregion
