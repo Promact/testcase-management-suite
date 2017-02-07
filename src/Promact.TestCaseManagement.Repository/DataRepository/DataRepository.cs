@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Promact.TestCaseManagement.DomainModel.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,15 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
     {
         #region "Private Member(s)"
 
-        private DbContext _dbContext;
-        private readonly DbSet<T> _dbSet;
-        private bool disposed = false;
+        TestCaseManagementDbContext _dbContext;
+        readonly DbSet<T> _dbSet;
+        bool disposed = false;
 
         #endregion
 
         #region Public Constructor
 
-        public DataRepository(DbContext dbContext)
+        public DataRepository(TestCaseManagementDbContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();

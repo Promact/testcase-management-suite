@@ -12,6 +12,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Global
 
         public bool IsDeleted { get; set; }
 
+        [Required]
         public DateTime CreatedDate { get; set; }
 
         public int CreatedBy { get; set; }
