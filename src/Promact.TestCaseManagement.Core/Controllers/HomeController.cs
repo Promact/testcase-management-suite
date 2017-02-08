@@ -37,7 +37,7 @@ namespace Promact.TestCaseManagement.Controllers
                 userInfo.Email = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Email)).Value;
                 userInfo.UserId = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Sub)).Value;
                 userInfo.RefreshToken = await HttpContext.Authentication.GetTokenAsync(StringConstants.RefreshToken);
-                var userDetails = await _userRepository.GetUserByUserId(userInfo.UserId);
+                var userDetails = await _userRepository.GetUserByUserIdAsync(userInfo.UserId);
                 if (userDetails != null)
                 {
                     userDetails.RefreshToken = userInfo.RefreshToken;
