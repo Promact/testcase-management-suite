@@ -24,6 +24,6 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<UserInfo> GetUserByUserId(string userId);
+        Task<UserInfo> GetUserByUserIdAsync(string userId);
     }
 }

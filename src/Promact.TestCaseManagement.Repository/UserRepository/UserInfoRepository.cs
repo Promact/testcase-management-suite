@@ -52,7 +52,7 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<UserInfo> GetUserByUserId(string userId)
+        public async Task<UserInfo> GetUserByUserIdAsync(string userId)
         {
             return await _userInfoRepository.FirstOrDefaultAsync(x => x.UserId == userId);
         }

@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Promact.OAuth.Client.DomainModel;
+using Promact.OAuth.Client.Middleware;
 using Promact.TestCaseManagement.DomainModel.DataContext;
 using Promact.TestCaseManagement.Repository.DataRepository;
 using Promact.TestCaseManagement.Repository.UserRepository;
@@ -65,35 +67,45 @@ namespace Promact.TestCaseManagement
                 AutomaticAuthenticate = true
             });
 
-            app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            app.UsePromactAuthentication(new PromactAuthenticationOptions
             {
-                AuthenticationScheme = StringConstants.oidc,
-                SignInScheme = StringConstants.Cookies,
                 Authority = StringConstants.OAuthUrl,
-
                 ClientId = StringConstants.ClientId,
                 ClientSecret = StringConstants.ClientSecret,
-
-                ResponseType = StringConstants.ResponseType,
-                Scope = { StringConstants.OffLineAccess, StringConstants.OpenId, StringConstants.Profile },
-                GetClaimsFromUserInfoEndpoint = true,
-                SaveTokens = true,
-                Events = new OpenIdConnectEvents
-                {
-                    OnRemoteFailure = context =>
-                    {
-                        context.Response.Redirect("/");
-                        context.HandleResponse();
-                        return Task.FromResult(0);
-                    }
-                },
-
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = JwtClaimTypes.Name,
-                    RoleClaimType = JwtClaimTypes.Role,
-                }
+                AllowedScopes = { Scopes.offline_access, Scopes.openid, Scopes.profile },
+                LogoutUrl = "/"
             });
+
+
+            //app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
+            //{
+            //    AuthenticationScheme = StringConstants.oidc,
+            //    SignInScheme = StringConstants.Cookies,
+            //    Authority = StringConstants.OAuthUrl,
+
+            //    ClientId = StringConstants.ClientId,
+            //    ClientSecret = StringConstants.ClientSecret,
+
+            //    ResponseType = StringConstants.ResponseType,
+            //    Scope = { StringConstants.OffLineAccess, StringConstants.OpenId, StringConstants.Profile },
+            //    GetClaimsFromUserInfoEndpoint = true,
+            //    SaveTokens = true,
+            //    Events = new OpenIdConnectEvents
+            //    {
+            //        OnRemoteFailure = context =>
+            //        {
+            //            context.Response.Redirect("/");
+            //            context.HandleResponse();
+            //            return Task.FromResult(0);
+            //        }
+            //    },
+
+            //    TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        NameClaimType = JwtClaimTypes.Name,
+            //        RoleClaimType = JwtClaimTypes.Role,
+            //    }
+            //});
 
             app.UseMvcWithDefaultRoute();
         }
