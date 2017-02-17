@@ -64,6 +64,11 @@ namespace Promact.TestCaseManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Error()
+        {
+            return View();
+        }
+
         #endregion
     }
 }
