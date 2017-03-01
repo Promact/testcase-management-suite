@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,12 +16,16 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
                     ModifiedBy = table.Column<int>(nullable: true),
                     ModifiedDate = table.Column<DateTime>(nullable: true),
-                    RefreshToken = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    RefreshToken = table.Column<string>(nullable: false),
+                    TeamRole = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,7 +43,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedBy = table.Column<int>(nullable: true),
                     ModifiedDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,10 +59,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     CreatedBy = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     HardWare = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedBy = table.Column<int>(nullable: true),
                     ModifiedDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Prerequisite = table.Column<string>(nullable: true),
                     TestEnvironment = table.Column<string>(nullable: true)
                 },
@@ -78,7 +83,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedBy = table.Column<int>(nullable: true),
                     ModifiedDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

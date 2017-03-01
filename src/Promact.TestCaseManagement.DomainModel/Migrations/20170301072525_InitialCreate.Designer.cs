@@ -9,8 +9,8 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    [Migration("20170207054136_Initial-Migration")]
-    partial class InitialMigration
+    [Migration("20170301072525_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,17 +27,30 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
-                    b.Property<string>("RefreshToken");
+                    b.Property<string>("RefreshToken")
+                        .IsRequired();
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("TeamRole");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -59,7 +72,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime?>("ModifiedDate");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -105,13 +119,16 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<string>("HardWare");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<bool>("IsDeleted");
 
                     b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Prerequisite");
 
@@ -137,7 +154,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime?>("ModifiedDate");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
