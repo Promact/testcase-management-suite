@@ -25,14 +25,14 @@ namespace Promact.TestCaseManagement
 
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile(StringConstants.Appsettings);
+            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(StringConstants.TestCaseManagement)));
+            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString]));
 
             //register application services
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
@@ -82,7 +82,7 @@ namespace Promact.TestCaseManagement
                         return Task.FromResult(0);
                     }
                 }
-            });            
+            });
 
             app.UseMvcWithDefaultRoute();
         }

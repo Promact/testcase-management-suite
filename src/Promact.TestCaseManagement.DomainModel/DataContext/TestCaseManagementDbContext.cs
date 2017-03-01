@@ -15,7 +15,7 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 
         public TestCaseManagementDbContext(DbContextOptions options) : base(options)
         {
-
+            Database.Migrate();
         }
 
         #endregion

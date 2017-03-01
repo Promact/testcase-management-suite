@@ -1,4 +1,5 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.Project
@@ -15,6 +16,10 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Project
         public string TestEnvironment { get; set; }
 
         public string HardWare { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public virtual ICollection<UserInfo> UserInfo { get; set; }
 
         #endregion
     }
