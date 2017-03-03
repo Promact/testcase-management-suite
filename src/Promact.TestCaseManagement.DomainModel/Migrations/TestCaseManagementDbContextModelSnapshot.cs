@@ -43,6 +43,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime?>("ModifiedDate");
 
+                    b.Property<int>("ProjectId");
+
                     b.Property<string>("RefreshToken")
                         .IsRequired();
 
@@ -52,6 +54,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("UserInfo");
                 });
@@ -420,6 +424,14 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.HasIndex("TCId");
 
                     b.ToTable("TestCaseVersion");
+                });
+
+            modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Global.UserInfo", b =>
+                {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.Project.Project", "Project")
+                        .WithMany("UserInfo")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Module.ModuleTestCaseMapping", b =>
