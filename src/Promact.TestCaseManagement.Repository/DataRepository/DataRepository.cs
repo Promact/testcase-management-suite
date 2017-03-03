@@ -49,7 +49,6 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         public void Add(T entity)
         {
             _dbSet.Add(entity);
-            _dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -77,7 +76,6 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         public void Update(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
-            _dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -156,6 +154,26 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         }
 
         /// <summary>
+        /// Fetch an entity based on primary key
+        /// </summary>
+        /// <param name="id">Primary key of an entity</param>
+        /// <returns></returns>
+        public T Find(int id)
+        {
+            return _dbSet.Find(id);
+        }
+
+        /// <summary>
+        /// Fetch an entity based on primary key asynchronously
+        /// </summary>
+        /// <param name="id">Primary key of an entity</param>
+        /// <returns></returns>
+        public async Task<T> FindAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        /// <summary>
         /// Method fetches the first item from the datacontext based on the the supplied function.
         /// </summary>
         /// <param name="predicate"></param>
@@ -190,8 +208,7 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// <returns></returns>
         public long GetMaxId()
         {
-            var obj = new object();
-            lock (obj)
+            lock (this)
             {
                 return _dbSet.Count() + 1;
             }

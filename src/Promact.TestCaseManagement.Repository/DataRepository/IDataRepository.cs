@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.DataRepository
 {
-    public interface IDataRepository<T> :IDisposable
+    public interface IDataRepository<T> : IDisposable
     {
         /// <summary>
         /// Add the new entity into the datacontext
@@ -92,6 +92,20 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// <param name="predicate"></param>
         /// <returns></returns>
         T Single(Expression<Func<T, bool>> predicate);
+
+        /// <summary>
+        /// Fetch an entity based on primary key
+        /// </summary>
+        /// <param name="id">Primary key of an entity</param>
+        /// <returns></returns>
+        T Find(int id);
+
+        /// <summary>
+        /// Fetch an entity based on primary key asynchronously
+        /// </summary>
+        /// <param name="id">Primary key of an entity</param>
+        /// <returns></returns>
+        Task<T> FindAsync(int id);
 
         /// <summary>
         /// Fetches all the item from the datacontext.

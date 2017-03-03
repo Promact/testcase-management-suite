@@ -1,10 +1,10 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using System.Collections.Generic;
 
-namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
+namespace Promact.TestCaseManagement.Repository.ApplicationClass.TestCase
 {
-    public class TestCaseBase : TestCaseManagementBase
+    public class TestCaseAC
     {
-        #region Public Properties
+        public int Id { get; set; }
 
         public int SerialNumber { get; set; }
 
@@ -24,6 +24,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 
         public int? ReviewedBy { get; set; }
 
-        #endregion
+        public ICollection<TestCaseStepsAC> TestCaseStepsAC { get; set; }
     }
 }
