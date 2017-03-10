@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Promact.TestCaseManagement.DomainModel.Models.Global;
+using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.Repository.ApplicationClass.External;
+using Promact.TestCaseManagement.Repository.GlobalRepository;
 using Promact.TestCaseManagement.Repository.UserRepository;
 using Promact.TestCaseManagement.Utility.Constants;
+using Promact.TestCaseManagement.Utility.Services.AccessToken;
+using Promact.TestCaseManagement.Utility.Services.HttpClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,14 +20,20 @@ namespace Promact.TestCaseManagement.Controllers
         #region Private Members
 
         readonly IUserInfoRepository _userRepository;
+        readonly IAccessTokenService _iAccessTokenService;
+        readonly IHttpClientService _iHttpClientService;
+        readonly IGlobalRepository _iGlobalRepository;
 
         #endregion
 
         #region Constructor
 
-        public HomeController(IUserInfoRepository userRepository)
+        public HomeController(IUserInfoRepository userRepository, IAccessTokenService iAccessTokenService, IHttpClientService iHttpClientService, IGlobalRepository iGlobalRepository)
         {
             _userRepository = userRepository;
+            _iAccessTokenService = iAccessTokenService;
+            _iHttpClientService = iHttpClientService;
+            _iGlobalRepository = iGlobalRepository;
         }
 
         #endregion
@@ -35,9 +46,9 @@ namespace Promact.TestCaseManagement.Controllers
             {
                 var userInfo = new UserInfo();
                 userInfo.Email = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Email)).Value;
-                userInfo.UserId = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Sub)).Value;
+                userInfo.Id = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Sub)).Value;
                 userInfo.RefreshToken = await HttpContext.Authentication.GetTokenAsync(StringConstants.RefreshToken);
-                var userDetails = await _userRepository.GetUserByUserIdAsync(userInfo.UserId);
+                var userDetails = await _userRepository.GetUserByUserIdAsync(userInfo.Id);
                 if (userDetails != null)
                 {
                     userDetails.RefreshToken = userInfo.RefreshToken;
@@ -45,7 +56,7 @@ namespace Promact.TestCaseManagement.Controllers
                 }
                 else
                 {
-                    await _userRepository.AddUserInfoAsync(userInfo);
+                    _iGlobalRepository.SyncProjectAndUserDetails(userInfo);
                 }
                 return View(nameof(Dashboard));
             }

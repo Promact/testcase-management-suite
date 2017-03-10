@@ -1,4 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Models.User;
 using Promact.TestCaseManagement.Repository.DataRepository;
 using System.Threading.Tasks;
 
@@ -54,7 +54,7 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// <returns></returns>
         public async Task<UserInfo> GetUserByUserIdAsync(string userId)
         {
-            return await _userInfoRepository.FirstOrDefaultAsync(x => x.UserId == userId);
+            return await _userInfoRepository.FindAsync(userId);
         }
 
         #endregion

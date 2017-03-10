@@ -15,11 +15,11 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         void Add(T entity);
 
         /// <summary>
-        /// Add the new entity into the datacontext
+        /// Method to add list of entities 
         /// </summary>
-        /// <param name="entity"></param>
-        void AddAsync(T entity);
-
+        /// <param name="entities"></param>
+        void AddRangeAsync(List<T> entities);
+                
         /// <summary>
         /// Gets the list of all users
         /// </summary>
@@ -105,7 +105,7 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// </summary>
         /// <param name="id">Primary key of an entity</param>
         /// <returns></returns>
-        Task<T> FindAsync(int id);
+        Task<T> FindAsync(object id);
 
         /// <summary>
         /// Fetches all the item from the datacontext.

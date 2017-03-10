@@ -17,5 +17,13 @@
         public const string TestCaseManagement = "TestCaseManagement";
         public const string ConnectionString = "CONNECTION_STRING";
         public const string Appsettings = "appsettings.json";
+        public const string Bearer = "Bearer";
+
+        #region API Path
+
+        public const string ProjectDetail = "api/project/detail";
+
+        #endregion
+
     }
 }

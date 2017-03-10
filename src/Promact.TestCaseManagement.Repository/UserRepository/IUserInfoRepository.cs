@@ -1,4 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+﻿using Promact.TestCaseManagement.DomainModel.Models.User;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.UserRepository
