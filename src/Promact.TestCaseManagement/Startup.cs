@@ -14,9 +14,13 @@ using Promact.TestCaseManagement.DomainModel.DataContext;
 using Promact.TestCaseManagement.DomainModel.Models.TestCase;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using Promact.TestCaseManagement.Repository.DataRepository;
+using Promact.TestCaseManagement.Repository.GlobalRepository;
+using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Repository.TestCaseRepository;
 using Promact.TestCaseManagement.Repository.UserRepository;
 using Promact.TestCaseManagement.Utility.Constants;
+using Promact.TestCaseManagement.Utility.Services.AccessToken;
+using Promact.TestCaseManagement.Utility.Services.HttpClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Threading.Tasks;
@@ -42,6 +46,11 @@ namespace Promact.TestCaseManagement
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
             services.AddScoped(typeof(IDataRepository<>), typeof(DataRepository<>));
             services.AddScoped<ITestCaseRepository, TestCaseRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IProjectUserMappingRepository, ProjectUserMappingRepository>();
+            services.AddScoped<IGlobalRepository, GlobalRepository>();
+            services.AddTransient<IHttpClientService, HttpClientService>();
+            services.AddTransient<IAccessTokenService, AccessTokenService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -78,7 +87,7 @@ namespace Promact.TestCaseManagement
                 Authority = StringConstants.OAuthUrl,
                 ClientId = StringConstants.ClientId,
                 ClientSecret = StringConstants.ClientSecret,
-                AllowedScopes = { Scopes.offline_access, Scopes.openid, Scopes.profile },
+                AllowedScopes = { Scopes.offline_access, Scopes.openid, Scopes.profile, Scopes.email, Scopes.project_read, Scopes.user_read },
                 Event = new OpenIdConnectEvents
                 {
                     OnRemoteFailure = context =>

@@ -4,6 +4,7 @@ using Promact.TestCaseManagement.DomainModel.Models.Module;
 using Promact.TestCaseManagement.DomainModel.Models.Project;
 using Promact.TestCaseManagement.DomainModel.Models.Scenario;
 using Promact.TestCaseManagement.DomainModel.Models.TestCase;
+using Promact.TestCaseManagement.DomainModel.Models.User;
 using System;
 using System.Linq;
 
@@ -43,6 +44,8 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
         public DbSet<TestCaseResultHistory> TestCaseResultHistory { get; set; }
 
         public DbSet<UserInfo> UserInfo { get; set; }
+
+        public DbSet<ProjectUserMapping> ProjectUserMapping { get; set; }
 
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
@@ -9,6 +10,8 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
 
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<ScenarioTestCaseMapping> ScenarioTestCaseMapping { get; set; }
 
         #endregion
     }

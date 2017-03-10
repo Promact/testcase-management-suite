@@ -9,8 +9,8 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    [Migration("20170303094730_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20170310072401_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,61 +18,14 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Global.UserInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("FirstName")
-                        .IsRequired();
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<int?>("ModifiedBy");
-
-                    b.Property<DateTime?>("ModifiedDate");
-
-                    b.Property<int>("ProjectId");
-
-                    b.Property<string>("RefreshToken")
-                        .IsRequired();
-
-                    b.Property<int>("TeamRole");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("UserInfo");
-                });
-
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Module.Module", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -89,13 +42,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -117,17 +66,13 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("HardWare");
+                    b.Property<string>("Hardware");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -148,13 +93,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -171,13 +112,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -199,7 +136,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -209,7 +146,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<int?>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -231,6 +168,10 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("ModifiedBy");
+
                     b.HasIndex("TestCaseResultHistoryId")
                         .IsUnique();
 
@@ -242,13 +183,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -268,13 +205,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -294,13 +227,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -322,8 +251,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime?>("ActualResultDate");
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("ExpectedResult");
@@ -331,8 +258,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<DateTime>("ExpectedResultDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -358,8 +283,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime?>("ActualResultDate");
 
-                    b.Property<int>("CreatedBy");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("ExpectedResult");
@@ -367,8 +290,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<DateTime>("ExpectedResultDate");
 
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<int?>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -390,7 +311,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CreatedBy");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -400,7 +321,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<int?>("ModifiedBy");
+                    b.Property<string>("ModifiedBy");
 
                     b.Property<DateTime?>("ModifiedDate");
 
@@ -422,28 +343,78 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("ModifiedBy");
+
                     b.HasIndex("TCId");
 
                     b.ToTable("TestCaseVersion");
                 });
 
-            modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Global.UserInfo", b =>
+            modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.User.ProjectUserMapping", b =>
                 {
-                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.Project.Project", "Project")
-                        .WithMany("UserInfo")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedDate");
+
+                    b.Property<int>("ProjectId");
+
+                    b.Property<int>("Role");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProjectUserMapping");
+                });
+
+            modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.User.UserInfo", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("ModifiedDate");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserInfo");
                 });
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Module.ModuleTestCaseMapping", b =>
                 {
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.Module.Module", "Module")
-                        .WithMany()
+                        .WithMany("ModelTestCaseMapping")
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCase", "TestCase")
-                        .WithMany()
+                        .WithMany("ModuleTestCaseMapping")
                         .HasForeignKey("TestCaseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -451,18 +422,26 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.Scenario.ScenarioTestCaseMapping", b =>
                 {
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.Scenario.Scenario", "Scenario")
-                        .WithMany()
+                        .WithMany("ScenarioTestCaseMapping")
                         .HasForeignKey("ScenarioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCase", "TestCase")
-                        .WithMany()
+                        .WithMany("ScenarioTestCaseMapping")
                         .HasForeignKey("TestCaseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCase", b =>
                 {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.User.UserInfo", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.User.UserInfo", "ModifiedUser")
+                        .WithMany()
+                        .HasForeignKey("ModifiedBy");
+
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCaseResultHistory", "TestCaseResultHistory")
                         .WithOne("TestCase")
                         .HasForeignKey("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCase", "TestCaseResultHistoryId")
@@ -503,10 +482,30 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCaseVersion", b =>
                 {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.User.UserInfo", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.User.UserInfo", "ModifiedUser")
+                        .WithMany()
+                        .HasForeignKey("ModifiedBy");
+
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCase.TestCase", "TestCase")
                         .WithMany()
                         .HasForeignKey("TCId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.User.ProjectUserMapping", b =>
+                {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.Project.Project", "Project")
+                        .WithMany("ProjectUserMapping")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.User.UserInfo", "User")
+                        .WithMany("ProjectUserMapping")
+                        .HasForeignKey("UserId");
                 });
         }
     }

@@ -52,12 +52,12 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         }
 
         /// <summary>
-        /// Add new entry to the database using Async
+        /// Method to add list of entities 
         /// </summary>
         /// <param name="entity"></param>
-        public void AddAsync(T entity)
+        public void AddRangeAsync(List<T> entities)
         {
-            _dbSet.Add(entity);
+            _dbSet.AddRangeAsync(entities);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Promact.TestCaseManagement.Repository.DataRepository
         /// </summary>
         /// <param name="id">Primary key of an entity</param>
         /// <returns></returns>
-        public async Task<T> FindAsync(int id)
+        public async Task<T> FindAsync(object id)
         {
             return await _dbSet.FindAsync(id);
         }
