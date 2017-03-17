@@ -1,5 +1,6 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.User;
-using Promact.TestCaseManagement.Repository.DataRepository;
+﻿using Promact.TestCaseManagement.DomainModel.DataContext;
+using Promact.TestCaseManagement.DomainModel.Models.User;
+using System;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.UserRepository
@@ -8,15 +9,15 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
     {
         #region Private Member(s)
 
-        readonly IDataRepository<UserInfo> _userInfoRepository;
+        readonly TestCaseManagementDbContext _dbContext;
 
         #endregion
 
         #region Constructors
 
-        public UserInfoRepository(IDataRepository<UserInfo> userInfoRepository)
+        public UserInfoRepository(TestCaseManagementDbContext dbContext)
         {
-            _userInfoRepository = userInfoRepository;
+            _dbContext = dbContext;
         }
 
         #endregion
@@ -30,8 +31,9 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// <returns></returns>
         public async Task<UserInfo> AddUserInfoAsync(UserInfo userInfo)
         {
-            _userInfoRepository.Add(userInfo);
-            await _userInfoRepository.SaveChangesAsync();
+            userInfo.CreatedDate = DateTime.UtcNow;
+            _dbContext.UserInfo.Add(userInfo);
+            await _dbContext.SaveChangesAsync();
             return userInfo;
         }
 
@@ -42,8 +44,8 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// <returns></returns>
         public async Task<UserInfo> UpdateUserInfoAsync(UserInfo userInfo)
         {
-            _userInfoRepository.Update(userInfo);
-            await _userInfoRepository.SaveChangesAsync();
+            _dbContext.UserInfo.Update(userInfo);
+            await _dbContext.SaveChangesAsync();
             return userInfo;
         }
 
@@ -54,7 +56,7 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// <returns></returns>
         public async Task<UserInfo> GetUserByUserIdAsync(string userId)
         {
-            return await _userInfoRepository.FindAsync(userId);
+            return await _dbContext.UserInfo.FindAsync(userId);
         }
 
         #endregion

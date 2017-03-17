@@ -7,6 +7,8 @@ using Promact.TestCaseManagement.DomainModel.Models.TestCase;
 using Promact.TestCaseManagement.DomainModel.Models.User;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.DomainModel.DataContext
 {
@@ -51,6 +53,10 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 
         #region Overridden Methods
 
+        /// <summary>
+        /// override save changes method
+        /// </summary>
+        /// <returns></returns>
         public override int SaveChanges()
         {
             ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Added).ToList().ForEach(x =>
@@ -63,6 +69,24 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
             });
 
             return base.SaveChanges();
+        }
+
+        /// <summary>
+        /// override savechangesasync method
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Added).ToList().ForEach(x =>
+            {
+                ((TestCaseManagementBase)x.Entity).CreatedDate = DateTime.UtcNow;
+            });
+            ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Modified).ToList().ForEach(x =>
+            {
+                ((TestCaseManagementBase)x.Entity).ModifiedDate = DateTime.UtcNow;
+            });
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         #endregion
