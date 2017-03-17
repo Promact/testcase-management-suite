@@ -7,8 +7,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
     {
         #region Public Properties
 
-        public int TestStepNumber { get; set; }
-
         public string TestStep { get; set; }
 
         public string ExpectedResult { get; set; }

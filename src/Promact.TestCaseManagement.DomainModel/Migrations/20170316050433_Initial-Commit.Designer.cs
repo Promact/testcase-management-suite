@@ -9,8 +9,8 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    [Migration("20170310072401_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20170316050433_Initial-Commit")]
+    partial class InitialCommit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -265,8 +265,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<string>("TestStep");
 
-                    b.Property<int>("TestStepNumber");
-
                     b.HasKey("Id");
 
                     b.HasIndex("TestCaseId");
@@ -296,8 +294,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("TestCaseStepsId");
 
                     b.Property<string>("TestStep");
-
-                    b.Property<int>("TestStepNumber");
 
                     b.HasKey("Id");
 

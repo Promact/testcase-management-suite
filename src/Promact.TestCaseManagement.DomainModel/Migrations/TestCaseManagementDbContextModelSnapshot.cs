@@ -264,8 +264,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<string>("TestStep");
 
-                    b.Property<int>("TestStepNumber");
-
                     b.HasKey("Id");
 
                     b.HasIndex("TestCaseId");
@@ -295,8 +293,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("TestCaseStepsId");
 
                     b.Property<string>("TestStep");
-
-                    b.Property<int>("TestStepNumber");
 
                     b.HasKey("Id");
 

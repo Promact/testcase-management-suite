@@ -1,8 +1,6 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.User;
-using Promact.TestCaseManagement.Repository.DataRepository;
-using System;
+﻿using Promact.TestCaseManagement.DomainModel.DataContext;
+using Promact.TestCaseManagement.DomainModel.Models.User;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.ProjectRepository
@@ -11,15 +9,15 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
     {
         #region Private Members
 
-        readonly IDataRepository<ProjectUserMapping> _iProjectUserMappingRepository;
+        readonly TestCaseManagementDbContext _dbContext;
 
         #endregion
 
         #region Constructor
 
-        public ProjectUserMappingRepository(IDataRepository<ProjectUserMapping> iProjectUserMappingRepository)
+        public ProjectUserMappingRepository(TestCaseManagementDbContext dbContext)
         {
-            _iProjectUserMappingRepository = iProjectUserMappingRepository;
+            _dbContext = dbContext;
         }
 
         #endregion
@@ -33,8 +31,8 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
         /// <returns></returns>
         public async Task<ProjectUserMapping> AddProjectUserMapping(ProjectUserMapping projectUserMapping)
         {
-            _iProjectUserMappingRepository.Add(projectUserMapping);
-            await _iProjectUserMappingRepository.SaveChangesAsync();
+            await _dbContext.ProjectUserMapping.AddAsync(projectUserMapping);
+            await _dbContext.SaveChangesAsync();
             return projectUserMapping;
         }
 
@@ -43,10 +41,10 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
         /// </summary>
         /// <param name="projectUserMappingList">Project user mapping list object</param>
         /// <returns></returns>
-        public async void AddProjectUserMappingList(List<ProjectUserMapping> projectUserMappingList)
+        public async Task AddProjectUserMappingList(List<ProjectUserMapping> projectUserMappingList)
         {
-            _iProjectUserMappingRepository.AddRangeAsync(projectUserMappingList);
-            await _iProjectUserMappingRepository.SaveChangesAsync();
+            await _dbContext.ProjectUserMapping.AddRangeAsync(projectUserMappingList);
+            await _dbContext.SaveChangesAsync();
         }
 
         #endregion

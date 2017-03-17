@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using Promact.TestCaseManagement.DomainModel.Enums;
 using Promact.TestCaseManagement.DomainModel.Models.Project;
 using Promact.TestCaseManagement.DomainModel.Models.User;
@@ -10,6 +11,7 @@ using Promact.TestCaseManagement.Utility.Services.AccessToken;
 using Promact.TestCaseManagement.Utility.Services.HttpClient;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.GlobalRepository
 {
@@ -42,28 +44,29 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
         /// Method to sync project and user details
         /// </summary>
         /// <param name="userInfo">User info object</param>
-        public async void SyncProjectAndUserDetails(UserInfo userInfo)
+        public async Task SyncProjectAndUserDetails(UserInfo userInfo)
         {
             string accessToken = await _iAccessTokenService.GetAccessTokenByRefreshTokenAsync(userInfo.RefreshToken);
             var response = await _iHttpClientService.GetAsync(StringConstants.OAuthUrl, $"{StringConstants.ProjectDetail}/{userInfo.Id}", accessToken);
-            var userDetail = Mapper.Map<UserAC>(response);
-            Mapper.Map(userDetail, userInfo);
+            var userDetail = JsonConvert.DeserializeObject<UserDetailWithProject>(response);
+            Mapper.Map(userDetail.UserAc, userInfo);
             await _iUserInfoRepository.AddUserInfoAsync(userInfo);
             var projectUserMappingList = new List<ProjectUserMapping>();
-            userDetail.Projects.ToList().ForEach(async x =>
+            var projectList = userDetail.ListOfProject.ToList();
+            foreach (var projectAC in projectList)
             {
-                var project = Mapper.Map<Project>(x);
+                var project = Mapper.Map<Project>(projectAC);
                 await _iProjectRepository.AddProjectAsync(project);
                 var projectUserMappingListObj = new ProjectUserMapping
                 {
                     ProjectId = project.Id,
                     UserId = userInfo.Id,
-                    Role = x.Role.Equals(TeamRole.TeamLeader.ToString()) ? TeamRole.TeamLeader : TeamRole.TeamMember
+                    Role = projectAC.TeamLeaderId.Equals(userInfo.Id) ? TeamRole.TeamLeader : TeamRole.TeamMember
                 };
                 projectUserMappingList.Add(projectUserMappingListObj);
-            });
+            };
 
-            _iProjectUserMappingRepository.AddProjectUserMappingList(projectUserMappingList);
+            await _iProjectUserMappingRepository.AddProjectUserMappingList(projectUserMappingList);
         }
     }
 }

@@ -11,9 +11,11 @@ using Microsoft.Extensions.Logging;
 using Promact.OAuth.Client.DomainModel;
 using Promact.OAuth.Client.Middleware;
 using Promact.TestCaseManagement.DomainModel.DataContext;
+using Promact.TestCaseManagement.DomainModel.Models.Project;
 using Promact.TestCaseManagement.DomainModel.Models.TestCase;
+using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.Repository.ApplicationClass.External;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
-using Promact.TestCaseManagement.Repository.DataRepository;
 using Promact.TestCaseManagement.Repository.GlobalRepository;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Repository.TestCaseRepository;
@@ -44,7 +46,6 @@ namespace Promact.TestCaseManagement
 
             //register application services
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
-            services.AddScoped(typeof(IDataRepository<>), typeof(DataRepository<>));
             services.AddScoped<ITestCaseRepository, TestCaseRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IProjectUserMappingRepository, ProjectUserMappingRepository>();
@@ -80,7 +81,8 @@ namespace Promact.TestCaseManagement
                 AutomaticAuthenticate = true
             });
 
-            app.UseExceptionHandler("/Home/Error");
+            if (env.IsProduction())
+                app.UseExceptionHandler("/Home/Error");
 
             app.UsePromactAuthentication(new PromactAuthenticationOptions
             {
@@ -104,6 +106,8 @@ namespace Promact.TestCaseManagement
                 cfg.CreateMap<TestCaseAC, TestCase>().ReverseMap();
                 cfg.CreateMap<TestCaseInputAc, TestCaseInput>().ReverseMap();
                 cfg.CreateMap<TestCaseStepsAC, TestCaseSteps>().ReverseMap();
+                cfg.CreateMap<UserInfo, UserAC>().ReverseMap();
+                cfg.CreateMap<DomainModel.Models.Project.Project, ProjectAC>().ReverseMap();
             });
 
             app.UseMvcWithDefaultRoute();

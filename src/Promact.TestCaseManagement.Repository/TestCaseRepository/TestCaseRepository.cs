@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Promact.TestCaseManagement.Repository.DataRepository;
 using Promact.TestCaseManagement.DomainModel.Models.TestCase;
 using Microsoft.EntityFrameworkCore;
+using Promact.TestCaseManagement.DomainModel.DataContext;
 
 namespace Promact.TestCaseManagement.Repository.TestCaseRepository
 {
     public class TestCaseRepository : ITestCaseRepository
     {
         #region Private Member(s)
-
-        readonly IDataRepository<TestCase> _iTestCaseRepository;
+        
+        readonly TestCaseManagementDbContext _dbContext;
 
         #endregion
 
         #region Constructor
 
-        public TestCaseRepository(IDataRepository<TestCase> iTestCaseRepository)
+        public TestCaseRepository(TestCaseManagementDbContext dbContext)
         {
-            _iTestCaseRepository = iTestCaseRepository;
+            _dbContext = dbContext;
         }
 
         #endregion
@@ -31,7 +31,7 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <returns></returns>
         public async Task<List<TestCase>> GetTestCasesAsync()
         {
-            return await _iTestCaseRepository.GetAll().Include(x => x.TestCaseSteps).ToListAsync();
+            return await _dbContext.TestCase.Include(x => x.TestCaseSteps).ToListAsync();
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <returns></returns>
         public async Task<TestCase> AddTestCaseAsync(TestCase testCase)
         {
-            _iTestCaseRepository.Add(testCase);
-            await _iTestCaseRepository.SaveChangesAsync();
+            await _dbContext.TestCase.AddAsync(testCase);
+            await _dbContext.SaveChangesAsync();
             return testCase;
         }
 
@@ -53,8 +53,8 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <returns></returns>
         public async Task<TestCase> UpdateTestCaseAsync(TestCase testCase)
         {
-            _iTestCaseRepository.Update(testCase);
-            await _iTestCaseRepository.SaveChangesAsync();
+            _dbContext.TestCase.Update(testCase);
+            await _dbContext.SaveChangesAsync();
             return testCase;
         }
 
@@ -64,8 +64,8 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <param name="testCase">Test case object</param>
         public async void DeleteTestCaseAsync(TestCase testCase)
         {
-            _iTestCaseRepository.Delete(testCase);
-            await _iTestCaseRepository.SaveChangesAsync();
+            _dbContext.TestCase.Remove(testCase);
+            await _dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <returns></returns>
         public async Task<TestCase> GetTestCase(int testCaseId)
         {
-            return await _iTestCaseRepository.FindAsync(testCaseId);
+            return await _dbContext.TestCase.FindAsync(testCaseId);
         }
 
         #endregion

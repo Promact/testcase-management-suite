@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCommit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -242,8 +242,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: true),
                     TestCaseId = table.Column<int>(nullable: false),
-                    TestStep = table.Column<string>(nullable: true),
-                    TestStepNumber = table.Column<int>(nullable: false)
+                    TestStep = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -338,8 +337,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedDate = table.Column<DateTime>(nullable: true),
                     TestCaseStepsId = table.Column<int>(nullable: false),
-                    TestStep = table.Column<string>(nullable: true),
-                    TestStepNumber = table.Column<int>(nullable: false)
+                    TestStep = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

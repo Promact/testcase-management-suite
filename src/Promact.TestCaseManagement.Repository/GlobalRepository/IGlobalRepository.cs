@@ -1,4 +1,5 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Models.User;
+using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.GlobalRepository
 {
@@ -7,7 +8,7 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
         /// <summary>
         /// Method to sync project and user details
         /// </summary>
-        /// <param name="userInfo">User info object</param>
-        void SyncProjectAndUserDetails(UserInfo userInfo);
+        /// <param name="userInfo">User info object</param>           
+        Task SyncProjectAndUserDetails(UserInfo userInfo);
     }
 }

@@ -56,7 +56,7 @@ namespace Promact.TestCaseManagement.Controllers
                 }
                 else
                 {
-                    _iGlobalRepository.SyncProjectAndUserDetails(userInfo);
+                    await _iGlobalRepository.SyncProjectAndUserDetails(userInfo);
                 }
                 return View(nameof(Dashboard));
             }

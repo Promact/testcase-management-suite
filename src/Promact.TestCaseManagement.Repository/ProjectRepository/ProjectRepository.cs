@@ -1,5 +1,5 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Project;
-using Promact.TestCaseManagement.Repository.DataRepository;
+﻿using Promact.TestCaseManagement.DomainModel.DataContext;
+using Promact.TestCaseManagement.DomainModel.Models.Project;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.ProjectRepository
@@ -8,15 +8,15 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
     {
         #region Private Members
 
-        readonly IDataRepository<Project> _projectRepository;
+        readonly TestCaseManagementDbContext _dbContext;
 
         #endregion
 
         #region Constructor
 
-        public ProjectRepository(IDataRepository<Project> projectRepository)
+        public ProjectRepository(TestCaseManagementDbContext dbContext)
         {
-            _projectRepository = projectRepository;
+            _dbContext = dbContext;
         }
 
         #endregion
@@ -30,8 +30,8 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
         /// <returns></returns>
         public async Task<Project> AddProjectAsync(Project project)
         {
-            _projectRepository.Add(project);
-            await _projectRepository.SaveChangesAsync();
+            await _dbContext.Project.AddAsync(project);
+            await _dbContext.SaveChangesAsync();
             return project;
         }
 

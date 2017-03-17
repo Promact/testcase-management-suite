@@ -18,6 +18,6 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
         /// </summary>
         /// <param name="projectUserMappingList">Project user mapping list object</param>
         /// <returns></returns>
-        void AddProjectUserMappingList(List<ProjectUserMapping> projectUserMappingList);
+        Task AddProjectUserMappingList(List<ProjectUserMapping> projectUserMappingList);
     }
 }

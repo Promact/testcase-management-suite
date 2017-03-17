@@ -5,8 +5,8 @@
         public const string oidc = "oidc";
         public const string Cookies = "Cookies";
         public const string OAuthUrl = "https://oauth.promactinfo.com/";
-        public const string ClientId = "A1XLKBSSNYD2NG9";
-        public const string ClientSecret = "qxBsMyr1GXVKWXjAk0xVzMuq0LeITl";
+        public const string ClientId = "HU6E99MN3C2CTK8";
+        public const string ClientSecret = "wUOC7scxfffqBThJdzAybF1wSqms0S";
         public const string OffLineAccess = "offline_access";
         public const string Email = "email";
         public const string Sub = "sub";
@@ -21,7 +21,7 @@
 
         #region API Path
 
-        public const string ProjectDetail = "api/project/detail";
+        public const string ProjectDetail = "api/users/details";
 
         #endregion
 
