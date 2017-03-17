@@ -1,4 +1,6 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
+using Promact.TestCaseManagement.DomainModel.Models.User;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 {
@@ -12,7 +14,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 
         public string Description { get; set; }
 
-        public string PreCondition { get; set; }        
+        public string PreCondition { get; set; }
 
         public string PostCondition { get; set; }
 
@@ -23,6 +25,16 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
         public int PreparedBy { get; set; }
 
         public int? ReviewedBy { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        [ForeignKey("CreatedBy")]
+        public UserInfo CreatedUser { get; set; }
+
+        [ForeignKey("ModifiedBy")]
+        public UserInfo ModifiedUser { get; set; }
 
         #endregion
     }

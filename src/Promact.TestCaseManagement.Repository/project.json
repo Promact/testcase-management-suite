@@ -2,7 +2,9 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "AutoMapper": "6.0.0",
     "NETStandard.Library": "1.6.1",
+    "Newtonsoft.Json": "9.0.1",
     "Promact.TestCaseManagement.DomainModel": "1.0.0-*",
     "Promact.TestCaseManagement.Utility": "1.0.0-*"
   },
