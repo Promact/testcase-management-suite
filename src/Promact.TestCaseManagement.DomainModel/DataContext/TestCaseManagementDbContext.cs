@@ -39,11 +39,19 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 
         public DbSet<TestCaseVersion> TestCaseVersion { get; set; }
 
+        public DbSet<TestCaseSteps> TestCaseSteps { get; set; }
+
         public DbSet<TestCaseStepsVersion> TestCaseStepsVersion { get; set; }
+
+        public DbSet<TestCaseInput> TestCaseInput { get; set; }
 
         public DbSet<TestCaseInputVersion> TestCaseInputVersion { get; set; }
 
         public DbSet<TestCaseResultHistory> TestCaseResultHistory { get; set; }
+
+        public DbSet<TestCaseConditions> TestCaseConditions { get; set; }
+
+        public DbSet<TestCaseConditionsVersion> TestCaseConditionsVersion { get; set; }
 
         public DbSet<UserInfo> UserInfo { get; set; }
 
@@ -61,11 +69,11 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
         {
             ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Added).ToList().ForEach(x =>
             {
-                ((TestCaseManagementBase)x.Entity).CreatedDate = DateTime.UtcNow;
+                ((TestCaseManagementBase)x.Entity).CreatedDateTime = DateTime.UtcNow;
             });
             ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Modified).ToList().ForEach(x =>
             {
-                ((TestCaseManagementBase)x.Entity).ModifiedDate = DateTime.UtcNow;
+                ((TestCaseManagementBase)x.Entity).ModifiedDateTime = DateTime.UtcNow;
             });
 
             return base.SaveChanges();
@@ -80,11 +88,11 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
         {
             ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Added).ToList().ForEach(x =>
             {
-                ((TestCaseManagementBase)x.Entity).CreatedDate = DateTime.UtcNow;
+                ((TestCaseManagementBase)x.Entity).CreatedDateTime = DateTime.UtcNow;
             });
             ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Modified).ToList().ForEach(x =>
             {
-                ((TestCaseManagementBase)x.Entity).ModifiedDate = DateTime.UtcNow;
+                ((TestCaseManagementBase)x.Entity).ModifiedDateTime = DateTime.UtcNow;
             });
             return base.SaveChangesAsync(cancellationToken);
         }

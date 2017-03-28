@@ -1,11 +1,10 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
-using System;
+﻿using System;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 {
-    public class TestCaseStepsBase : TestCaseManagementBase
+    public abstract class TestCaseStepsBase
     {
-        #region Public Properties
+        public int Id { get; set; }
 
         public string TestStep { get; set; }
 
@@ -16,7 +15,5 @@ namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
         public string ActualResult { get; set; }
 
         public DateTime? ActualResultDate { get; set; }
-
-        #endregion
     }
 }

@@ -3,20 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.Global
 {
-    public class TestCaseManagementBase
+    public abstract class TestCaseManagementBase
     {
-        #region Public Properties
-
         [Key]
         public int Id { get; set; }
 
         public bool IsDeleted { get; set; }
 
         [Required]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDateTime { get; set; }
 
-        public DateTime? ModifiedDate { get; set; }
-
-        #endregion
+        public DateTime? ModifiedDateTime { get; set; }
     }
 }

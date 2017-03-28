@@ -1,11 +1,12 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
+using System.Collections.Generic;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseVersion : TestCaseBase
+    public class TestCaseConditions : TestCaseConditionsBase
     {
-        public int TestCaseId { get; set; }
-
         public virtual TestCase TestCase { get; set; }
+
+        public virtual ICollection<TestCaseConditionsVersion> TestCaseConditionsVersion { get; set; }
     }
 }

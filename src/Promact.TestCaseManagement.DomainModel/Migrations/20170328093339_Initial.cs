@@ -4,37 +4,21 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
-    public partial class InitialCommit : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Module",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Module", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Project",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     Hardware = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Prerequisite = table.Column<string>(nullable: true),
                     TestEnvironment = table.Column<string>(nullable: true)
@@ -45,54 +29,67 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Scenario",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Scenario", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TestCaseResultHistory",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    TestCaseId = table.Column<int>(nullable: false),
-                    TestCaseResult = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TestCaseResultHistory", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserInfo",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     RefreshToken = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserInfo", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Module",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    ProjectId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Module", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Module_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Scenario",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    ProjectId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Scenario", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Scenario_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,20 +99,14 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     DefectId = table.Column<int>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedBy = table.Column<string>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    PostCondition = table.Column<string>(nullable: true),
-                    PreCondition = table.Column<string>(nullable: true),
-                    PreparedBy = table.Column<int>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     Priority = table.Column<bool>(nullable: false),
-                    ReviewedBy = table.Column<int>(nullable: true),
-                    SerialNumber = table.Column<int>(nullable: false),
-                    TestCaseId = table.Column<string>(nullable: true),
-                    TestCaseResultHistoryId = table.Column<int>(nullable: false)
+                    ReviewedBy = table.Column<string>(nullable: true),
+                    TestCaseUniqueId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -127,17 +118,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TestCase_UserInfo_ModifiedBy",
-                        column: x => x.ModifiedBy,
+                        name: "FK_TestCase_UserInfo_ReviewedBy",
+                        column: x => x.ReviewedBy,
                         principalTable: "UserInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TestCase_TestCaseResultHistory_TestCaseResultHistoryId",
-                        column: x => x.TestCaseResultHistoryId,
-                        principalTable: "TestCaseResultHistory",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,9 +131,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     ProjectId = table.Column<int>(nullable: false),
                     Role = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
@@ -176,9 +161,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     ModuleId = table.Column<int>(nullable: false),
                     TestCaseId = table.Column<int>(nullable: false)
                 },
@@ -205,9 +190,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     ScenarioId = table.Column<int>(nullable: false),
                     TestCaseId = table.Column<int>(nullable: false)
                 },
@@ -229,6 +214,48 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TestCaseConditions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Condition = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    TestCaseId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestCaseConditions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestCaseConditions_TestCase_TestCaseId",
+                        column: x => x.TestCaseId,
+                        principalTable: "TestCase",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TestCaseResultHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    TestCaseId = table.Column<int>(nullable: false),
+                    TestCaseResult = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestCaseResultHistory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestCaseResultHistory_TestCase_TestCaseId",
+                        column: x => x.TestCaseId,
+                        principalTable: "TestCase",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TestCaseSteps",
                 columns: table => new
                 {
@@ -236,11 +263,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ActualResult = table.Column<string>(nullable: true),
                     ActualResultDate = table.Column<DateTime>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
                     ExpectedResult = table.Column<string>(nullable: true),
                     ExpectedResultDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     TestCaseId = table.Column<int>(nullable: false),
                     TestStep = table.Column<string>(nullable: true)
                 },
@@ -262,20 +286,14 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     DefectId = table.Column<int>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedBy = table.Column<string>(nullable: true),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
-                    PostCondition = table.Column<string>(nullable: true),
-                    PreCondition = table.Column<string>(nullable: true),
-                    PreparedBy = table.Column<int>(nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     Priority = table.Column<bool>(nullable: false),
-                    ReviewedBy = table.Column<int>(nullable: true),
-                    SerialNumber = table.Column<int>(nullable: false),
-                    TCId = table.Column<int>(nullable: false),
-                    TestCaseId = table.Column<string>(nullable: true)
+                    TestCaseId = table.Column<int>(nullable: false),
+                    TestCaseUniqueId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -287,15 +305,32 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TestCaseVersion_UserInfo_ModifiedBy",
-                        column: x => x.ModifiedBy,
-                        principalTable: "UserInfo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TestCaseVersion_TestCase_TCId",
-                        column: x => x.TCId,
+                        name: "FK_TestCaseVersion_TestCase_TestCaseId",
+                        column: x => x.TestCaseId,
                         principalTable: "TestCase",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TestCaseConditionsVersion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Condition = table.Column<int>(nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    TestCaseConditionsId = table.Column<int>(nullable: false),
+                    TestCaseId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestCaseConditionsVersion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestCaseConditionsVersion_TestCaseConditions_TestCaseConditionsId",
+                        column: x => x.TestCaseConditionsId,
+                        principalTable: "TestCaseConditions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -306,9 +341,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     TestCaseStepsId = table.Column<int>(nullable: false),
                     TestInput = table.Column<string>(nullable: true)
                 },
@@ -331,11 +363,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ActualResult = table.Column<string>(nullable: true),
                     ActualResultDate = table.Column<DateTime>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
                     ExpectedResult = table.Column<string>(nullable: true),
                     ExpectedResultDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     TestCaseStepsId = table.Column<int>(nullable: false),
                     TestStep = table.Column<string>(nullable: true)
                 },
@@ -356,9 +385,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    ModifiedDate = table.Column<DateTime>(nullable: true),
                     TestCaseInputId = table.Column<int>(nullable: false),
                     TestInput = table.Column<string>(nullable: true)
                 },
@@ -374,6 +400,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Module_ProjectId",
+                table: "Module",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ModuleTestCaseMapping_ModuleId",
                 table: "ModuleTestCaseMapping",
                 column: "ModuleId");
@@ -382,6 +413,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 name: "IX_ModuleTestCaseMapping_TestCaseId",
                 table: "ModuleTestCaseMapping",
                 column: "TestCaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scenario_ProjectId",
+                table: "Scenario",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ScenarioTestCaseMapping_ScenarioId",
@@ -399,15 +435,19 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestCase_ModifiedBy",
+                name: "IX_TestCase_ReviewedBy",
                 table: "TestCase",
-                column: "ModifiedBy");
+                column: "ReviewedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestCase_TestCaseResultHistoryId",
-                table: "TestCase",
-                column: "TestCaseResultHistoryId",
-                unique: true);
+                name: "IX_TestCaseConditions_TestCaseId",
+                table: "TestCaseConditions",
+                column: "TestCaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestCaseConditionsVersion_TestCaseConditionsId",
+                table: "TestCaseConditionsVersion",
+                column: "TestCaseConditionsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TestCaseInput_TestCaseStepsId",
@@ -418,6 +458,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 name: "IX_TestCaseInputVersion_TestCaseInputId",
                 table: "TestCaseInputVersion",
                 column: "TestCaseInputId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestCaseResultHistory_TestCaseId",
+                table: "TestCaseResultHistory",
+                column: "TestCaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TestCaseSteps_TestCaseId",
@@ -435,14 +480,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 column: "CreatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestCaseVersion_ModifiedBy",
+                name: "IX_TestCaseVersion_TestCaseId",
                 table: "TestCaseVersion",
-                column: "ModifiedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TestCaseVersion_TCId",
-                table: "TestCaseVersion",
-                column: "TCId");
+                column: "TestCaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectUserMapping_ProjectId",
@@ -464,7 +504,13 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 name: "ScenarioTestCaseMapping");
 
             migrationBuilder.DropTable(
+                name: "TestCaseConditionsVersion");
+
+            migrationBuilder.DropTable(
                 name: "TestCaseInputVersion");
+
+            migrationBuilder.DropTable(
+                name: "TestCaseResultHistory");
 
             migrationBuilder.DropTable(
                 name: "TestCaseStepsVersion");
@@ -482,6 +528,9 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 name: "Scenario");
 
             migrationBuilder.DropTable(
+                name: "TestCaseConditions");
+
+            migrationBuilder.DropTable(
                 name: "TestCaseInput");
 
             migrationBuilder.DropTable(
@@ -495,9 +544,6 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserInfo");
-
-            migrationBuilder.DropTable(
-                name: "TestCaseResultHistory");
         }
     }
 }

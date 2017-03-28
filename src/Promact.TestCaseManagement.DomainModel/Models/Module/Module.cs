@@ -6,13 +6,13 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Module
 {
     public class Module : TestCaseManagementBase
     {
-        #region Public Properties
-
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<ModuleTestCaseMapping> ModelTestCaseMapping { get; set; }
+        public int ProjectId { get; set; }
 
-        #endregion
+        public virtual Project.Project Project { get; set; }
+
+        public virtual ICollection<ModuleTestCaseMapping> ModuleTestCaseMapping { get; set; }
     }
 }

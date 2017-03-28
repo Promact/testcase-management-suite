@@ -7,8 +7,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Project
 {
     public class Project : TestCaseManagementBase
     {
-        #region Public Properties
-
         [Required]
         public string Name { get; set; }
 
@@ -20,8 +18,10 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Project
 
         public bool IsActive { get; set; }
 
-        public virtual ICollection<ProjectUserMapping> ProjectUserMapping { get; set; }
+        public virtual ICollection<Module.Module> Module { get; set; }
 
-        #endregion
+        public virtual ICollection<Scenario.Scenario> Scenario { get; set; }
+
+        public virtual ICollection<ProjectUserMapping> ProjectUserMapping { get; set; }
     }
 }

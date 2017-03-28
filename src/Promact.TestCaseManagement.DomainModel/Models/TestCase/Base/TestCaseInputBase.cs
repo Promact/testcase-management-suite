@@ -1,13 +1,9 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
-
-namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
+﻿namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
 {
-    public class TestCaseInputBase : TestCaseManagementBase
+    public abstract class TestCaseInputBase
     {
-        #region Public Properties
+        public int Id { get; set; }
 
         public string TestInput { get; set; }
-
-        #endregion
     }
 }

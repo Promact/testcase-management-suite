@@ -6,13 +6,13 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
 {
     public class Scenario : TestCaseManagementBase
     {
-        #region Public Properties
-
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<ScenarioTestCaseMapping> ScenarioTestCaseMapping { get; set; }
+        public int ProjectId { get; set; }
 
-        #endregion
+        public virtual Project.Project Project { get; set; }
+
+        public virtual ICollection<ScenarioTestCaseMapping> ScenarioTestCaseMapping { get; set; }
     }
 }

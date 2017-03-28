@@ -6,8 +6,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models.User
 {
     public class UserInfo
     {
-        #region Public Properties
-
         [Required]
         public string Id { get; set; }
 
@@ -26,12 +24,10 @@ namespace Promact.TestCaseManagement.DomainModel.Models.User
         public string RefreshToken { get; set; }
 
         [Required]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDateTime { get; set; }
 
-        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ModifiedDateTime { get; set; }
 
         public virtual ICollection<ProjectUserMapping> ProjectUserMapping { get; set; }
-
-        #endregion
     }
 }

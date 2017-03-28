@@ -11,7 +11,6 @@ using Microsoft.Extensions.Logging;
 using Promact.OAuth.Client.DomainModel;
 using Promact.OAuth.Client.Middleware;
 using Promact.TestCaseManagement.DomainModel.DataContext;
-using Promact.TestCaseManagement.DomainModel.Models.Project;
 using Promact.TestCaseManagement.DomainModel.Models.TestCase;
 using Promact.TestCaseManagement.DomainModel.Models.User;
 using Promact.TestCaseManagement.Repository.ApplicationClass.External;
@@ -42,7 +41,7 @@ namespace Promact.TestCaseManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString]));
+            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer("Server=PR1C4R3Y2016;Database=TestCaseManagement;User id=sa;Password=Promact201617"));
 
             //register application services
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();

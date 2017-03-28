@@ -1,18 +1,18 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Enums;
-using Promact.TestCaseManagement.DomainModel.Models.Global;
+using System;
 
 namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
 {
-    public class TestCaseResultHistory : TestCaseManagementBase
+    public class TestCaseResultHistory
     {
-        #region Public Properties
+        public int Id { get; set; }
 
         public int TestCaseId { get; set; }
+
+        public DateTime CreatedDateTime { get; set; }
 
         public TestCaseResultStatus TestCaseResult { get; set; }
 
         public virtual TestCase TestCase { get; set; }
-
-        #endregion
     }
 }
