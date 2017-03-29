@@ -84,7 +84,7 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             ChangeTracker.Entries().Where(x => x.Entity is TestCaseManagementBase && x.State == EntityState.Added).ToList().ForEach(x =>
             {
@@ -94,7 +94,7 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
             {
                 ((TestCaseManagementBase)x.Entity).ModifiedDateTime = DateTime.UtcNow;
             });
-            return base.SaveChangesAsync(cancellationToken);
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         #endregion
