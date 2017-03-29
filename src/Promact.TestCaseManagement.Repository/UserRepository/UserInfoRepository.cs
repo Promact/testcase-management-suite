@@ -1,5 +1,5 @@
 ﻿using Promact.TestCaseManagement.DomainModel.DataContext;
-using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.DomainModel.Models;
 using System;
 using System.Threading.Tasks;
 

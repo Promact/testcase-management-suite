@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Promact.TestCaseManagement.DomainModel.Models.Global
+namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public abstract class TestCaseManagementBase
     {

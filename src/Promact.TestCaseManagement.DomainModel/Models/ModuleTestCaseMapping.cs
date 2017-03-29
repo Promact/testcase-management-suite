@@ -1,7 +1,6 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Promact.TestCaseManagement.DomainModel.Models.Module
+namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class ModuleTestCaseMapping : TestCaseManagementBase
     {
@@ -13,6 +12,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Module
 
         public virtual Module Module { get; set; }
 
-        public virtual TestCase.TestCase TestCase { get; set; }
+        public virtual TestCase TestCase { get; set; }
     }
 }

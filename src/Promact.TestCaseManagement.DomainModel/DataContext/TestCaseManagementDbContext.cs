@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Promact.TestCaseManagement.DomainModel.Models.Global;
-using Promact.TestCaseManagement.DomainModel.Models.Module;
-using Promact.TestCaseManagement.DomainModel.Models.Project;
-using Promact.TestCaseManagement.DomainModel.Models.Scenario;
-using Promact.TestCaseManagement.DomainModel.Models.TestCase;
-using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.DomainModel.Models;
 using System;
 using System.Linq;
 using System.Threading;

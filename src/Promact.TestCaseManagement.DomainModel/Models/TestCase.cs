@@ -1,17 +1,11 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Module;
-using Promact.TestCaseManagement.DomainModel.Models.Scenario;
-using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
-using Promact.TestCaseManagement.DomainModel.Models.User;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
-namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
+namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class TestCase : TestCaseBase
     {
-        public string ReviewedBy { get; set; }
+        public string ReviewedUserId { get; set; }
 
-        [ForeignKey("ReviewedBy")]
         public virtual UserInfo ReviewedUser { get; set; }
 
         public virtual ICollection<TestCaseResultHistory> TestCaseResultHistory { get; set; }

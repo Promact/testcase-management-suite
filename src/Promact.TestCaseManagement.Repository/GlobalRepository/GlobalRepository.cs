@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
 using Promact.TestCaseManagement.DomainModel.Enums;
-using Promact.TestCaseManagement.DomainModel.Models.Project;
-using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.External;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Repository.UserRepository;

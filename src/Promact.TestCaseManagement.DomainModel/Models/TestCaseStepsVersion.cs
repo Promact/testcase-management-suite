@@ -1,6 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.TestCase.Base;
-
-namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
+﻿namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class TestCaseStepsVersion : TestCaseStepsBase
     {

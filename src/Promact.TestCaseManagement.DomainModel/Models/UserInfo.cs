@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Promact.TestCaseManagement.DomainModel.Models.User
+namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class UserInfo
     {

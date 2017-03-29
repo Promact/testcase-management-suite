@@ -1,4 +1,4 @@
-﻿namespace Promact.TestCaseManagement.DomainModel.Models.TestCase.Base
+﻿namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public abstract class TestCaseInputBase
     {

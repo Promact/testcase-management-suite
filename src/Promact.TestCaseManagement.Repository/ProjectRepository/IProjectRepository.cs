@@ -1,4 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Project;
+﻿using Promact.TestCaseManagement.DomainModel.Models;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.ProjectRepository

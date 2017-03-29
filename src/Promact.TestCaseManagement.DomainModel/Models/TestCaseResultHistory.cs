@@ -1,7 +1,7 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Enums;
 using System;
 
-namespace Promact.TestCaseManagement.DomainModel.Models.TestCase
+namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class TestCaseResultHistory
     {

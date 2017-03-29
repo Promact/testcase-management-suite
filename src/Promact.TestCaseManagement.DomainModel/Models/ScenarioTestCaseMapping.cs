@@ -1,6 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Models.Global;
-
-namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
+﻿namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class ScenarioTestCaseMapping : TestCaseManagementBase
     {
@@ -10,6 +8,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models.Scenario
 
         public virtual Scenario Scenario { get; set; }
 
-        public virtual TestCase.TestCase TestCase { get; set; }
+        public virtual TestCase TestCase { get; set; }
     }
 }
