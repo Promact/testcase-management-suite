@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Promact.TestCaseManagement.DomainModel.Models
+﻿namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public abstract class TestCaseBase : TestCaseManagementBase
     {

@@ -6,6 +6,8 @@ namespace Promact.TestCaseManagement.DomainModel.Models
     {
         public int TestCaseStepsId { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual TestCaseSteps TestCaseSteps { get; set; }
 
         public virtual ICollection<TestCaseInputVersion> TestCaseInputVersion { get; set; }
