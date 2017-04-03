@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -221,6 +221,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Condition = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     TestCaseId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -265,6 +266,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     ActualResultDate = table.Column<DateTime>(nullable: true),
                     ExpectedResult = table.Column<string>(nullable: true),
                     ExpectedResultDate = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<int>(nullable: false),
                     TestCaseId = table.Column<int>(nullable: false),
                     TestStep = table.Column<string>(nullable: true)
                 },
@@ -321,6 +323,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     Condition = table.Column<int>(nullable: false),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     TestCaseConditionsId = table.Column<int>(nullable: false),
                     TestCaseId = table.Column<int>(nullable: true)
                 },
@@ -341,6 +344,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    IsDeleted = table.Column<int>(nullable: false),
                     TestCaseStepsId = table.Column<int>(nullable: false),
                     TestInput = table.Column<string>(nullable: true)
                 },
@@ -363,8 +367,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ActualResult = table.Column<string>(nullable: true),
                     ActualResultDate = table.Column<DateTime>(nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
                     ExpectedResult = table.Column<string>(nullable: true),
                     ExpectedResultDate = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<int>(nullable: false),
+                    TestCaseId = table.Column<int>(nullable: false),
                     TestCaseStepsId = table.Column<int>(nullable: false),
                     TestStep = table.Column<string>(nullable: true)
                 },
@@ -385,7 +392,10 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<int>(nullable: false),
                     TestCaseInputId = table.Column<int>(nullable: false),
+                    TestCaseStepsId = table.Column<int>(nullable: false),
                     TestInput = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

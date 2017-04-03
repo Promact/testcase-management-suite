@@ -10,6 +10,8 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public string Description { get; set; }
 
-        public int? TestCaseId { get; set; }        
+        public int? TestCaseId { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

@@ -9,8 +9,8 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    [Migration("20170329094034_initial")]
-    partial class initial
+    [Migration("20170403064320_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,6 +206,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<int?>("TestCaseId");
 
                     b.HasKey("Id");
@@ -226,6 +228,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<int>("TestCaseConditionsId");
 
                     b.Property<int?>("TestCaseId");
@@ -241,6 +245,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IsDeleted");
 
                     b.Property<int>("TestCaseStepsId");
 
@@ -258,7 +264,13 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDateTime");
+
+                    b.Property<int>("IsDeleted");
+
                     b.Property<int>("TestCaseInputId");
+
+                    b.Property<int>("TestCaseStepsId");
 
                     b.Property<string>("TestInput");
 
@@ -300,6 +312,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime>("ExpectedResultDate");
 
+                    b.Property<int>("IsDeleted");
+
                     b.Property<int>("TestCaseId");
 
                     b.Property<string>("TestStep");
@@ -320,9 +334,15 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime?>("ActualResultDate");
 
+                    b.Property<DateTime>("CreatedDateTime");
+
                     b.Property<string>("ExpectedResult");
 
                     b.Property<DateTime>("ExpectedResultDate");
+
+                    b.Property<int>("IsDeleted");
+
+                    b.Property<int>("TestCaseId");
 
                     b.Property<int>("TestCaseStepsId");
 

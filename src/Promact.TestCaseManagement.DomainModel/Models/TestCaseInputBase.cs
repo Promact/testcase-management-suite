@@ -5,5 +5,9 @@
         public int Id { get; set; }
 
         public string TestInput { get; set; }
+
+        public int TestCaseStepsId { get; set; }
+
+        public int IsDeleted { get; set; }
     }
 }

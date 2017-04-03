@@ -15,5 +15,9 @@ namespace Promact.TestCaseManagement.DomainModel.Models
         public string ActualResult { get; set; }
 
         public DateTime? ActualResultDate { get; set; }
+
+        public int TestCaseId { get; set; }
+
+        public int IsDeleted { get; set; }
     }
 }
