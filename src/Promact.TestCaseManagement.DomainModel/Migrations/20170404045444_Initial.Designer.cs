@@ -9,7 +9,7 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.DomainModel.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    [Migration("20170403064320_Initial")]
+    [Migration("20170404045444_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,6 +226,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime>("CreatedDateTime");
 
+                    b.Property<string>("CreatedUserId");
+
                     b.Property<string>("Description");
 
                     b.Property<bool>("IsDeleted");
@@ -235,6 +237,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<int?>("TestCaseId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("TestCaseConditionsId");
 
@@ -266,6 +270,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime>("CreatedDateTime");
 
+                    b.Property<string>("CreatedUserId");
+
                     b.Property<int>("IsDeleted");
 
                     b.Property<int>("TestCaseInputId");
@@ -275,6 +281,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<string>("TestInput");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("TestCaseInputId");
 
@@ -336,6 +344,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
                     b.Property<DateTime>("CreatedDateTime");
 
+                    b.Property<string>("CreatedUserId");
+
                     b.Property<string>("ExpectedResult");
 
                     b.Property<DateTime>("ExpectedResultDate");
@@ -349,6 +359,8 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     b.Property<string>("TestStep");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("TestCaseStepsId");
 
@@ -489,6 +501,10 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.TestCaseConditionsVersion", b =>
                 {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.UserInfo", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCaseConditions", "TestCaseConditions")
                         .WithMany("TestCaseConditionsVersion")
                         .HasForeignKey("TestCaseConditionsId")
@@ -505,6 +521,10 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.TestCaseInputVersion", b =>
                 {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.UserInfo", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCaseInput", "TestCaseInput")
                         .WithMany("TestCaseInputVersion")
                         .HasForeignKey("TestCaseInputId")
@@ -529,6 +549,10 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
 
             modelBuilder.Entity("Promact.TestCaseManagement.DomainModel.Models.TestCaseStepsVersion", b =>
                 {
+                    b.HasOne("Promact.TestCaseManagement.DomainModel.Models.UserInfo", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
                     b.HasOne("Promact.TestCaseManagement.DomainModel.Models.TestCaseSteps", "TestCaseSteps")
                         .WithMany("TestCaseStepsVersion")
                         .HasForeignKey("TestCaseStepsId")

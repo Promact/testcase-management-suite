@@ -8,6 +8,10 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public DateTime CreatedDateTime { get; set; }
 
+        public string CreatedUserId { get; set; }
+
+        public virtual UserInfo CreatedUser { get; set; }
+
         public virtual TestCaseConditions TestCaseConditions { get; set; }
     }
 }

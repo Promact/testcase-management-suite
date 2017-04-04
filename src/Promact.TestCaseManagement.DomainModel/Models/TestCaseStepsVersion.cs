@@ -8,6 +8,10 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public int TestCaseStepsId { get; set; }
 
+        public string CreatedUserId { get; set; }
+
+        public virtual UserInfo CreatedUser { get; set; }
+
         public virtual TestCaseSteps TestCaseSteps { get; set; }
     }
 }

@@ -322,6 +322,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Condition = table.Column<int>(nullable: false),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    CreatedUserId = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     TestCaseConditionsId = table.Column<int>(nullable: false),
@@ -330,6 +331,12 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TestCaseConditionsVersion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestCaseConditionsVersion_UserInfo_CreatedUserId",
+                        column: x => x.CreatedUserId,
+                        principalTable: "UserInfo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TestCaseConditionsVersion_TestCaseConditions_TestCaseConditionsId",
                         column: x => x.TestCaseConditionsId,
@@ -368,6 +375,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     ActualResult = table.Column<string>(nullable: true),
                     ActualResultDate = table.Column<DateTime>(nullable: true),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    CreatedUserId = table.Column<string>(nullable: true),
                     ExpectedResult = table.Column<string>(nullable: true),
                     ExpectedResultDate = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<int>(nullable: false),
@@ -378,6 +386,12 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TestCaseStepsVersion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestCaseStepsVersion_UserInfo_CreatedUserId",
+                        column: x => x.CreatedUserId,
+                        principalTable: "UserInfo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TestCaseStepsVersion_TestCaseSteps_TestCaseStepsId",
                         column: x => x.TestCaseStepsId,
@@ -393,6 +407,7 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedDateTime = table.Column<DateTime>(nullable: false),
+                    CreatedUserId = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<int>(nullable: false),
                     TestCaseInputId = table.Column<int>(nullable: false),
                     TestCaseStepsId = table.Column<int>(nullable: false),
@@ -401,6 +416,12 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TestCaseInputVersion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TestCaseInputVersion_UserInfo_CreatedUserId",
+                        column: x => x.CreatedUserId,
+                        principalTable: "UserInfo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TestCaseInputVersion_TestCaseInput_TestCaseInputId",
                         column: x => x.TestCaseInputId,
@@ -465,6 +486,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 column: "TestCaseId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TestCaseConditionsVersion_CreatedUserId",
+                table: "TestCaseConditionsVersion",
+                column: "CreatedUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TestCaseConditionsVersion_TestCaseConditionsId",
                 table: "TestCaseConditionsVersion",
                 column: "TestCaseConditionsId");
@@ -473,6 +499,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 name: "IX_TestCaseInput_TestCaseStepsId",
                 table: "TestCaseInput",
                 column: "TestCaseStepsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestCaseInputVersion_CreatedUserId",
+                table: "TestCaseInputVersion",
+                column: "CreatedUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TestCaseInputVersion_TestCaseInputId",
@@ -488,6 +519,11 @@ namespace Promact.TestCaseManagement.DomainModel.Migrations
                 name: "IX_TestCaseSteps_TestCaseId",
                 table: "TestCaseSteps",
                 column: "TestCaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestCaseStepsVersion_CreatedUserId",
+                table: "TestCaseStepsVersion",
+                column: "CreatedUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TestCaseStepsVersion_TestCaseStepsId",
