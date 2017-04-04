@@ -1,26 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BDD88D33-1556-4DF4-A894-3FA5779E1452}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E16F5BF9-F416-41A5-9ADE-3A49FF60E695}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promact.TestCaseManagement.Web", "src\Promact.TestCaseManagement\Promact.TestCaseManagement.Web.csproj", "{C463059A-E7CA-484D-89EB-D9816B287701}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Promact.TestCaseManagement.Web", "src\Promact.TestCaseManagement\Promact.TestCaseManagement.Web.xproj", "{C463059A-E7CA-484D-89EB-D9816B287701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promact.TestCaseManagement.DomainModel", "src\Promact.TestCaseManagement.DomainModel\Promact.TestCaseManagement.DomainModel.csproj", "{658D094D-C144-4C22-BE96-F57B186073FC}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Promact.TestCaseManagement.DomainModel", "src\Promact.TestCaseManagement.DomainModel\Promact.TestCaseManagement.DomainModel.xproj", "{658D094D-C144-4C22-BE96-F57B186073FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promact.TestCaseManagement.Repository", "src\Promact.TestCaseManagement.Repository\Promact.TestCaseManagement.Repository.csproj", "{F54444BE-BE0C-4BD0-874E-A1AFEA68A249}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Promact.TestCaseManagement.Repository", "src\Promact.TestCaseManagement.Repository\Promact.TestCaseManagement.Repository.xproj", "{F54444BE-BE0C-4BD0-874E-A1AFEA68A249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promact.TestCaseManagement.Core", "src\Promact.TestCaseManagement.Core\Promact.TestCaseManagement.Core.csproj", "{09EC5191-8281-411B-B69A-6CA6237B0C56}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Promact.TestCaseManagement.Core", "src\Promact.TestCaseManagement.Core\Promact.TestCaseManagement.Core.xproj", "{09EC5191-8281-411B-B69A-6CA6237B0C56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promact.TestCaseManagement.Utility", "src\Promact.TestCaseManagement.Utility\Promact.TestCaseManagement.Utility.csproj", "{DC81CBBB-DC95-413C-A4EC-F9F11914B6D1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Promact.TestCaseManagement.Utility", "src\Promact.TestCaseManagement.Utility\Promact.TestCaseManagement.Utility.xproj", "{DC81CBBB-DC95-413C-A4EC-F9F11914B6D1}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Promact.TestCaseManagement.Repository.Test", "src\Promact.TestCaseManagement.Repository.Test\Promact.TestCaseManagement.Repository.Test.xproj", "{E7393A1E-04A5-48B8-9DC4-1684818D7330}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Promact.TestCaseManagement.Repository.Test", "src\Promact.TestCaseManagement.Repository.Test\Promact.TestCaseManagement.Repository.Test.csproj", "{E7393A1E-04A5-48B8-9DC4-1684818D7330}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
