@@ -18,6 +18,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public int TestCaseId { get; set; }
 
-        public int IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

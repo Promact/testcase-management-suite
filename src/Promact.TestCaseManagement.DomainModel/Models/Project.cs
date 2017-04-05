@@ -14,7 +14,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public string Hardware { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual ICollection<Module> Module { get; set; }
 

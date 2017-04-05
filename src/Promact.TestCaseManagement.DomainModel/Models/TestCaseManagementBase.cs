@@ -8,7 +8,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models
         [Key]
         public int Id { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
 
         [Required]
         public DateTime CreatedDateTime { get; set; }
