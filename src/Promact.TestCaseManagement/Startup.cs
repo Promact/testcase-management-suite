@@ -40,7 +40,7 @@ namespace Promact.TestCaseManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString]));
+            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString], b => b.MigrationsAssembly("Promact.TestCaseManagement.Web")));
 
             //register application services
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();

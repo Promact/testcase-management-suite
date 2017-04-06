@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>Promact.TestCaseManagement</AssemblyName>
+    <AssemblyName>Promact.TestCaseManagement.Web</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Promact.TestCaseManagement</PackageId>
     <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
@@ -45,7 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
   </ItemGroup>
-
+  
 </Project>
