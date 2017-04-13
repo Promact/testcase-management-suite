@@ -15,7 +15,9 @@ using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.External;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using Promact.TestCaseManagement.Repository.GlobalRepository;
+using Promact.TestCaseManagement.Repository.ModuleRepository;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
+using Promact.TestCaseManagement.Repository.ScenarioRepository;
 using Promact.TestCaseManagement.Repository.TestCaseRepository;
 using Promact.TestCaseManagement.Repository.UserRepository;
 using Promact.TestCaseManagement.Utility.Constants;
@@ -43,6 +45,8 @@ namespace Promact.TestCaseManagement
             services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString], b => b.MigrationsAssembly("Promact.TestCaseManagement.Web")));
 
             //register application services
+            services.AddScoped<IModuleRepository, ModuleRepository>();
+            services.AddScoped<IScenarioRepository, ScenarioRepository>();
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
             services.AddScoped<ITestCaseRepository, TestCaseRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
