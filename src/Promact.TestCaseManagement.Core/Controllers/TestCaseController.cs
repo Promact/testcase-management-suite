@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Promact.TestCaseManagement.DomainModel.Models.TestCase;
+using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using Promact.TestCaseManagement.Repository.TestCaseRepository;
 using System.Collections.Generic;

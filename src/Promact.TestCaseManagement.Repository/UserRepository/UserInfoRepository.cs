@@ -1,5 +1,5 @@
 ﻿using Promact.TestCaseManagement.DomainModel.DataContext;
-using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.DomainModel.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -31,7 +31,7 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// <returns></returns>
         public async Task<UserInfo> AddUserInfoAsync(UserInfo userInfo)
         {
-            userInfo.CreatedDate = DateTime.UtcNow;
+            userInfo.CreatedDateTime = DateTime.UtcNow;
             _dbContext.UserInfo.Add(userInfo);
             await _dbContext.SaveChangesAsync();
             return userInfo;

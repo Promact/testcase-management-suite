@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Promact.TestCaseManagement.DomainModel.Models.TestCase;
 using Microsoft.EntityFrameworkCore;
 using Promact.TestCaseManagement.DomainModel.DataContext;
+using Promact.TestCaseManagement.DomainModel.Models;
 
 namespace Promact.TestCaseManagement.Repository.TestCaseRepository
 {
     public class TestCaseRepository : ITestCaseRepository
     {
         #region Private Member(s)
-        
+
         readonly TestCaseManagementDbContext _dbContext;
 
         #endregion

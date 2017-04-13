@@ -5,7 +5,7 @@ os: linux
 mono: none
 dist: trusty
 sudo: required
-dotnet: 1.0.0-preview2-1-003177
+dotnet: 1.0.1
 install:
   - dotnet restore
   - cd ./src/Promact.TestCaseManagement && npm install
@@ -15,5 +15,5 @@ notifications:
     on_success: change
     on_failure: always
 script:
-  - dotnet build ../../src/**/project.json --configuration Release
+  - dotnet build --configuration Release
   - npm run tsc

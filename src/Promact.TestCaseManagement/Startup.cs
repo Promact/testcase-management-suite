@@ -11,9 +11,7 @@ using Microsoft.Extensions.Logging;
 using Promact.OAuth.Client.DomainModel;
 using Promact.OAuth.Client.Middleware;
 using Promact.TestCaseManagement.DomainModel.DataContext;
-using Promact.TestCaseManagement.DomainModel.Models.Project;
-using Promact.TestCaseManagement.DomainModel.Models.TestCase;
-using Promact.TestCaseManagement.DomainModel.Models.User;
+using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.External;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using Promact.TestCaseManagement.Repository.GlobalRepository;
@@ -42,7 +40,7 @@ namespace Promact.TestCaseManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString]));
+            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString], b => b.MigrationsAssembly("Promact.TestCaseManagement.Web")));
 
             //register application services
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
@@ -107,7 +105,7 @@ namespace Promact.TestCaseManagement
                 cfg.CreateMap<TestCaseInputAc, TestCaseInput>().ReverseMap();
                 cfg.CreateMap<TestCaseStepsAC, TestCaseSteps>().ReverseMap();
                 cfg.CreateMap<UserInfo, UserAC>().ReverseMap();
-                cfg.CreateMap<DomainModel.Models.Project.Project, ProjectAC>().ReverseMap();
+                cfg.CreateMap<DomainModel.Models.Project, ProjectAC>().ReverseMap();
             });
 
             app.UseMvcWithDefaultRoute();
