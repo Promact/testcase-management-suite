@@ -1,6 +1,4 @@
-﻿using Promact.TestCaseManagement.DomainModel.Enums;
-
-namespace Promact.TestCaseManagement.DomainModel.Models
+﻿namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class ProjectUserMapping : TestCaseManagementBase
     {
@@ -12,6 +10,6 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public virtual UserInfo User { get; set; }
 
-        public TeamRole Role { get; set; }
+        public string Role { get; set; }
     }
 }

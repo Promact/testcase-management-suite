@@ -18,6 +18,8 @@
         public const string ConnectionString = "CONNECTION_STRING";
         public const string Appsettings = "appsettings.json";
         public const string Bearer = "Bearer";
+        public const string TeamLeader = "TeamLeader";
+        public const string TeamMember = "TeamMember";
 
         #region API Path
 

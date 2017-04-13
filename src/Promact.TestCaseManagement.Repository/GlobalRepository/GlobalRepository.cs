@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
-using Promact.TestCaseManagement.DomainModel.Enums;
 using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.External;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
@@ -60,7 +59,7 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
                 {
                     ProjectId = project.Id,
                     UserId = userInfo.Id,
-                    Role = projectAC.TeamLeaderId.Equals(userInfo.Id) ? TeamRole.TeamLeader : TeamRole.TeamMember
+                    Role = projectAC.TeamLeaderId.Equals(userInfo.Id) ? StringConstants.TeamLeader : StringConstants.TeamMember
                 };
                 projectUserMappingList.Add(projectUserMappingListObj);
             };
