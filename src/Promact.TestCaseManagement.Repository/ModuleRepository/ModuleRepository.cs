@@ -26,42 +26,38 @@ namespace Promact.TestCaseManagement.Repository.ModuleRepository
 
         #region Public Method(s)
 
-   
+
         public async Task<List<Module>> GetModulesAsync(int projectId)
         {
             return await _dbContext.Module.Where(x => x.ProjectId == projectId).ToListAsync();
         }
-              
+
         public async Task<Module> AddModuleAsync(Module module)
         {
             await _dbContext.Module.AddAsync(module);
             await _dbContext.SaveChangesAsync();
             return module;
         }
-              
+
         public async Task<Module> UpdateModuleAsync(Module module)
         {
             _dbContext.Module.Update(module);
             await _dbContext.SaveChangesAsync();
             return module;
         }
-               
+
         public async Task DeleteModuleAsync(Module module)
         {
-            _dbContext.Module.Remove(module);
+            module.IsDeleted = true;
+            _dbContext.Module.Update(module);
             await _dbContext.SaveChangesAsync();
         }
-               
-        public async Task<Module> GetModuleAsync(int projectId,int moduleId)
-        {
-            return await _dbContext.Module.FirstOrDefaultAsync(x=>x.Id == moduleId && x.ProjectId == projectId);
-        }
 
-        public async Task<bool> IsModuleExistAsync(int moduleId)
+        public async Task<Module> GetModuleAsync(int projectId, int moduleId)
         {
-            return await _dbContext.Module.AnyAsync(x => x.Id == moduleId);
+            return await _dbContext.Module.FirstOrDefaultAsync(x => x.Id == moduleId && x.ProjectId == projectId);
         }
-
+        
         #endregion
     }
 }

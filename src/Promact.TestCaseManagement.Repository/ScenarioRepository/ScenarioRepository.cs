@@ -46,7 +46,8 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
 
         public async Task DeleteScenarioAsync(Scenario scenario)
         {
-            _dbContext.Scenario.Remove(scenario);
+            scenario.IsDeleted = true;
+            _dbContext.Scenario.Update(scenario);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -54,12 +55,7 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
         {
             return await _dbContext.Scenario.FirstOrDefaultAsync(x => x.Id == scenarioId && x.ProjectId == projectId);
         }
-
-        public async Task<bool> IsScenarioExistAsync(int scenarioId)
-        {
-            return await _dbContext.Scenario.AnyAsync(x => x.Id == scenarioId);
-        }
-
+               
         #endregion
     }
 }
