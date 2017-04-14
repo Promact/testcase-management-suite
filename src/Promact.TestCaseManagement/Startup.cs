@@ -13,6 +13,8 @@ using Promact.OAuth.Client.Middleware;
 using Promact.TestCaseManagement.DomainModel.DataContext;
 using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.External;
+using Promact.TestCaseManagement.Repository.ApplicationClass.Module;
+using Promact.TestCaseManagement.Repository.ApplicationClass.Scenario;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using Promact.TestCaseManagement.Repository.GlobalRepository;
 using Promact.TestCaseManagement.Repository.ModuleRepository;
@@ -105,6 +107,8 @@ namespace Promact.TestCaseManagement
 
             Mapper.Initialize(cfg =>
             {
+                cfg.CreateMap<ScenarioAC, Scenario>().ReverseMap();
+                cfg.CreateMap<ModuleAC, Module>().ReverseMap();
                 cfg.CreateMap<TestCaseAC, TestCase>().ReverseMap();
                 cfg.CreateMap<TestCaseInputAc, TestCaseInput>().ReverseMap();
                 cfg.CreateMap<TestCaseStepsAC, TestCaseSteps>().ReverseMap();

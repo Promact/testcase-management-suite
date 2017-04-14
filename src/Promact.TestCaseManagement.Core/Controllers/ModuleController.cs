@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Promact.TestCaseManagement.DomainModel.Models;
+using Promact.TestCaseManagement.Repository.ApplicationClass.Module;
 using Promact.TestCaseManagement.Repository.ModuleRepository;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using System.Threading.Tasks;
@@ -57,7 +59,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         [HttpPost("{projectId}/module")]
-        public async Task<IActionResult> CreateModuleAsync(int projectId, [FromBody]Module module)
+        public async Task<IActionResult> CreateModuleAsync(int projectId, [FromBody]ModuleAC moduleAC)
         {
             if (!ModelState.IsValid)
             {
@@ -68,25 +70,32 @@ namespace Promact.TestCaseManagement.Core.Controllers
             {
                 return NotFound();
             }
-
+            var module = Mapper.Map<Module>(moduleAC);
+            module.ProjectId = projectId;
             await _iModuleRepository.AddModuleAsync(module);
 
             return Ok(module);
         }
 
         [HttpPut("{projectId}/module/{id}")]
-        public async Task<IActionResult> UpdateModuleAsync(int projectId, int id, [FromBody] Module module)
+        public async Task<IActionResult> UpdateModuleAsync(int projectId, int id, [FromBody] ModuleAC moduleAC)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId) && !await _iModuleRepository.IsModuleExistAsync(id))
+            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
+            {
+                return NotFound();
+            }
+            var module = await _iModuleRepository.GetModuleAsync(projectId, id);
+            if (module == null)
             {
                 return NotFound();
             }
 
+            Mapper.Map(moduleAC, module);
             await _iModuleRepository.UpdateModuleAsync(module);
 
             return NoContent();

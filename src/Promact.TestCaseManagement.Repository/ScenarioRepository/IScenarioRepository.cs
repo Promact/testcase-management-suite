@@ -37,13 +37,7 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
         /// </summary>
         /// <param name="scenarioId">Id of the scenario</param>
         /// <returns></returns>
-        Task<Scenario> GetScenarioAsync(int projectId,int scenarioId);
+        Task<Scenario> GetScenarioAsync(int projectId, int scenarioId);
 
-        /// <summary>
-        /// Method to check scenario is exist or not
-        /// </summary>
-        /// <param name="scenarioId"></param>
-        /// <returns></returns>
-        Task<bool> IsScenarioExistAsync(int scenarioId);
     }
 }

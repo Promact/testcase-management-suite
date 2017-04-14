@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Promact.TestCaseManagement.DomainModel.Models;
+using Promact.TestCaseManagement.Repository.ApplicationClass.Scenario;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Repository.ScenarioRepository;
 using System.Threading.Tasks;
@@ -57,7 +59,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         [HttpPost("{projectId}/scenario")]
-        public async Task<IActionResult> CreateScenarioAsync(int projectId, [FromBody]Scenario scenario)
+        public async Task<IActionResult> CreateScenarioAsync(int projectId, [FromBody]ScenarioAC scenarioAC)
         {
             if (!ModelState.IsValid)
             {
@@ -69,23 +71,32 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return NotFound();
             }
 
+            var scenario = Mapper.Map<Scenario>(scenarioAC);
+            scenario.ProjectId = projectId;
             await _iScenarioRepository.AddScenarioAsync(scenario);
 
             return Ok(scenario);
         }
 
         [HttpPut("{projectId}/scenario/{id}")]
-        public async Task<IActionResult> UpdateScenarioAsync(int projectId, int id, [FromBody] Scenario scenario)
+        public async Task<IActionResult> UpdateScenarioAsync(int projectId, int id, [FromBody] ScenarioAC scenarioAC)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId) && !await _iScenarioRepository.IsScenarioExistAsync(id))
+            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
             {
                 return NotFound();
             }
+            var scenario = await _iScenarioRepository.GetScenarioAsync(projectId, id);
+            if (scenario == null)
+            {
+                return NotFound();
+            }
+
+            Mapper.Map(scenarioAC, scenario);
 
             await _iScenarioRepository.UpdateScenarioAsync(scenario);
 
