@@ -4,11 +4,12 @@ using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.Scenario;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Repository.ScenarioRepository;
+using Promact.TestCaseManagement.Utility.Constants;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
 {
-    [Route("api/project")]
+    [Route(StringConstants.ProjectBaseUrl)]
     public class ScenarioController : Controller
     {
         #region "Private Member(s)"
@@ -24,8 +25,13 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
         #endregion
 
-        #region "Public Member(s)"
+        #region "Public API(s)"
 
+        /// <summary>
+        /// Method to get all scenario
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <returns></returns>
         [HttpGet("{projectId}/scenario")]
         public async Task<IActionResult> GetScenariosAsync(int projectId)
         {
@@ -37,9 +43,14 @@ namespace Promact.TestCaseManagement.Core.Controllers
             var listOfScenarios = await _iScenarioRepository.GetScenariosAsync(projectId);
 
             return Ok(listOfScenarios);
-
         }
 
+        /// <summary>
+        ///  Method to retrieve single module from database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="id">Id of the scenario</param>
+        /// <returns></returns>
         [HttpGet("{projectId}/scenario/{id}")]
         public async Task<IActionResult> GetScenarioAsync(int projectId, int id)
         {
@@ -58,6 +69,12 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return Ok(scenario);
         }
 
+        /// <summary>
+        /// Method to add scenario to the database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="scenarioAC">Id of the scenario</param>
+        /// <returns></returns>
         [HttpPost("{projectId}/scenario")]
         public async Task<IActionResult> CreateScenarioAsync(int projectId, [FromBody]ScenarioAC scenarioAC)
         {
@@ -78,6 +95,13 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return Ok(scenario);
         }
 
+        /// <summary>
+        /// Method to update scenario to the database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="id">Id of the scenario</param>
+        /// <param name="scenarioAC">Scenario object</param>
+        /// <returns></returns>
         [HttpPut("{projectId}/scenario/{id}")]
         public async Task<IActionResult> UpdateScenarioAsync(int projectId, int id, [FromBody] ScenarioAC scenarioAC)
         {
@@ -103,6 +127,12 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Method to delete scenario from the database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="id">Id of the scenario</param>
+        /// <returns></returns>
         [HttpDelete("{projectId}/scenario/{id}")]
         public async Task<IActionResult> DeleteScenarioAsync(int projectId, int id)
         {

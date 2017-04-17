@@ -4,11 +4,12 @@ using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.Module;
 using Promact.TestCaseManagement.Repository.ModuleRepository;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
+using Promact.TestCaseManagement.Utility.Constants;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
 {
-    [Route("api/project")]
+    [Route(StringConstants.ProjectBaseUrl)] 
     public class ModuleController : Controller
     {
         #region "Private Member(s)"
@@ -24,8 +25,13 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
         #endregion
 
-        #region "Public Member(s)"
+        #region "Public API(s)"
 
+        /// <summary>
+        /// Method to get all modules
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <returns></returns>
         [HttpGet("{projectId}/module")]
         public async Task<IActionResult> GetModulesAsync(int projectId)
         {
@@ -37,9 +43,14 @@ namespace Promact.TestCaseManagement.Core.Controllers
             var listOfModules = await _iModuleRepository.GetModulesAsync(projectId);
 
             return Ok(listOfModules);
-
         }
 
+        /// <summary>
+        /// Method to retrieve single module from database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="id">Id of the module</param>
+        /// <returns></returns>
         [HttpGet("{projectId}/module/{id}")]
         public async Task<IActionResult> GetModuleAsync(int projectId, int id)
         {
@@ -58,6 +69,12 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return Ok(module);
         }
 
+        /// <summary>
+        /// Method to add module to the database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="moduleAC">Module object</param>
+        /// <returns></returns>
         [HttpPost("{projectId}/module")]
         public async Task<IActionResult> CreateModuleAsync(int projectId, [FromBody]ModuleAC moduleAC)
         {
@@ -77,6 +94,13 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return Ok(module);
         }
 
+        /// <summary>
+        /// Method to update module to the database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="id">Id of the module</param>
+        /// <param name="moduleAC">Module object</param>
+        /// <returns></returns>
         [HttpPut("{projectId}/module/{id}")]
         public async Task<IActionResult> UpdateModuleAsync(int projectId, int id, [FromBody] ModuleAC moduleAC)
         {
@@ -101,6 +125,12 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Method to delete module from the database
+        /// </summary>
+        /// <param name="projectId">Id of the project</param>
+        /// <param name="id">Id of the module</param>
+        /// <returns></returns>
         [HttpDelete("{projectId}/module/{id}")]
         public async Task<IActionResult> DeleteModule(int projectId, int id)
         {

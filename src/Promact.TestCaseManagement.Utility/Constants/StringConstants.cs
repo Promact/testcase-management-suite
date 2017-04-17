@@ -22,7 +22,6 @@
         public const string TeamMember = "TeamMember";
 
         #region API Path
-
         public const string ProjectDetail = "api/users/details";
         public const string ProjectBaseUrl = "api/project";
         #endregion

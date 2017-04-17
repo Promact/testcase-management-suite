@@ -9,6 +9,7 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
         /// <summary>
         /// Method to get all scenario
         /// </summary>
+        /// <param name="projectId">Id of the project</param>
         /// <returns></returns>
         Task<List<Scenario>> GetScenariosAsync(int projectId);
 
@@ -35,6 +36,7 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
         /// <summary>
         /// Method to retrieve single scenario from database
         /// </summary>
+        /// <param name="projectId">Id of the project</param>
         /// <param name="scenarioId">Id of the scenario</param>
         /// <returns></returns>
         Task<Scenario> GetScenarioAsync(int projectId, int scenarioId);
