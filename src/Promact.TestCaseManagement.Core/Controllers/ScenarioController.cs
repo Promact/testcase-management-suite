@@ -13,16 +13,20 @@ namespace Promact.TestCaseManagement.Core.Controllers
     public class ScenarioController : Controller
     {
         #region "Private Member(s)"
+
         readonly IScenarioRepository _iScenarioRepository;
         readonly IProjectRepository _iProjectRepository;
+
         #endregion
 
         #region "Constructor"
+
         public ScenarioController(IScenarioRepository iScenarioRepository, IProjectRepository iProjectRepository)
         {
             _iScenarioRepository = iScenarioRepository;
             _iProjectRepository = iProjectRepository;
         }
+
         #endregion
 
         #region "Public API(s)"
@@ -40,9 +44,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return NotFound();
             }
 
-            var listOfScenarios = await _iScenarioRepository.GetScenariosAsync(projectId);
-
-            return Ok(listOfScenarios);
+            return Ok(await _iScenarioRepository.GetScenariosAsync(projectId));
         }
 
         /// <summary>
@@ -90,9 +92,8 @@ namespace Promact.TestCaseManagement.Core.Controllers
 
             var scenario = Mapper.Map<Scenario>(scenarioAC);
             scenario.ProjectId = projectId;
-            await _iScenarioRepository.AddScenarioAsync(scenario);
 
-            return Ok(scenario);
+            return Ok(await _iScenarioRepository.AddScenarioAsync(scenario));
         }
 
         /// <summary>
