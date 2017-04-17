@@ -15,7 +15,7 @@
         public const string OpenId = "openid";
         public const string Profile = "profile";
         public const string TestCaseManagement = "TestCaseManagement";
-        public const string ConnectionString = "CONNECTION_STRING";
+        public const string ConnectionString = "DefaultConnection";
         public const string Appsettings = "appsettings.json";
         public const string Bearer = "Bearer";
         public const string TeamLeader = "TeamLeader";

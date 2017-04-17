@@ -52,6 +52,8 @@ namespace Promact.TestCaseManagement.DomainModel.DataContext
 
         public DbSet<ProjectUserMapping> ProjectUserMapping { get; set; }
 
+        public DbSet<TestCaseStepsResultHistory> TestCaseStepsResultHistory { get; set; }
+
         #endregion
 
         #region Overridden Methods

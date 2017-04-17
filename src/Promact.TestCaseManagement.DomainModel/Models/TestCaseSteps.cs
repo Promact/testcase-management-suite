@@ -9,5 +9,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models
         public virtual ICollection<TestCaseInput> TestCaseInputs { get; set; }
 
         public virtual ICollection<TestCaseStepsVersion> TestCaseStepsVersion { get; set; }
+
+        public virtual ICollection<TestCaseStepsResultHistory> TestCaseStepsResultHistory { get; set; }
     }
 }
