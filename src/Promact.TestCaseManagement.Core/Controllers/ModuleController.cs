@@ -9,20 +9,24 @@ using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
 {
-    [Route(StringConstants.ProjectBaseUrl)] 
+    [Route(StringConstants.ProjectBaseUrl)]
     public class ModuleController : Controller
     {
         #region "Private Member(s)"
+
         readonly IModuleRepository _iModuleRepository;
         readonly IProjectRepository _iProjectRepository;
+
         #endregion
 
         #region "Constructor"
+
         public ModuleController(IModuleRepository iModuleRepository, IProjectRepository iProjectRepository)
         {
             _iModuleRepository = iModuleRepository;
             _iProjectRepository = iProjectRepository;
         }
+
         #endregion
 
         #region "Public API(s)"
@@ -40,9 +44,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return NotFound();
             }
 
-            var listOfModules = await _iModuleRepository.GetModulesAsync(projectId);
-
-            return Ok(listOfModules);
+            return Ok(await _iModuleRepository.GetModulesAsync(projectId));
         }
 
         /// <summary>
@@ -89,9 +91,8 @@ namespace Promact.TestCaseManagement.Core.Controllers
             }
             var module = Mapper.Map<Module>(moduleAC);
             module.ProjectId = projectId;
-            await _iModuleRepository.AddModuleAsync(module);
 
-            return Ok(module);
+            return Ok(await _iModuleRepository.AddModuleAsync(module));
         }
 
         /// <summary>
