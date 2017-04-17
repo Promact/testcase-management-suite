@@ -6,6 +6,5 @@ namespace Promact.TestCaseManagement.Repository.ApplicationClass.Scenario
     {
         [Required]
         public string Name { get; set; }
-        
     }
 }

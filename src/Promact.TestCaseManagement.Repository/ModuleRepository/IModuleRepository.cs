@@ -9,6 +9,7 @@ namespace Promact.TestCaseManagement.Repository.ModuleRepository
         /// <summary>
         /// Method to get all modules
         /// </summary>
+        /// <param name="projectId">Id of the project</param>
         /// <returns></returns>
         Task<List<Module>> GetModulesAsync(int projectId);
 
@@ -35,6 +36,7 @@ namespace Promact.TestCaseManagement.Repository.ModuleRepository
         /// <summary>
         /// Method to retrieve single module from database
         /// </summary>
+        /// <param name="projectId">Id of the project</param>
         /// <param name="moduleId">Id of the module</param>
         /// <returns></returns>
         Task<Module> GetModuleAsync(int projectId, int moduleId);
