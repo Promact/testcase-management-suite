@@ -12,37 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\app\app.routes.js" />
-    <Content Include="wwwroot\app\app.routes.js.map" />
-    <Content Include="wwwroot\app\app.routes.ts" />
-    <Content Include="wwwroot\app\dashboard\dashboard-route.js" />
-    <Content Include="wwwroot\app\dashboard\dashboard-route.js.map" />
-    <Content Include="wwwroot\app\dashboard\dashboard-route.ts" />
-    <Content Include="wwwroot\app\dashboard\dashboard.component.js" />
-    <Content Include="wwwroot\app\dashboard\dashboard.component.js.map" />
-    <Content Include="wwwroot\app\dashboard\dashboard.component.ts" />
-    <Content Include="wwwroot\app\dashboard\dashboard.html" />
-    <Content Include="wwwroot\app\dashboard\dashboard.module.js" />
-    <Content Include="wwwroot\app\dashboard\dashboard.module.js.map" />
-    <Content Include="wwwroot\app\dashboard\project-list.component.ts" />
-    <Content Include="wwwroot\app\dashboard\dashboard.module.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\testcase\projects.html" />
-    <Content Include="wwwroot\app\testcase\projects.component.js" />
-    <Content Include="wwwroot\app\testcase\projects.component.js.map" />
-    <Content Include="wwwroot\app\testcase\projects.component.ts" />
-    <Content Include="wwwroot\app\testcase\testcase-route.js" />
-    <Content Include="wwwroot\app\testcase\testcase-route.js.map" />
-    <Content Include="wwwroot\app\testcase\testcase-route.ts" />
-    <Content Include="wwwroot\app\testcase\testcase.module.js" />
-    <Content Include="wwwroot\app\testcase\testcase.module.js.map" />
-    <Content Include="wwwroot\app\testcase\testcase.module.ts" />
-    <Content Include="wwwroot\css\sb-admin-2.min.css" />
-    <Content Include="wwwroot\css\style.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
