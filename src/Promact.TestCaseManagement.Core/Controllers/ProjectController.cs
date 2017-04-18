@@ -36,10 +36,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var userInfo = new UserInfo();
-                userInfo.Id = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Sub)).Value;
-
-                return Ok(await _iProjectRepository.GetProjectsAsync(userInfo.Id));
+                return Ok(await _iProjectRepository.GetProjectsAsync(User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Sub)).Value));
             }
             return Unauthorized();
         }
