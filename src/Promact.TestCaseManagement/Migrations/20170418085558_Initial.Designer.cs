@@ -9,7 +9,7 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.Web.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    [Migration("20170417104641_Initial")]
+    [Migration("20170418085558_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,7 +105,8 @@ namespace Promact.TestCaseManagement.Web.Migrations
 
                     b.Property<int>("ProjectId");
 
-                    b.Property<string>("Role");
+                    b.Property<string>("Role")
+                        .IsRequired();
 
                     b.Property<string>("UserId");
 
