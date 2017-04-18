@@ -1,18 +1,21 @@
-﻿using Promact.TestCaseManagement.DomainModel.DataContext;
+﻿using Microsoft.EntityFrameworkCore;
+using Promact.TestCaseManagement.DomainModel.DataContext;
 using Promact.TestCaseManagement.DomainModel.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Repository.ProjectRepository
 {
     public class ProjectRepository : IProjectRepository
     {
-        #region Private Members
+        #region "Private Members"
 
         readonly TestCaseManagementDbContext _dbContext;
 
         #endregion
 
-        #region Constructor
+        #region "Constructor"
 
         public ProjectRepository(TestCaseManagementDbContext dbContext)
         {
@@ -21,18 +24,18 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
 
         #endregion
 
-        #region Public Members
+        #region "Public Method(s)"
 
-        /// <summary>
-        /// Method to add project
-        /// </summary>
-        /// <param name="project">Project object</param>
-        /// <returns></returns>
         public async Task<Project> AddProjectAsync(Project project)
         {
             await _dbContext.Project.AddAsync(project);
             await _dbContext.SaveChangesAsync();
             return project;
+        }
+
+        public async Task<List<Project>> GetProjectsAsync(string userId)
+        {
+            return (await _dbContext.ProjectUserMapping.Where(x => x.UserId == userId).Include(x => x.Project).Select(x => x.Project).ToListAsync());
         }
 
         #endregion
