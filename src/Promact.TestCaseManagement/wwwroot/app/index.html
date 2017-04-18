@@ -1,7 +1,7 @@
 ﻿<!--top nav section-->
-<top-nav></top-nav>
+<top-nav *ngIf="!isDashboard"></top-nav>
 <!--side panel-->
-<sidebar-cmp></sidebar-cmp>
+<sidebar-cmp *ngIf="!isDashboard"></sidebar-cmp>
 <!--main container-->
 <section class="main-container">
     <router-outlet></router-outlet>

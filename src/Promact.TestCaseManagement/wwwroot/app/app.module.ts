@@ -3,29 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { appRoutes } from './testcase-route';
-import { CreateTestCaseComponent } from './testcase/create-testcase.component'
-import { TestCaseListComponent } from './testcase/testcase-list.component'
-import { SidebarComponent, TopNavComponent } from './shared/index';
+import { appRoutes } from './app.routes';
+
+import { TestCaseModule } from './testcase/testcase.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        CreateTestCaseComponent,
-        TestCaseListComponent,
-        SidebarComponent,
-        TopNavComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        TestCaseModule,
+        DashboardModule
     ],
     providers: [
     ],
-    bootstrap: [AppComponent],
-    exports: [
-        SidebarComponent,
-        TopNavComponent
-    ]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
