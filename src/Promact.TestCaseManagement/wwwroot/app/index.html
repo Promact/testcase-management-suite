@@ -1,8 +1,8 @@
 ﻿<!--top nav section-->
-<top-nav *ngIf="!isDashboard"></top-nav>
+<top-nav></top-nav>
 <!--side panel-->
 <sidebar-cmp *ngIf="!isDashboard"></sidebar-cmp>
 <!--main container-->
-<section class="main-container">
+<section id="page-wrapper" [ngClass]="{'main-dashboard-container':isDashboard, 'main-container': !isDashboard}">
     <router-outlet></router-outlet>
 </section>

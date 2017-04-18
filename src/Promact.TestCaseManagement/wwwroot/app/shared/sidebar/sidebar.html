@@ -4,18 +4,18 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
         <li>
-            <a routerLink="" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-dashboard"></i> Test Cases
-            </a>w
-        </li>
-        <li>
-            <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-bar-chart-o"></i> Modules
+            <a [routerLink]="['/projects']" [routerLinkActive]="['active']" class="list-group-item">
+                 Test Cases
             </a>
         </li>
         <li>
-            <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-table"></i> Scenario
+            <a [routerLink]="['/modules']" [routerLinkActive]="['active']" class="list-group-item">
+                 Modules
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['/scenario']" [routerLinkActive]="['active']" class="list-group-item">
+                 Scenario
             </a>
         </li>
 
