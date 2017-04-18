@@ -1,4 +1,6 @@
-﻿namespace Promact.TestCaseManagement.DomainModel.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Promact.TestCaseManagement.DomainModel.Models
 {
     public class ProjectUserMapping : TestCaseManagementBase
     {
@@ -10,6 +12,7 @@
 
         public virtual UserInfo User { get; set; }
 
+        [Required]
         public string Role { get; set; }
     }
 }

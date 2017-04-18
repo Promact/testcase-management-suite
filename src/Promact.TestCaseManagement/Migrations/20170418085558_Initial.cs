@@ -103,7 +103,7 @@ namespace Promact.TestCaseManagement.Web.Migrations
                     IsDeleted = table.Column<bool>(nullable: true),
                     ModifiedDateTime = table.Column<DateTime>(nullable: true),
                     ProjectId = table.Column<int>(nullable: false),
-                    Role = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

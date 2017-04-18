@@ -104,7 +104,8 @@ namespace Promact.TestCaseManagement.Web.Migrations
 
                     b.Property<int>("ProjectId");
 
-                    b.Property<string>("Role");
+                    b.Property<string>("Role")
+                        .IsRequired();
 
                     b.Property<string>("UserId");
 
