@@ -1,0 +1,23 @@
+<button class="btn btn-default" id="toggle-sidebar" type="button" (click)="eventCalled()">
+    &#9776;
+</button>
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+        <li>
+            <a routerLink="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-dashboard"></i> Test Cases
+            </a>w
+        </li>
+        <li>
+            <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-bar-chart-o"></i> Modules
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-table"></i> Scenario
+            </a>
+        </li>
+
+    </ul>
+</nav>

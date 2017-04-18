@@ -6,12 +6,15 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './testcase-route';
 import { CreateTestCaseComponent } from './testcase/create-testcase.component'
 import { TestCaseListComponent } from './testcase/testcase-list.component'
+import { SidebarComponent, TopNavComponent } from './shared/index';
 
 @NgModule({
     declarations: [
         AppComponent,
         CreateTestCaseComponent,
-        TestCaseListComponent
+        TestCaseListComponent,
+        SidebarComponent,
+        TopNavComponent
     ],
     imports: [
         BrowserModule,
@@ -20,5 +23,9 @@ import { TestCaseListComponent } from './testcase/testcase-list.component'
     providers: [
     ],
     bootstrap: [AppComponent],
+    exports: [
+        SidebarComponent,
+        TopNavComponent
+    ]
 })
 export class AppModule { }
