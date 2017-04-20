@@ -33,7 +33,7 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
             return project;
         }
 
-        public async Task<List<Project>> GetProjectsAsync(string userId)
+        public async Task<IEnumerable<Project>> GetProjectsAsync(string userId)
         {
             return (await _dbContext.ProjectUserMapping.Where(x => x.UserId == userId).Include(x => x.Project).Select(x => x.Project).ToListAsync());
         }
