@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.Module;
 using Promact.TestCaseManagement.Repository.ModuleRepository;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
 {
+    [Authorize]
     [Route(StringConstants.ProjectBaseUrl)]
     public class ModuleController : Controller
     {
@@ -16,15 +19,17 @@ namespace Promact.TestCaseManagement.Core.Controllers
 
         readonly IModuleRepository _iModuleRepository;
         readonly IProjectRepository _iProjectRepository;
+        readonly IMapper _iMapper;
 
         #endregion
 
         #region "Constructor"
 
-        public ModuleController(IModuleRepository iModuleRepository, IProjectRepository iProjectRepository)
+        public ModuleController(IModuleRepository iModuleRepository, IProjectRepository iProjectRepository, IMapper iMapper)
         {
             _iModuleRepository = iModuleRepository;
             _iProjectRepository = iProjectRepository;
+            _iMapper = iMapper;
         }
 
         #endregion
@@ -39,11 +44,6 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpGet("{projectId}/module")]
         public async Task<IActionResult> GetModulesAsync(int projectId)
         {
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-
             return Ok(await _iModuleRepository.GetModulesAsync(projectId));
         }
 
@@ -56,19 +56,14 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpGet("{projectId}/module/{id}")]
         public async Task<IActionResult> GetModuleAsync(int projectId, int id)
         {
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-
             var module = await _iModuleRepository.GetModuleAsync(projectId, id);
 
-            if (module == null)
+            if (module != null)
             {
-                return NotFound();
+                return Ok(module);
             }
 
-            return Ok(module);
+            return NotFound();
         }
 
         /// <summary>
@@ -85,14 +80,17 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-            var module = Mapper.Map<Module>(moduleAC);
+            var module = _iMapper.Map<Module>(moduleAC);
             module.ProjectId = projectId;
 
-            return Ok(await _iModuleRepository.AddModuleAsync(module));
+            try
+            {
+                return Ok(await _iModuleRepository.AddModuleAsync(module));
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -110,37 +108,34 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
             var module = await _iModuleRepository.GetModuleAsync(projectId, id);
             if (module == null)
             {
                 return NotFound();
             }
 
-            Mapper.Map(moduleAC, module);
-            await _iModuleRepository.UpdateModuleAsync(module);
-
-            return NoContent();
+            _iMapper.Map(moduleAC, module);
+            try
+            {
+                await _iModuleRepository.UpdateModuleAsync(module);
+                return Ok(module);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
         /// Method to delete module from the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
-        /// <param name="id">Id of the module</param>
+        /// <param name="moduleId">Id of the module</param>
         /// <returns></returns>
         [HttpDelete("{projectId}/module/{id}")]
-        public async Task<IActionResult> DeleteModule(int projectId, int id)
+        public async Task<IActionResult> DeleteModule(int projectId, int moduleId)
         {
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-
-            var module = await _iModuleRepository.GetModuleAsync(projectId, id);
+            var module = await _iModuleRepository.GetModuleAsync(projectId, moduleId);
 
             if (module == null)
             {

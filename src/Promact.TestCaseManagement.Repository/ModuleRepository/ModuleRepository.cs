@@ -55,9 +55,9 @@ namespace Promact.TestCaseManagement.Repository.ModuleRepository
 
         public async Task<Module> GetModuleAsync(int projectId, int moduleId)
         {
-            return await _dbContext.Module.FirstOrDefaultAsync(x => x.Id == moduleId && x.ProjectId == projectId);
+            return await _dbContext.Module.SingleAsync(x => x.ProjectId == projectId && x.Id == moduleId);
         }
-        
+
         #endregion
     }
 }

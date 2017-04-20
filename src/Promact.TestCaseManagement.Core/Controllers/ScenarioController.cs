@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.ApplicationClass.Scenario;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
 {
+    [Authorize]
     [Route(StringConstants.ProjectBaseUrl)]
     public class ScenarioController : Controller
     {
@@ -16,15 +19,17 @@ namespace Promact.TestCaseManagement.Core.Controllers
 
         readonly IScenarioRepository _iScenarioRepository;
         readonly IProjectRepository _iProjectRepository;
+        readonly IMapper _iMapper;
 
         #endregion
 
         #region "Constructor"
 
-        public ScenarioController(IScenarioRepository iScenarioRepository, IProjectRepository iProjectRepository)
+        public ScenarioController(IScenarioRepository iScenarioRepository, IProjectRepository iProjectRepository, IMapper iMapper)
         {
             _iScenarioRepository = iScenarioRepository;
             _iProjectRepository = iProjectRepository;
+            _iMapper = iMapper;
         }
 
         #endregion
@@ -39,11 +44,6 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpGet("{projectId}/scenario")]
         public async Task<IActionResult> GetScenariosAsync(int projectId)
         {
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-
             return Ok(await _iScenarioRepository.GetScenariosAsync(projectId));
         }
 
@@ -56,19 +56,14 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpGet("{projectId}/scenario/{id}")]
         public async Task<IActionResult> GetScenarioAsync(int projectId, int id)
         {
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-
             var scenario = await _iScenarioRepository.GetScenarioAsync(projectId, id);
 
-            if (scenario == null)
+            if (scenario != null)
             {
-                return NotFound();
+                return Ok(scenario);
             }
 
-            return Ok(scenario);
+            return NotFound();
         }
 
         /// <summary>
@@ -85,15 +80,17 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
-
-            var scenario = Mapper.Map<Scenario>(scenarioAC);
+            var scenario = _iMapper.Map<Scenario>(scenarioAC);
             scenario.ProjectId = projectId;
 
-            return Ok(await _iScenarioRepository.AddScenarioAsync(scenario));
+            try
+            {
+                return Ok(await _iScenarioRepository.AddScenarioAsync(scenario));
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -111,38 +108,40 @@ namespace Promact.TestCaseManagement.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
-            {
-                return NotFound();
-            }
             var scenario = await _iScenarioRepository.GetScenarioAsync(projectId, id);
             if (scenario == null)
             {
                 return NotFound();
             }
 
-            Mapper.Map(scenarioAC, scenario);
+            _iMapper.Map(scenarioAC, scenario);
 
-            await _iScenarioRepository.UpdateScenarioAsync(scenario);
-
-            return NoContent();
+            try
+            {
+                await _iScenarioRepository.UpdateScenarioAsync(scenario);
+                return Ok(scenario);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
         /// Method to delete scenario from the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
-        /// <param name="id">Id of the scenario</param>
+        /// <param name="scenarioId">Id of the scenario</param>
         /// <returns></returns>
         [HttpDelete("{projectId}/scenario/{id}")]
-        public async Task<IActionResult> DeleteScenarioAsync(int projectId, int id)
+        public async Task<IActionResult> DeleteScenarioAsync(int projectId, int scenarioId)
         {
             if (!await _iProjectRepository.IsProjectExistAsync(projectId))
             {
                 return NotFound();
             }
 
-            var scenario = await _iScenarioRepository.GetScenarioAsync(projectId, id);
+            var scenario = await _iScenarioRepository.GetScenarioAsync(projectId, scenarioId);
 
             if (scenario == null)
             {
