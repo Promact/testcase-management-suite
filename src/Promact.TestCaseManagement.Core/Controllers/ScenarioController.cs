@@ -7,6 +7,7 @@ using Promact.TestCaseManagement.Repository.ApplicationClass.Scenario;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Repository.ScenarioRepository;
 using Promact.TestCaseManagement.Utility.Constants;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
@@ -136,9 +137,11 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpDelete("{projectId}/scenario/{id}")]
         public async Task<IActionResult> DeleteScenarioAsync(int projectId, int scenarioId)
         {
-            if (!await _iProjectRepository.IsProjectExistAsync(projectId))
+            var isUserAuthorised = await _iProjectRepository.IsUserAssociatedWithProjectAsync(projectId, User.Claims.Single(x => x.Type.Equals(StringConstants.Sub)).Value);
+
+            if (!isUserAuthorised)
             {
-                return NotFound();
+                return Unauthorized();
             }
 
             var scenario = await _iScenarioRepository.GetScenarioAsync(projectId, scenarioId);
