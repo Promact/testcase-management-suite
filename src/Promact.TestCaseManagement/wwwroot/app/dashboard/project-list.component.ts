@@ -1,4 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+import { ProjectService } from './project.service';
+import { IProject } from './project.model';
 
 @Component({
     template: `
@@ -56,6 +58,23 @@
     </div>
 </div>
 `
+    moduleId: module.id,
+    templateUrl: './project-list.component.html'
 })
 
-export class ProjectListComponent { }
+export class ProjectListComponent implements OnInit {
+    projects: IProject[];
+
+    constructor(private projectService: ProjectService) {
+    }
+
+    ngOnInit() {
+        this.getAllProjects();
+    }
+
+    getAllProjects() {
+        this.projectService.getProjectList().subscribe(response => {
+            this.projects = response;
+        });
+    }
+}
