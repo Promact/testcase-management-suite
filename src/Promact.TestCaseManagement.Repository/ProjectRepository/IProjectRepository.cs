@@ -18,6 +18,6 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
         /// </summary>
         /// <param name="userId">id of the user</param>
         /// <returns></returns>
-        Task<List<Project>> GetProjectsAsync(string userId);
+        Task<IEnumerable<Project>> GetProjectsAsync(string userId);
     }
 }
