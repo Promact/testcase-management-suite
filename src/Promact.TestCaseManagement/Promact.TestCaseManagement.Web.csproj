@@ -12,20 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot/app\modules\module-list.component.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\app\modules\module-list.component.html" />
-    <Content Include="wwwroot\app\modules\module-list.component.js" />
-    <Content Include="wwwroot\app\modules\module-list.component.ts" />
-    <Content Include="wwwroot\app\modules\modules-route.ts" />
-    <Content Include="wwwroot\app\modules\modules.component.ts" />
-    <Content Include="wwwroot\app\modules\modules.html" />
-    <Content Include="wwwroot\app\modules\modules.module.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
