@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace Promact.TestCaseManagement.Repository.ScenarioRepository
 {
-    public class ScenarioRepository :IScenarioRepository
+    public class ScenarioRepository : IScenarioRepository
     {
         #region "Private Member(s)"
 
@@ -51,11 +51,11 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Scenario> GetScenarioAsync(int projectId,int scenarioId)
+        public async Task<Scenario> GetScenarioAsync(int projectId, int scenarioId)
         {
-            return await _dbContext.Scenario.FirstOrDefaultAsync(x => x.Id == scenarioId && x.ProjectId == projectId);
+            return await _dbContext.Scenario.SingleAsync(x => x.ProjectId == projectId && x.Id == scenarioId);
         }
-               
+
         #endregion
     }
 }

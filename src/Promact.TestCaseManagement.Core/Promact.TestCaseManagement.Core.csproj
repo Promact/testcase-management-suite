@@ -19,8 +19,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="1.1.1" />
-    <PackageReference Include="IdentityModel" Version="2.7.0" />
+    <PackageReference Include="IdentityModel" Version="2.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
   </ItemGroup>
 
