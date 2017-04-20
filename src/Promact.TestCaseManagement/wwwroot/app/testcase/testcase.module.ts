@@ -4,7 +4,6 @@ import { CreateTestCaseComponent } from './create-testcase.component'
 import { TestCaseListComponent } from './testcase-list.component'
 import { ProjectComponent } from './projects.component';
 import { testCaseRouting } from './testcase-route';
-import { SidebarComponent, TopNavComponent } from '../shared/index';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -15,16 +14,10 @@ import { SharedModule } from '../shared/shared.module';
     declarations: [
         CreateTestCaseComponent,
         TestCaseListComponent,
-        ProjectComponent,
-        SidebarComponent,
-        TopNavComponent
+        ProjectComponent
     ],
     providers: [
 
-    ],
-    exports: [
-        SidebarComponent,
-        TopNavComponent
     ]
 })
 
