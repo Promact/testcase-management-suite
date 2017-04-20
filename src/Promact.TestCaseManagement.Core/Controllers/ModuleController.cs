@@ -7,6 +7,7 @@ using Promact.TestCaseManagement.Repository.ApplicationClass.Module;
 using Promact.TestCaseManagement.Repository.ModuleRepository;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
 using Promact.TestCaseManagement.Utility.Constants;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Promact.TestCaseManagement.Core.Controllers
@@ -135,6 +136,13 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpDelete("{projectId}/module/{id}")]
         public async Task<IActionResult> DeleteModule(int projectId, int moduleId)
         {
+            var isUserAuthorised = await _iProjectRepository.IsUserAssociatedWithProjectAsync(projectId, User.Claims.Single(x => x.Type.Equals(StringConstants.Sub)).Value);
+
+            if (!isUserAuthorised)
+            {
+                return Unauthorized();
+            }
+
             var module = await _iModuleRepository.GetModuleAsync(projectId, moduleId);
 
             if (module == null)
