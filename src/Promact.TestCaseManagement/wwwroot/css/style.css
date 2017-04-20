@@ -138,9 +138,10 @@ a:hover { text-decoration: none; }
 .p0 { padding: 0; }
 .navbar-nav a { color: #ffffff !important; }
 .component-header { border-bottom: 1px solid #ccc; padding: 15px 5px; margin-bottom: 10px; }
-.main-dashboard-container { margin: 51px 0 0 0px; padding: 10px; -ms-overflow-x: hidden; overflow-x: hidden; position: relative; }
-.project-list .project-list-container { text-align: center; margin: 15px 0; border: 1px solid #ccc; padding: 10px; cursor: pointer; }
-.project-logo { max-width: 150px; min-width: 110px; width: 100%; max-height: 150px; min-height: 110px; height: 100%; }
+.main-dashboard-container { margin: 51px 0 0 0px; padding: 10px; -ms-overflow-x: hidden; overflow-x: hidden; position: relative; box-shadow: 1px 3px 8px #ccc; }
+.project-list h3 { margin-top: 10px; }
+.project-list .project-list-container { text-align: left; margin: 15px 0; border: 1px solid #ccc; padding: 10px; cursor: pointer; min-height: 150px; }
+.project-detail { font-size: 17px; word-wrap: break-word; margin: 20px 0 0; height: 72px; overflow: hidden; }
 #page-wrapper { padding: 0 30px; min-height: 568px; background-color: white; }
 .action-column .icon { cursor: pointer; margin: 0 5px; color: #333333; }
 .action-column .icon em { font-size: 20px; }
