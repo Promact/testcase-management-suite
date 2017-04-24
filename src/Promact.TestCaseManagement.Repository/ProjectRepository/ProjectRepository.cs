@@ -4,7 +4,6 @@ using Promact.TestCaseManagement.DomainModel.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Promact.TestCaseManagement.Repository.ProjectRepository
 {
@@ -35,10 +34,12 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
         }
 
         public async Task<IEnumerable<Project>> GetProjectsAsync(string userId)
-        
-        public async Task<bool> IsUserAssociatedWithProjectAsync(int projectId, string userId)
         {
             return (await _dbContext.ProjectUserMapping.Where(x => x.UserId == userId).Include(x => x.Project).Select(x => x.Project).ToListAsync());
+        }
+
+        public async Task<bool> IsUserAssociatedWithProjectAsync(int projectId, string userId)
+        {
             return await _dbContext.ProjectUserMapping.AnyAsync(x => x.ProjectId == projectId && x.UserId == userId);
         }
 

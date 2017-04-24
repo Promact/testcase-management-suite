@@ -15,13 +15,17 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
 
         /// <summary>
         /// Method to check that project is associated with user or not
-        /// Method to get all projects of user
         /// </summary>
-        /// <param name="projectId"></param>
-        /// <param name="userId"></param>
-        /// <param name="userId">id of the user</param>
+        /// <param name="projectId">project id</param>
+        /// <param name="userId">logged in user id</param>
         /// <returns></returns>
         Task<bool> IsUserAssociatedWithProjectAsync(int projectId, string userId);
+
+        /// <summary>
+        /// Method to get all projects of user
+        /// </summary>
+        /// <param name="userId">id of the logged in user</param>
+        /// <returns></returns>
         Task<IEnumerable<Project>> GetProjectsAsync(string userId);
     }
 }
