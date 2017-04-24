@@ -22,12 +22,13 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
         readonly IProjectUserMappingRepository _iProjectUserMappingRepository;
         readonly IUserInfoRepository _iUserInfoRepository;
         readonly IMapper _iMapper;
+        readonly IStringConstant _iStringConstant;
 
         #endregion
 
         #region Constructor
 
-        public GlobalRepository(IAccessTokenService iAccessTokenService, IHttpClientService iHttpClientService, IUserInfoRepository iUserInfoRepository, IProjectRepository iProjectRepository, IProjectUserMappingRepository iProjectUserMappingRepository, IMapper iMapper)
+        public GlobalRepository(IAccessTokenService iAccessTokenService, IHttpClientService iHttpClientService, IUserInfoRepository iUserInfoRepository, IProjectRepository iProjectRepository, IProjectUserMappingRepository iProjectUserMappingRepository, IMapper iMapper, IStringConstant iStringConstant)
         {
             _iAccessTokenService = iAccessTokenService;
             _iHttpClientService = iHttpClientService;
@@ -35,6 +36,7 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
             _iProjectRepository = iProjectRepository;
             _iProjectUserMappingRepository = iProjectUserMappingRepository;
             _iMapper = iMapper;
+            _iStringConstant = iStringConstant;
         }
 
         #endregion
@@ -42,7 +44,7 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
         public async Task SyncProjectAndUserDetails(UserInfo userInfo)
         {
             string accessToken = await _iAccessTokenService.GetAccessTokenByRefreshTokenAsync(userInfo.RefreshToken);
-            var response = await _iHttpClientService.GetAsync(StringConstants.OAuthUrl, $"{StringConstants.ProjectDetail}/{userInfo.Id}", accessToken);
+            var response = await _iHttpClientService.GetAsync(_iStringConstant.OAuthUrl, $"{_iStringConstant.ProjectDetail}/{userInfo.Id}", accessToken);
             var userDetail = JsonConvert.DeserializeObject<UserDetailWithProject>(response);
             _iMapper.Map(userDetail.UserAc, userInfo);
             await _iUserInfoRepository.AddUserInfoAsync(userInfo);
@@ -56,7 +58,7 @@ namespace Promact.TestCaseManagement.Repository.GlobalRepository
                 {
                     ProjectId = project.Id,
                     UserId = userInfo.Id,
-                    Role = projectAC.TeamLeaderId.Equals(userInfo.Id) ? StringConstants.TeamLeader : StringConstants.TeamMember
+                    Role = projectAC.TeamLeaderId.Equals(userInfo.Id) ? _iStringConstant.TeamLeader : _iStringConstant.TeamMember
                 };
                 projectUserMappingList.Add(projectUserMappingListObj);
             };

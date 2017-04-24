@@ -23,6 +23,7 @@ using Promact.TestCaseManagement.Repository.UserRepository;
 using Promact.TestCaseManagement.Utility.Constants;
 using Promact.TestCaseManagement.Utility.Services.AccessToken;
 using Promact.TestCaseManagement.Utility.Services.HttpClient;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Threading.Tasks;
@@ -55,10 +56,13 @@ namespace Promact.TestCaseManagement
             services.AddScoped<IGlobalRepository, GlobalRepository>();
             services.AddTransient<IHttpClientService, HttpClientService>();
             services.AddTransient<IAccessTokenService, AccessTokenService>();
+            services.AddScoped<IStringConstant, StringConstant>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
+            var stringConstant = serviceProvider.GetService<IStringConstant>();
+
             loggerFactory.AddConsole(LogLevel.Trace);
 
             if (env.IsDevelopment())
@@ -80,7 +84,7 @@ namespace Promact.TestCaseManagement
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = StringConstants.Cookies,
+                AuthenticationScheme = stringConstant.Cookies,
                 AutomaticAuthenticate = true
             });
 
@@ -89,9 +93,9 @@ namespace Promact.TestCaseManagement
 
             app.UsePromactAuthentication(new PromactAuthenticationOptions
             {
-                Authority = StringConstants.OAuthUrl,
-                ClientId = StringConstants.ClientId,
-                ClientSecret = StringConstants.ClientSecret,
+                Authority = stringConstant.OAuthUrl,
+                ClientId = stringConstant.ClientId,
+                ClientSecret = stringConstant.ClientSecret,
                 AllowedScopes = { Scopes.offline_access, Scopes.openid, Scopes.profile, Scopes.email, Scopes.project_read, Scopes.user_read },
                 Event = new OpenIdConnectEvents
                 {
