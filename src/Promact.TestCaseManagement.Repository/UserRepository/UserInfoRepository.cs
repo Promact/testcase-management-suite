@@ -24,11 +24,6 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
 
         #region Public Members
 
-        /// <summary>
-        /// Method used to save user info
-        /// </summary>
-        /// <param name="userInfo">UserInfo details</param>
-        /// <returns></returns>
         public async Task<UserInfo> AddUserInfoAsync(UserInfo userInfo)
         {
             userInfo.CreatedDateTime = DateTime.UtcNow;
@@ -37,11 +32,6 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
             return userInfo;
         }
 
-        /// <summary>
-        /// Method used to update user info
-        /// </summary>
-        /// <param name="userInfo">UserInfo details</param>
-        /// <returns></returns>
         public async Task<UserInfo> UpdateUserInfoAsync(UserInfo userInfo)
         {
             _dbContext.UserInfo.Update(userInfo);
@@ -49,11 +39,6 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
             return userInfo;
         }
 
-        /// <summary>
-        /// Method used to get user info by user id
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
         public async Task<UserInfo> GetUserByUserIdAsync(string userId)
         {
             return await _dbContext.UserInfo.FindAsync(userId);

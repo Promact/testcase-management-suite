@@ -24,11 +24,6 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
 
         #region Public Members
 
-        /// <summary>
-        /// Method to add project user mapping
-        /// </summary>
-        /// <param name="projectUserMapping">Project user mapping object</param>
-        /// <returns></returns>
         public async Task<ProjectUserMapping> AddProjectUserMapping(ProjectUserMapping projectUserMapping)
         {
             await _dbContext.ProjectUserMapping.AddAsync(projectUserMapping);
@@ -36,11 +31,6 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
             return projectUserMapping;
         }
 
-        /// <summary>
-        /// Method to add project user mapping list
-        /// </summary>
-        /// <param name="projectUserMappingList">Project user mapping list object</param>
-        /// <returns></returns>
         public async Task AddProjectUserMappingList(List<ProjectUserMapping> projectUserMappingList)
         {
             await _dbContext.ProjectUserMapping.AddRangeAsync(projectUserMappingList);
