@@ -12,20 +12,21 @@ namespace Promact.TestCaseManagement.Controllers
 {
     public class HomeController : Controller
     {
-
         #region Private Members
 
         readonly IUserInfoRepository _userRepository;
         readonly IGlobalRepository _iGlobalRepository;
+        readonly IStringConstant _iStringConstant;
 
         #endregion
 
         #region Constructor
 
-        public HomeController(IUserInfoRepository userRepository, IGlobalRepository iGlobalRepository)
+        public HomeController(IUserInfoRepository userRepository, IGlobalRepository iGlobalRepository, IStringConstant iStringConstant)
         {
             _userRepository = userRepository;
             _iGlobalRepository = iGlobalRepository;
+            _iStringConstant = iStringConstant;
         }
 
         #endregion
@@ -42,9 +43,9 @@ namespace Promact.TestCaseManagement.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userInfo = new UserInfo();
-                userInfo.Email = User.Claims.Single(x => x.Type.Equals(StringConstants.Email)).Value;
-                userInfo.Id = User.Claims.Single(x => x.Type.Equals(StringConstants.Sub)).Value;
-                userInfo.RefreshToken = await HttpContext.Authentication.GetTokenAsync(StringConstants.RefreshToken);
+                userInfo.Email = User.Claims.Single(x => x.Type.Equals(_iStringConstant.Email)).Value;
+                userInfo.Id = User.Claims.Single(x => x.Type.Equals(_iStringConstant.Sub)).Value;
+                userInfo.RefreshToken = await HttpContext.Authentication.GetTokenAsync(_iStringConstant.RefreshToken);
                 var userDetails = await _userRepository.GetUserByUserIdAsync(userInfo.Id);
                 if (userDetails != null)
                 {
@@ -68,7 +69,7 @@ namespace Promact.TestCaseManagement.Controllers
 
         public async Task<IActionResult> LogOff()
         {
-            await HttpContext.Authentication.SignOutAsync(StringConstants.Cookies);
+            await HttpContext.Authentication.SignOutAsync(_iStringConstant.Cookies);
             return RedirectToAction(nameof(Index));
         }
 
