@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Promact.TestCaseManagement.Repository.ApplicationClass.External
+namespace Promact.TestCaseManagement.Repository.ApplicationClass
 {
     public class UserAC
     {

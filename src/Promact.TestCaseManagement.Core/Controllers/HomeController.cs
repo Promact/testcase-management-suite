@@ -5,8 +5,6 @@ using Promact.TestCaseManagement.DomainModel.Models;
 using Promact.TestCaseManagement.Repository.GlobalRepository;
 using Promact.TestCaseManagement.Repository.UserRepository;
 using Promact.TestCaseManagement.Utility.Constants;
-using Promact.TestCaseManagement.Utility.Services.AccessToken;
-using Promact.TestCaseManagement.Utility.Services.HttpClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,19 +16,15 @@ namespace Promact.TestCaseManagement.Controllers
         #region Private Members
 
         readonly IUserInfoRepository _userRepository;
-        readonly IAccessTokenService _iAccessTokenService;
-        readonly IHttpClientService _iHttpClientService;
         readonly IGlobalRepository _iGlobalRepository;
 
         #endregion
 
         #region Constructor
 
-        public HomeController(IUserInfoRepository userRepository, IAccessTokenService iAccessTokenService, IHttpClientService iHttpClientService, IGlobalRepository iGlobalRepository)
+        public HomeController(IUserInfoRepository userRepository, IGlobalRepository iGlobalRepository)
         {
             _userRepository = userRepository;
-            _iAccessTokenService = iAccessTokenService;
-            _iHttpClientService = iHttpClientService;
             _iGlobalRepository = iGlobalRepository;
         }
 
@@ -38,13 +32,18 @@ namespace Promact.TestCaseManagement.Controllers
 
         #region Public Actions
 
+        /// <summary>
+        /// Index action
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
             {
                 var userInfo = new UserInfo();
-                userInfo.Email = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Email)).Value;
-                userInfo.Id = User.Claims.ToList().Single(x => x.Type.Equals(StringConstants.Sub)).Value;
+                userInfo.Email = User.Claims.Single(x => x.Type.Equals(StringConstants.Email)).Value;
+                userInfo.Id = User.Claims.Single(x => x.Type.Equals(StringConstants.Sub)).Value;
                 userInfo.RefreshToken = await HttpContext.Authentication.GetTokenAsync(StringConstants.RefreshToken);
                 var userDetails = await _userRepository.GetUserByUserIdAsync(userInfo.Id);
                 if (userDetails != null)
@@ -61,7 +60,7 @@ namespace Promact.TestCaseManagement.Controllers
             return View();
         }
 
-        [Authorize()]
+        [Authorize]
         public IActionResult Dashboard()
         {
             return RedirectToAction(nameof(Index));
