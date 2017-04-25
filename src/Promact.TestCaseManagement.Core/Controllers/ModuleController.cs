@@ -41,7 +41,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         #region "Public API(s)"
 
         /// <summary>
-        /// Method to get all modules
+        /// API to get all modules
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to retrieve single module from database
+        /// API to retrieve single module from database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="id">Id of the module</param>
@@ -71,7 +71,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to add module to the database
+        /// API to add module to the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="moduleAC">Module object</param>
@@ -98,7 +98,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to update module to the database
+        /// API to update module to the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="id">Id of the module</param>
@@ -131,7 +131,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to delete module from the database
+        /// API to delete module from the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="moduleId">Id of the module</param>

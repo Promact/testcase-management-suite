@@ -40,6 +40,5 @@ namespace Promact.TestCaseManagement.Repository.ModuleRepository
         /// <param name="moduleId">Id of the module</param>
         /// <returns></returns>
         Task<Module> GetModuleAsync(int projectId, int moduleId);
-
     }
 }

@@ -40,6 +40,5 @@ namespace Promact.TestCaseManagement.Repository.ScenarioRepository
         /// <param name="scenarioId">Id of the scenario</param>
         /// <returns></returns>
         Task<Scenario> GetScenarioAsync(int projectId, int scenarioId);
-
     }
 }
