@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Promact.TestCaseManagement.Core.Controllers
 {
     [Authorize]
-    [Route(StringConstants.ProjectBaseUrl)]
+    [Route(BaseUrl)]
     public class ScenarioController : Controller
     {
         #region "Private Member(s)"
@@ -21,16 +21,19 @@ namespace Promact.TestCaseManagement.Core.Controllers
         readonly IScenarioRepository _iScenarioRepository;
         readonly IProjectRepository _iProjectRepository;
         readonly IMapper _iMapper;
+        readonly IStringConstant _iStringConstant;
+        internal const string BaseUrl = "api/project";
 
         #endregion
 
         #region "Constructor"
 
-        public ScenarioController(IScenarioRepository iScenarioRepository, IProjectRepository iProjectRepository, IMapper iMapper)
+        public ScenarioController(IScenarioRepository iScenarioRepository, IProjectRepository iProjectRepository, IMapper iMapper, IStringConstant iStringConstant)
         {
             _iScenarioRepository = iScenarioRepository;
             _iProjectRepository = iProjectRepository;
             _iMapper = iMapper;
+            _iStringConstant = iStringConstant;
         }
 
         #endregion
@@ -137,7 +140,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpDelete("{projectId}/scenario/{id}")]
         public async Task<IActionResult> DeleteScenarioAsync(int projectId, int scenarioId)
         {
-            var isUserAuthorised = await _iProjectRepository.IsUserAssociatedWithProjectAsync(projectId, User.Claims.Single(x => x.Type.Equals(StringConstants.Sub)).Value);
+            var isUserAuthorised = await _iProjectRepository.IsUserAssociatedWithProjectAsync(projectId, User.Claims.Single(x => x.Type.Equals(_iStringConstant.Sub)).Value);
 
             if (!isUserAuthorised)
             {
