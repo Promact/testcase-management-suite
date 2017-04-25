@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Promact.TestCaseManagement.Core.Controllers
 {
     [Authorize]
-    [Route(StringConstants.ProjectBaseUrl)]
+    [Route(BaseUrl)]
     public class ModuleController : Controller
     {
         #region "Private Member(s)"
@@ -21,16 +21,19 @@ namespace Promact.TestCaseManagement.Core.Controllers
         readonly IModuleRepository _iModuleRepository;
         readonly IProjectRepository _iProjectRepository;
         readonly IMapper _iMapper;
+        readonly IStringConstant _iStringConstant;
+        internal const string BaseUrl = "api/project";
 
         #endregion
 
         #region "Constructor"
 
-        public ModuleController(IModuleRepository iModuleRepository, IProjectRepository iProjectRepository, IMapper iMapper)
+        public ModuleController(IModuleRepository iModuleRepository, IProjectRepository iProjectRepository, IMapper iMapper, IStringConstant iStringConstant)
         {
             _iModuleRepository = iModuleRepository;
             _iProjectRepository = iProjectRepository;
             _iMapper = iMapper;
+            _iStringConstant = iStringConstant;
         }
 
         #endregion
@@ -136,7 +139,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         [HttpDelete("{projectId}/module/{id}")]
         public async Task<IActionResult> DeleteModule(int projectId, int moduleId)
         {
-            var isUserAuthorised = await _iProjectRepository.IsUserAssociatedWithProjectAsync(projectId, User.Claims.Single(x => x.Type.Equals(StringConstants.Sub)).Value);
+            var isUserAuthorised = await _iProjectRepository.IsUserAssociatedWithProjectAsync(projectId, User.Claims.Single(x => x.Type.Equals(_iStringConstant.Sub)).Value);
 
             if (!isUserAuthorised)
             {

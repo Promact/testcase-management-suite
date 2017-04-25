@@ -11,9 +11,6 @@ using Microsoft.Extensions.Logging;
 using Promact.OAuth.Client.DomainModel;
 using Promact.OAuth.Client.Middleware;
 using Promact.TestCaseManagement.DomainModel.DataContext;
-using Promact.TestCaseManagement.DomainModel.Models;
-using Promact.TestCaseManagement.Repository.ApplicationClass;
-using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using Promact.TestCaseManagement.Repository.GlobalRepository;
 using Promact.TestCaseManagement.Repository.ModuleRepository;
 using Promact.TestCaseManagement.Repository.ProjectRepository;
@@ -44,7 +41,7 @@ namespace Promact.TestCaseManagement
         {
             services.AddMvc();
             services.AddAutoMapper();
-            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration[StringConstants.ConnectionString], b => b.MigrationsAssembly("Promact.TestCaseManagement.Web")));
+            services.AddDbContext<TestCaseManagementDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"], b => b.MigrationsAssembly("Promact.TestCaseManagement.Web")));
 
             //register application services
             services.AddScoped<IModuleRepository, ModuleRepository>();
@@ -108,7 +105,23 @@ namespace Promact.TestCaseManagement
                 }
             });
 
-            app.UseMvcWithDefaultRoute();
+            // Add MVC to the request pipeline.
+            app.UseMvc(routes =>
+            {
+                // Matches requests that correspond to an existent controller/action pair
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                // Matches any other request that doesn't appear to have a filename extension (defined as 'having a dot in the last URI segment').
+                // This means you'll correctly get 404s for /some/dir/non-existent-image.png instead of returning the SPA HTML.
+                // However, it means requests like /customers/isaac.newton will *not* be mapped into the SPA, so if you need to accept
+                // URIs like that you'll need to match all URIs, e.g.:
+                //    routes.MapRoute("spa-fallback", "{*anything}", new { controller = "Home", action = "Index" });
+                // (which of course will match /customers/isaac.png too, so in that case it would serve the PNG image at that URL if one is on disk,
+                // or the SPA HTML if not).
+                routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
+            });
         }
     }
 }

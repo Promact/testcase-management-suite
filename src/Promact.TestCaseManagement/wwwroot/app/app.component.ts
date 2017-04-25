@@ -5,7 +5,7 @@ import 'rxjs/add/operator/filter';
 @Component({
     selector: 'my-app',
     moduleId: module.id,
-    templateUrl: './index.html'
+    templateUrl: 'index.html'
 })
 export class AppComponent {
     name = 'Angular';

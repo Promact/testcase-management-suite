@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Promact.TestCaseManagement.DomainModel.Models;
-using Promact.TestCaseManagement.Repository.ApplicationClass.External;
+using Promact.TestCaseManagement.Repository.ApplicationClass;
 using Promact.TestCaseManagement.Repository.ApplicationClass.Module;
 using Promact.TestCaseManagement.Repository.ApplicationClass.Scenario;
 using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
