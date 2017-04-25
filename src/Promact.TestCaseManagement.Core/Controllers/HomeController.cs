@@ -61,18 +61,30 @@ namespace Promact.TestCaseManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Dashboard action
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         public IActionResult Dashboard()
         {
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Log off action
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> LogOff()
         {
             await HttpContext.Authentication.SignOutAsync(_iStringConstant.Cookies);
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Error action
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Error()
         {
             return View();

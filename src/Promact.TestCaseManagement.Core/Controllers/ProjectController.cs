@@ -32,7 +32,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         #region "Public API(s)"
 
         /// <summary>
-        /// Method to get all projects of user
+        /// API to get all projects of user
         /// </summary>
         /// <returns></returns>
         [HttpGet()]

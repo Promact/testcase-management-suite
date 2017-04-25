@@ -41,7 +41,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         #region "Public API(s)"
 
         /// <summary>
-        /// Method to get all scenario
+        /// API to get all scenario
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        ///  Method to retrieve single module from database
+        ///  API to retrieve single module from database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="id">Id of the scenario</param>
@@ -71,7 +71,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to add scenario to the database
+        /// API to add scenario to the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="scenarioAC">Id of the scenario</param>
@@ -98,7 +98,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to update scenario to the database
+        /// API to update scenario to the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="id">Id of the scenario</param>
@@ -132,7 +132,7 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
-        /// Method to delete scenario from the database
+        /// API to delete scenario from the database
         /// </summary>
         /// <param name="projectId">Id of the project</param>
         /// <param name="scenarioId">Id of the scenario</param>
