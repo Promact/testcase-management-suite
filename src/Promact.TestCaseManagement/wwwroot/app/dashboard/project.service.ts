@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ProjectService {
-    private projectApiUrl = "api/projects";
+    private projectApiUrl = "api/project";
 
     constructor(private http: HttpService) {
     }

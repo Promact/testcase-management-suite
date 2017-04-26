@@ -35,7 +35,7 @@ namespace Promact.TestCaseManagement.Repository.ProjectRepository
 
         public async Task<IEnumerable<Project>> GetProjectsAsync(string userId)
         {
-            return (await _dbContext.ProjectUserMapping.Where(x => x.UserId == userId).Include(x => x.Project).Select(x => x.Project).ToListAsync());
+            return (await _dbContext.ProjectUserMapping.Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedDateTime).Include(x => x.Project).Select(x => x.Project).ToListAsync());
         }
 
         public async Task<bool> IsUserAssociatedWithProjectAsync(int projectId, string userId)
