@@ -1,10 +1,10 @@
-﻿import { NgModule } from '@angular/core'
+﻿import { NgModule } from '@angular/core';
 
 import { dashboardRouting } from './dashboard-route';
 import { ProjectListComponent } from './project-list.component';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { ProjectService } from './project.service';
 
 @NgModule({
     imports: [
@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     ],
     declarations: [ProjectListComponent, DashboardComponent],
     providers: [
-
+        ProjectService
     ]
 })
 
