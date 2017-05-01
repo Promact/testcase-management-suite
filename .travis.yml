@@ -1,11 +1,13 @@
 language: csharp
-node_js:
-  - "7"
 os: linux
 mono: none
 dist: trusty
 sudo: required
-dotnet: 1.0.1
+dotnet: 1.0.3
+before_install:
+  - nvm install 7.9.0
+  - nvm use 7.9.0
+  - npm install -g npm
 install:
   - node -v
   - dotnet restore
