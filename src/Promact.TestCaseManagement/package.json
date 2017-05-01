@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "tsc": "tsc",
-    "build:aot": "ngc -p tsconfig-aot.json && node copy-dist-files && rollup -c rollup-config.js"
+    "build:aot": "ngc -p wwwroot  \tsconfig-aot.json && node wwwroot\\copy-dist-files && rollup -c wwwroot\rollup-config.js"
   },
   "dependencies": {
     "@angular/animations": "^4.1.0",
