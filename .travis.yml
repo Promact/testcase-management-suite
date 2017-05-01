@@ -9,7 +9,6 @@ before_install:
   - nvm use 7.9.0
   - npm install -g npm
 install:
-  - node -v
   - dotnet restore
   - cd ./src/Promact.TestCaseManagement && npm install
 solution: "./Promact.TestCaseManagement.sln"
