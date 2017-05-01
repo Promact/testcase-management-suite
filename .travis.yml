@@ -18,4 +18,5 @@ notifications:
     on_failure: always
 script:
   - dotnet build --configuration Release
+  - cd ./wwwroot
   - npm run copy-compile
