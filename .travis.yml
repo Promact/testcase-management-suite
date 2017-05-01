@@ -18,6 +18,4 @@ notifications:
     on_failure: always
 script:
   - dotnet build --configuration Release
-  - cd ./wwwroot
-  - pwd
-  - npm run copy-compile
+  - cd ./wwwroot && npm run build:aot

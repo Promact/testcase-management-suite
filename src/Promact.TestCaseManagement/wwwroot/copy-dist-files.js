@@ -2,9 +2,9 @@
 var resources = [
     '../node_modules/core-js/client/shim.min.js',
     '../node_modules/zone.js/dist/zone.min.js',
-    'css/styles.css',
+    'css/style.css',
     '../node_modules/bootstrap/dist/css/bootstrap.css',
-    '../node_modules/@@angular/material/prebuilt-themes/indigo-pink.css'
+    '../node_modules/@angular/material/core/theming/prebuilt/indigo-pink.css'
 ];
 resources.map(function (f) {
     var path = f.split('/');
