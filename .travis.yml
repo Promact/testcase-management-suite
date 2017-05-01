@@ -7,6 +7,7 @@ dist: trusty
 sudo: required
 dotnet: 1.0.1
 install:
+  - node -v
   - dotnet restore
   - cd ./src/Promact.TestCaseManagement && npm install
 solution: "./Promact.TestCaseManagement.sln"
