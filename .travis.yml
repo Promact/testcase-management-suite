@@ -16,4 +16,4 @@ notifications:
     on_failure: always
 script:
   - dotnet build --configuration Release
-  - npm run tsc
+  - npm run copy-compile

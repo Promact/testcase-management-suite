@@ -11,6 +11,10 @@
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -22,6 +26,17 @@
     <ProjectReference Include="..\Promact.TestCaseManagement.DomainModel\Promact.TestCaseManagement.DomainModel.csproj" />
     <ProjectReference Include="..\Promact.TestCaseManagement.Repository\Promact.TestCaseManagement.Repository.csproj" />
     <ProjectReference Include="..\Promact.TestCaseManagement.Utility\Promact.TestCaseManagement.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\app\aot\**" />
+    <Content Remove="wwwroot\app\aot\**" />
+    <EmbeddedResource Remove="wwwroot\app\aot\**" />
+    <None Remove="wwwroot\app\aot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\copy-dist-files.js" />
   </ItemGroup>
 
   <ItemGroup>

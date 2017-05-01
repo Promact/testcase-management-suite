@@ -3,7 +3,9 @@
   "name": "asp.net",
   "private": true,
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "copy-compile": "node copy-dist-files && npm run build:aot",
+    "build:aot": "ngc -p tsconfig-aot.json && rollup -c rollup-config.js"
   },
   "dependencies": {
     "@angular/animations": "^4.1.0",
@@ -29,6 +31,10 @@
     "zone.js": "^0.8.9"
   },
   "devDependencies": {
-    "@types/node": "^7.0.3"
+    "@types/node": "^7.0.3",
+    "rollup": "^0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^1.0.2"
   }
 }
