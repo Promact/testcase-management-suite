@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "tsc": "tsc",
-    "build:aot": "ngc -p wwwroot  \tsconfig-aot.json && node wwwroot\\copy-dist-files && rollup -c wwwroot\rollup-config.js"
+    "build:aot": "ngc -p wwwroot\tsconfig-aot.json && node wwwroot\\copy-dist-files && rollup -c wwwroot\rollup-config.js"
   },
   "dependencies": {
     "@angular/animations": "^4.1.0",
@@ -14,7 +14,7 @@
     "@angular/core": "^4.1.0",
     "@angular/forms": "^4.1.0",
     "@angular/http": "^4.1.0",
-    "@angular/material": "2.0.0-beta.2",
+    "@angular/material": "2.0.0-beta.3",
     "@angular/platform-browser": "^4.1.0",
     "@angular/platform-browser-dynamic": "^4.1.0",
     "@angular/platform-server": "^4.1.0",

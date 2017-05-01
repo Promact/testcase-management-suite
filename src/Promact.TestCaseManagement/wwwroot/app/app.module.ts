@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import { MaterialModule, OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
+import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 
