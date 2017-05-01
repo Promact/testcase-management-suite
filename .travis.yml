@@ -1,6 +1,6 @@
 language: csharp
 node_js:
-  - node
+  - "7"
 os: linux
 mono: none
 dist: trusty
