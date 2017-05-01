@@ -19,4 +19,5 @@ notifications:
 script:
   - dotnet build --configuration Release
   - cd ./wwwroot
+  - pwd
   - npm run copy-compile
