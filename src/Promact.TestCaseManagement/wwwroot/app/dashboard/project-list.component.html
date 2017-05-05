@@ -1,11 +1,11 @@
 ﻿<div class="component-header">
-  <div class="row">
+  <div class="row x_title">
     <div class="col-md-8">
       <h3 class="m0">Projects</h3>
     </div>
     <div class="col-md-4">
       <div class="sidebar-search">
-        <div class="input-group custom-search-form">
+        <div class="input-group custom-search-form mt5">
           <input type="text" class="form-control" [(ngModel)]="searchedProject" (ngModelChange)="filterProject()" placeholder="Search...">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button">
@@ -20,8 +20,13 @@
 <div class="project-list">
   <div class="row">
     <div class="col-md-3" *ngFor="let project of visibleProject">
-      <div class="project-list-container" [routerLink]="['/projects']">
-        <h3 class="text-center">{{project.name}}</h3>
+      <div class="x_panel tile overflow_hidden project-list-container" [routerLink]="['/projects']">
+        <div class="x_title x_sub_title">
+          <h2>{{project.name}}</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+        </div>
       </div>
     </div>
   </div>
