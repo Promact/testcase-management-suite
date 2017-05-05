@@ -3,6 +3,7 @@
 <head>
   <base href="/">
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
   <environment names="Development">
     <script src="/node_modules/core-js/client/shim.min.js"></script>
@@ -14,11 +15,11 @@
 
     <link href="~/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/node_modules/@@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+    <link href="~/css/custom.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
   </environment>
 </head>
-<body>
+<body class="nav-md">
   <environment names="Development">
     <script>
       System.import('/app/main').then(null, console.error.bind(console));
@@ -30,10 +31,7 @@
     <script src="~/app/build.js"></script>
   </environment>
   <br />
-  @if (User.Identity.IsAuthenticated)
-  {
-      @Html.ActionLink("Logout", "LogOff")
-  }
+ 
   @*<script src="~/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>*@
 </body>
