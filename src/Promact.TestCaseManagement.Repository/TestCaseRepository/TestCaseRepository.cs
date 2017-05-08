@@ -7,6 +7,7 @@ using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using AutoMapper;
 using Promact.TestCaseManagement.Repository.UserRepository;
 using System.Linq;
+using Promact.TestCaseManagement.DomainModel.Enums;
 
 namespace Promact.TestCaseManagement.Repository.TestCaseRepository
 {
@@ -77,12 +78,22 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<TestCase> GetTestCase(int testCaseId)
+        public async Task<TestCaseAC> GetTestCaseByIdAsync(int testCaseId)
         {
             var testCase = await _dbContext.TestCase.FindAsync(testCaseId);
+            if (testCase == null) return null;
             await _dbContext.Entry(testCase).Collection(x => x.TestCaseSteps).LoadAsync();
             await _dbContext.Entry(testCase).Collection(x => x.TestCaseConditions).LoadAsync();
-            return testCase;
+
+            foreach (var testCaseStep in testCase.TestCaseSteps.ToList())
+            {
+                await _dbContext.Entry(testCaseStep).Collection(y => y.TestCaseInputs).LoadAsync();
+            }
+
+            var testCaseAC = _iMapper.Map<TestCaseAC>(testCase);
+            testCaseAC.PreConditions = _iMapper.Map<IEnumerable<TestCaseConditionsAC>>(testCase.TestCaseConditions.Where(x => x.Condition == Condition.PreCondition));
+            testCaseAC.PostConditions = _iMapper.Map<IEnumerable<TestCaseConditionsAC>>(testCase.TestCaseConditions.Where(x => x.Condition == Condition.PostCondition));
+            return testCaseAC;
         }
 
         #endregion

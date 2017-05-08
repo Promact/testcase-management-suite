@@ -39,6 +39,6 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// </summary>
         /// <param name="testCaseId">Id of the test case </param>
         /// <returns></returns>
-        Task<TestCase> GetTestCase(int testCaseId);
+        Task<TestCaseAC> GetTestCaseByIdAsync(int testCaseId);
     }
 }

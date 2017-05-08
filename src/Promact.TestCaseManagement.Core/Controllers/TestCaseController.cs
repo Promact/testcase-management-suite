@@ -42,6 +42,19 @@ namespace Promact.TestCaseManagement.Core.Controllers
         }
 
         /// <summary>
+        /// Get API to get single test case
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTestCaseById(int id)
+        {
+            var testCase = await _iTestCaseRepository.GetTestCaseByIdAsync(id);
+            if (testCase == null) return NotFound();
+            return Ok(testCase);
+        }
+
+        /// <summary>
         /// Post API to create test case
         /// </summary>
         /// <param name="testCaseAC">test case object</param>
@@ -56,48 +69,48 @@ namespace Promact.TestCaseManagement.Core.Controllers
             return Ok(await _iTestCaseRepository.AddTestCaseAsync(testCaseAC, User.Identity.Name));
         }
 
-        /// <summary>
-        /// Put API to update test case
-        /// </summary>
-        /// <param name="id">id of test case</param>
-        /// <param name="testCaseAC">test case object</param>
-        /// <returns></returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTestCase(int id, [FromBody] TestCaseAC testCaseAC)
-        {
-            if (!ModelState.IsValid || testCaseAC == null)
-            {
-                return BadRequest(ModelState);
-            }
+        ///// <summary>
+        ///// Put API to update test case
+        ///// </summary>
+        ///// <param name="id">id of test case</param>
+        ///// <param name="testCaseAC">test case object</param>
+        ///// <returns></returns>
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> UpdateTestCase(int id, [FromBody] TestCaseAC testCaseAC)
+        //{
+        //    if (!ModelState.IsValid || testCaseAC == null)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var testCase = await _iTestCaseRepository.GetTestCase(id);
-            if (testCase == null)
-            {
-                return NotFound();
-            }
+        //    var testCase = await _iTestCaseRepository.GetTestCaseByIdAsync(id);
+        //    if (testCase == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _iMapper.Map(testCaseAC, testCase);
-            await _iTestCaseRepository.UpdateTestCaseAsync(testCase);
+        //    _iMapper.Map(testCaseAC, testCase);
+        //    await _iTestCaseRepository.UpdateTestCaseAsync(testCase);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
-        /// <summary>
-        /// Delete API to delete test case
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTestCase(int id)
-        {
-            var testCase = await _iTestCaseRepository.GetTestCase(id);
-            if (testCase == null)
-            {
-                return NotFound();
-            }
-            _iTestCaseRepository.DeleteTestCaseAsync(testCase);
-            return NoContent();
-        }
+        ///// <summary>
+        ///// Delete API to delete test case
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteTestCase(int id)
+        //{
+        //    var testCase = await _iTestCaseRepository.GetTestCaseByIdAsync(id);
+        //    if (testCase == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _iTestCaseRepository.DeleteTestCaseAsync(testCase);
+        //    return NoContent();
+        //}
 
         #endregion
     }
