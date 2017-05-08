@@ -71,11 +71,30 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
             return testCase;
         }
 
-        public async void DeleteTestCaseAsync(TestCase testCase)
+        public async Task DeleteTestCaseAsync(int id)
         {
+            var testCase = await _dbContext.TestCase.FindAsync(id);
+            await _dbContext.Entry(testCase).Collection(x => x.TestCaseSteps).LoadAsync();
+            await _dbContext.Entry(testCase).Collection(x => x.TestCaseConditions).LoadAsync();
+
+            foreach (var testCaseStep in testCase.TestCaseSteps.ToList())
+            {
+                await _dbContext.Entry(testCaseStep).Collection(y => y.TestCaseInputs).LoadAsync();
+            }
+
             testCase.IsDeleted = true;
-            _dbContext.TestCase.Update(testCase);
-            await _dbContext.SaveChangesAsync();
+            testCase.TestCaseSteps.ToList().ForEach(x =>
+            {
+                x.TestCaseInputs.ToList().ForEach(z =>
+                {
+                    z.IsDeleted = true;
+                });
+                x.IsDeleted = true;
+            });
+            testCase.TestCaseConditions.ToList().ForEach(x =>
+            {
+                x.IsDeleted = true;
+            });
         }
 
         public async Task<TestCaseAC> GetTestCaseByIdAsync(int testCaseId)
@@ -94,6 +113,11 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
             testCaseAC.PreConditions = _iMapper.Map<IEnumerable<TestCaseConditionsAC>>(testCase.TestCaseConditions.Where(x => x.Condition == Condition.PreCondition));
             testCaseAC.PostConditions = _iMapper.Map<IEnumerable<TestCaseConditionsAC>>(testCase.TestCaseConditions.Where(x => x.Condition == Condition.PostCondition));
             return testCaseAC;
+        }
+
+        public async Task<bool> IsTestCaseExist(int id)
+        {
+            return await _dbContext.TestCase.AnyAsync(x => x.Id == id);
         }
 
         #endregion

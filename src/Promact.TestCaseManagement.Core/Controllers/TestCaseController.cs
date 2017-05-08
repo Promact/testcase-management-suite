@@ -95,22 +95,21 @@ namespace Promact.TestCaseManagement.Core.Controllers
         //    return Ok();
         //}
 
-        ///// <summary>
-        ///// Delete API to delete test case
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteTestCase(int id)
-        //{
-        //    var testCase = await _iTestCaseRepository.GetTestCaseByIdAsync(id);
-        //    if (testCase == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _iTestCaseRepository.DeleteTestCaseAsync(testCase);
-        //    return NoContent();
-        //}
+        /// <summary>
+        /// Delete API to delete test case
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTestCase(int id)
+        {
+            if (!await _iTestCaseRepository.IsTestCaseExist(id))
+            {
+                return NotFound();
+            }
+            await _iTestCaseRepository.DeleteTestCaseAsync(id);
+            return NoContent();
+        }
 
         #endregion
     }

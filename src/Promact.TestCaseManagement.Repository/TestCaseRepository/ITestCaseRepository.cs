@@ -31,8 +31,8 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <summary>
         /// Method to delete test case from the database
         /// </summary>
-        /// <param name="testCase">Test case object</param>
-        void DeleteTestCaseAsync(TestCase testCase);
+        /// <param name="id">Id of the test case</param>
+        Task DeleteTestCaseAsync(int id);
 
         /// <summary>
         /// Method to retrieve single test case from database
@@ -40,5 +40,12 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// <param name="testCaseId">Id of the test case </param>
         /// <returns></returns>
         Task<TestCaseAC> GetTestCaseByIdAsync(int testCaseId);
+
+        /// <summary>
+        /// Method to check if Test Case exist in database or not
+        /// </summary>
+        /// <param name="id">Id of the test case</param>
+        /// <returns></returns>
+        Task<bool> IsTestCaseExist(int id);
     }
 }
