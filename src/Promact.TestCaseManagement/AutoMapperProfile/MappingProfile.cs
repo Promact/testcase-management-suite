@@ -16,6 +16,7 @@ namespace Promact.TestCaseManagement.Web.AutoMapperProfile
             CreateMap<TestCaseAC, TestCase>().ReverseMap();
             CreateMap<TestCaseInputAc, TestCaseInput>().ReverseMap();
             CreateMap<TestCaseStepsAC, TestCaseSteps>().ReverseMap();
+            CreateMap<TestCaseConditions, TestCaseConditionsAC>().ReverseMap();
             CreateMap<UserInfo, UserAC>().ReverseMap();
             CreateMap<Project, ProjectAC>().ReverseMap();
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Promact.TestCaseManagement.DomainModel.Models
 {
@@ -12,6 +13,7 @@ namespace Promact.TestCaseManagement.DomainModel.Models
 
         public virtual ICollection<TestCaseSteps> TestCaseSteps { get; set; }
 
+        [InverseProperty("TestCase")]
         public virtual ICollection<TestCaseConditions> TestCaseConditions { get; set; }
 
         public virtual ICollection<ModuleTestCaseMapping> ModuleTestCaseMapping { get; set; }

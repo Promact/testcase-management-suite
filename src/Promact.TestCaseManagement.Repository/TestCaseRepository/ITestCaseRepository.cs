@@ -1,4 +1,5 @@
 ﻿using Promact.TestCaseManagement.DomainModel.Models;
+using Promact.TestCaseManagement.Repository.ApplicationClass.TestCase;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,14 +11,15 @@ namespace Promact.TestCaseManagement.Repository.TestCaseRepository
         /// Method to get all test cases
         /// </summary>
         /// <returns></returns>
-        Task<List<TestCase>> GetTestCasesAsync();
+        Task<IEnumerable<TestCaseAC>> GetTestCasesAsync();
 
         /// <summary>
         /// Method to add test case to the database
         /// </summary>
         /// <param name="testCase">Test case object</param>
+        /// <param name="email">Email of logged in user</param>
         /// <returns></returns>
-        Task<TestCase> AddTestCaseAsync(TestCase testCase);
+        Task<TestCaseAC> AddTestCaseAsync(TestCaseAC testCaseAC, string email);
 
         /// <summary>
         /// Method to update test case to the database

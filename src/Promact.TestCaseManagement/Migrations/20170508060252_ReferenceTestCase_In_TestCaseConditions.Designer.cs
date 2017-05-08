@@ -9,9 +9,10 @@ using Promact.TestCaseManagement.DomainModel.Enums;
 namespace Promact.TestCaseManagement.Web.Migrations
 {
     [DbContext(typeof(TestCaseManagementDbContext))]
-    partial class TestCaseManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170508060252_ReferenceTestCase_In_TestCaseConditions")]
+    partial class ReferenceTestCase_In_TestCaseConditions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Promact.TestCaseManagement.Repository.ApplicationClass.TestCase
 {
@@ -8,6 +9,12 @@ namespace Promact.TestCaseManagement.Repository.ApplicationClass.TestCase
 
         public int TestCaseId { get; set; }
 
-        public ICollection<TestCaseInputAc> TestCaseInputAC { get; set; }
+        public string TestStep { get; set; }
+
+        public string ExpectedResult { get; set; }
+
+        public DateTime ExpectedResultDate { get; } = DateTime.UtcNow;
+
+        public IEnumerable<TestCaseInputAc> TestCaseInputs { get; set; }
     }
 }

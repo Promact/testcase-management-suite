@@ -22,8 +22,15 @@ namespace Promact.TestCaseManagement.Repository.UserRepository
         /// <summary>
         /// Method used to get user info by user id
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="userId">user id</param>
         /// <returns></returns>
         Task<UserInfo> GetUserByUserIdAsync(string userId);
+
+        /// <summary>
+        /// Method used to get user info by email
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <returns></returns>
+        Task<UserInfo> GetUserByEmailAsync(string email);
     }
 }
