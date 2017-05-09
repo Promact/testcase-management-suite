@@ -1,5 +1,9 @@
-﻿/*common*/
+﻿/* Project: Test Case Management
+   Style Sheet for TCM*/
+
+/*common*/
 .ml0 { margin-left: 0; }
+.m0 { margin: 0; }
 .mt5 { margin-top: 5px; }
 .ml230 { margin-left: 230px; }
 .x_sub_title { border-bottom: 1px solid #E6E9ED; padding-bottom: 10px; }
@@ -10,7 +14,7 @@
 .dashboard-container { width: 95%; margin: 0 auto; }
 .project-list { margin-top: 20px; }
 .project-list-container { cursor: pointer; min-height: 150px; box-shadow: 1px 2px 4px #ccc; }
-.container-main { width: 83%; margin-left: 16.66666667%; padding: 15px; }
+.container-main { width: calc(100% - 230px); margin-left: 230px; padding: 85px 15px 15px; }
 .container-main.dashboard { width: 100%; margin-left: 0; }
 .nav.side-menu > li > a { border-left: 3px solid transparent; }
 .nav.side-menu > li:hover > a, .nav.side-menu > li.active > a { color: #ffab00; font-weight: 500; background: #33495d; border-left: 3px solid #ffab00; }
@@ -19,3 +23,23 @@
 .nav-md ul.nav.child_menu li.active:before, .nav-md ul.nav.child_menu li:hover:before { background: #FF9800; }
 .nav-md ul.nav.child_menu li.active:after, .nav-md ul.nav.child_menu li:hover:after { border-left: 1px solid #FF9800; }
 .nav-md ul.nav.child_menu li.active a { color: #ffab00; }
+.test-case-main .x_title { white-space: nowrap; min-height: 45px; }
+.test-case-main h2 { text-overflow: inherit; word-wrap: break-word; margin: 5px 0 6px; float: left; display: inline-block; white-space: normal; width: 100%; max-height: 78px; }
+.test-case-main .panel_toolbox { animation-duration: 0.5s; display: none; vertical-align: top; position: absolute; top: 0; right: 0; background-color: #ccc; }
+.test-case-main .x_content { max-height: 108px; overflow: hidden; word-wrap: break-word; }
+.test-case-main .tile:hover .panel_toolbox { animation-duration: 0.5s; animation-fill-mode: both; animation-name: slideInRight; display: block; border-radius: 3px 0px 0px 3px; }
+
+@keyframes slideInRight {
+  0% { transform: translate3d(100%, 0, 0); visibility: visible; }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.panel_toolbox > li > a:hover .fa-pencil { color: #396998; }
+.panel_toolbox > li > a:hover .fa-trash-o { color: #db2012; }
+.component-header { border-bottom: 2px solid #ececec; margin-bottom: 15px; padding-bottom: 10px; }
+.btn-primary { color: #fff; background-color: #ffab00; border-color: #ffab00; }
+.btn-primary:hover, .btn-primary:focus { color: #fff; background-color: #eea002; border-color: #eea002; }
+.test-case-main { width: 30%; float: left; display: inline-block; vertical-align: top; margin: 5px 10px; text-align: left; }
+.test-case-main .tile { min-height: 150px; }
+.project-list-container .x_content { max-height: 70px; overflow: hidden; }
+label { font-weight: normal; }

@@ -11,13 +11,7 @@
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="wwwroot\css\bootstrap.min.css" />
-    <Content Include="wwwroot\css\bootstrap.min.css.map" />
-    <Content Include="wwwroot\css\custom.css" />
-    <Content Include="wwwroot\css\custom.min.css" />
-  </ItemGroup>
-
+ 
   <ItemGroup>
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
