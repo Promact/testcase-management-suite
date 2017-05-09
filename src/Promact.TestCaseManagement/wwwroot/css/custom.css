@@ -301,10 +301,10 @@ a:focus { text-decoration: none }
 .toggle a { padding: 15px 15px 0; margin: 0; cursor: pointer }
 .toggle a i { font-size: 26px }
 .nav.child_menu > li > a { color: rgba(255, 255, 255, 0.75); padding: 9px }
-.panel_toolbox { float: right; min-width: 70px }
+.panel_toolbox { float: right; }
 .panel_toolbox > li { float: left; cursor: pointer }
-.panel_toolbox > li > a { padding: 5px; color: #C5C7CB; font-size: 14px }
-.panel_toolbox > li > a:hover { background: #F5F7FA }
+.panel_toolbox > li > a { padding: 5px 7px; color: #3d3b3b; font-size: 18px !important; }
+
 .line_30 { line-height: 30px }
 .main_menu_side { padding: 0 }
 .bs-docs-sidebar .nav > li > a { display: block; padding: 4px 6px }
