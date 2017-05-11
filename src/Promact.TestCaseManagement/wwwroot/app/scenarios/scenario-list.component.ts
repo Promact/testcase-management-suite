@@ -5,10 +5,10 @@ import { Md2Dialog } from 'md2';
 
 @Component({
     moduleId: module.id,
-    templateUrl: './module-list.component.html'
+    templateUrl: './scenario-list.component.html'
 })
 
-export class ModuleListComponent {
+export class ScenarioListComponent {
     numTemplateOpens = 0;
     @ViewChild(TemplateRef) template: TemplateRef<any>;
 
@@ -34,6 +34,8 @@ export class ModuleListComponent {
 
     newModule = true;
 
+    //dialogHeader: string = 'Lorum Ipsum';
+
     open(dialog: Md2Dialog) {
         dialog.open();
     }
@@ -41,14 +43,14 @@ export class ModuleListComponent {
     close(dialog: any) {
         dialog.close();
     }
-    title = "Add New Module";
 
+
+    title = "Add New Scenario";
     moduleList: Array<any> = [
-        { name: "Module Name", des: "Module Des..." },
-        { name: "Module Name", des: "Module Des..." },
-        { name: "Module Name", des: "Module Des..." },
-        { name: "Module Name", des: "Module Des..." },
-        { name: "Module Name", des: "Module Des..." }
+        { name: "Scenario Name", des: "Scenario Des..." },
+        { name: "Scenario Name", des: "Scenario Des..." },
+        { name: "Scenario Name", des: "Scenario Des..." },
+        { name: "Scenario Name", des: "Scenario Des..." },
+        { name: "Scenario Name", des: "Scenario Des..." }
     ];
-
 }
