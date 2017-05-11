@@ -10,7 +10,7 @@
         <ul class="nav side-menu">
           <li [routerLinkActive]="['active']">
             <a (click)="subOptionShow = !subOptionShow">
-              Test Case {{subOptionShow}}
+              Test Case
               <span class="fa fa-chevron-down" *ngIf="!subOptionShow"></span>
               <span class="fa fa-chevron-up" *ngIf="subOptionShow"></span>
             </a>
@@ -24,7 +24,7 @@
             <a [routerLink]="['/modules']"> Module </a>
           </li>
           <li [routerLinkActive]="['active']" (click)="subOptionShow=false">
-            <a [routerLink]="['/scenario']"> Scenario </a>
+            <a [routerLink]="['/scenarios']"> Scenario </a>
           </li>
         </ul>
       </div>

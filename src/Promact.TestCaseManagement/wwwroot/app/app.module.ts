@@ -9,8 +9,10 @@ import { appRoutes } from './app.routes';
 import { TestCaseModule } from './testcase/testcase.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ModulesModule } from './modules/modules.module';
+import { ScenariosModule } from './scenarios/scenarios.module';
 import { SidebarComponent, TopNavComponent } from './shared/index';
 import { CoreModule } from './core/core.module';
+import { Md2Module } from 'md2';
 import { NotFoundComponent } from './notfound.component';
 
 @NgModule({
@@ -25,9 +27,11 @@ import { NotFoundComponent } from './notfound.component';
         TestCaseModule,
         DashboardModule,
         ModulesModule,
+        ScenariosModule,
         CoreModule,
         MaterialModule.forRoot(),
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        Md2Module.forRoot(),
     ],
     providers: [
 

@@ -1,24 +1,85 @@
 ﻿<div class="component-main">
-  <div class="row component-header">
-    <div class="col-md-7">
-      <h3 class="m0">Create Test Case</h3>
-    </div>
-    <div class="col-md-5"></div>
-  </div>
-  <div class="row">
-    <div class="form-horizontal">
-      <div class="form-group row">
-        <label for="title" class="col-sm-3 text-right">Title</label>
-        <div class="col-sm-7">
-          <input type="text" class="form-control" id="title" />
+    <!-- Main Title -->
+    <div class="row component-header p0">
+        <div class="col-md-7">
+            <h3 class="m0 mb15">Create Test Case</h3>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="description" class="col-sm-3 text-right">Description</label>
-        <div class="col-sm-7">
-          <textarea class="form-control" id="description" rows="5"></textarea>
-        </div>
-      </div>
+        <div class="col-md-5"></div>
     </div>
-  </div>
+
+    <!-- Create testcases -->
+    <div class="row">
+        <div class="form-horizontal">
+            <div class="form-group row">
+                <label for="title" class="col-sm-3 text-right">Title</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="title" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="description" class="col-sm-3 text-right">Description</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" id="description" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="accordion">
+        <ul>
+            <li>
+                <h2 (click)="first = first ? false : true">Pre-Conditions ({{ users.length }})<span class="plus"><i class="fa fa-plus" [ngClass]="{'fa-minus': !first}"></i></span></h2>
+                <div class="user-reg" [hidden]="first">
+                    <div class="row">
+                        <form class="col-xs-offset-1 col-xs-10">
+                            <input type="text" placeholder="User must be registered" />
+                        </form>
+                    </div>
+                    <ul class="sub-accordion">
+                        <li><h3><span>1. </span> User must be registered<span class="plus" [tooltip]="tooltip" [tooltip-position]="position" [tooltip-delay]="1000"><i class="fa" (click)="clicked = true" [ngClass]="{'fa-check': clicked, 'fa-plus' :!clicked}"></i></span></h3></li>
+                        <li><h3><span>2.3 </span> User must be registered and active<span class="plus" [tooltip]="tooltip" [tooltip-position]="position" [tooltip-delay]="1000"><i class="fa" (click)="clicked = true" [ngClass]="{'fa-check': clicked, 'fa-plus' :!clicked}"></i></span></h3></li>
+                    </ul>
+                </div>
+                <ul class="user-list">
+                    <li *ngFor="let user of users let i=index"><span class="bor-right">{{ i+1 }}</span><p>{{user.name}}</p><span class="bor-left"><i class="fa fa-close"></i></span></li>
+                </ul>
+            </li>
+
+            <li>
+                <h2 (click)="sec = sec ? false : true">Steps ({{ users.length }})<span class="plus"><i class="fa fa-plus" [ngClass]="{'fa-minus': !sec}"></i></span></h2>
+                <div class="user-reg steps" [hidden]="sec">
+                    <form class="m0">
+                        <div class="row">
+                            <div class="form-group"><label class="col-xs-3">Title </label><input type="text" class="col-xs-7" /></div>
+                            <div class="form-group"><label class="col-xs-3">Input </label><input type="text" class="col-xs-7" /></div>
+                            <div class="form-group"><label class="col-xs-3">Expected Result </label><input type="text" class="col-xs-7" /></div>
+                            <div class="form-group col-xs-offset-3 col-xs-7 p0"><button class="btn btn-primary" (click)="addUser = true; sec = true;">Add</button><button class="btn btn-secondary">Cancel</button></div>
+                        </div>
+                    </form>
+                </div>
+                <ul class="user-list" [hidden]="!addUser">
+                    <li *ngFor="let user of users let i=index"><span class="bor-right">{{ i+1 }}</span><p>{{user.name}}</p><span class="bor-left"><i class="fa fa-close"></i></span></li>
+                </ul>
+            </li>
+            <li>
+                <h2 (click)="third = third ? false : true">Post-Conditions ({{ users.length }})<span class="plus"><i class="fa fa-plus" [ngClass]="{'fa-minus': !third}"></i></span></h2>
+                <div class="user-reg" [hidden]="third">
+                    <div class="row">
+                        <form class="col-xs-offset-1 col-xs-10">
+                            <input type="text" />
+                        </form>
+                    </div>
+                    <ul class="sub-accordion">
+                        <li><h3><span>1.</span>User must be registered<span class="plus" [tooltip]="tooltip" [tooltip-position]="position" [tooltip-delay]="1000"><i class="fa" (click)="clicked = true" [ngClass]="{'fa-check': clicked, 'fa-plus' :!clicked}"></i></span></h3></li>
+                        <li><h3><span>2.3</span>User must be registered<span class="plus" [tooltip]="tooltip" [tooltip-position]="position" [tooltip-delay]="1000"><i class="fa" (click)="clicked = true" [ngClass]="{'fa-check': clicked, 'fa-plus' :!clicked}"></i></span></h3></li>
+                    </ul>
+                </div>
+
+                <ul class="user-list">
+                    <li *ngFor="let user of users let i=index"><span class="bor-right">{{ i+1 }}</span><p>{{user.id}}. {{user.name}}</p><span class="bor-left"><i class="fa fa-close"></i></span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

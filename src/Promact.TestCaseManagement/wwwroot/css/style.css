@@ -1,45 +1,539 @@
-﻿/* Project: Test Case Management
+/* Project: Test Case Management
    Style Sheet for TCM*/
-
+body, html, * {
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+}
 /*common*/
-.ml0 { margin-left: 0; }
-.m0 { margin: 0; }
-.mt5 { margin-top: 5px; }
-.ml230 { margin-left: 230px; }
-.x_sub_title { border-bottom: 1px solid #E6E9ED; padding-bottom: 10px; }
-.cursor-pointer { cursor: pointer; }
-
-.dashboard .top_nav { margin-left: 0; }
-.dashboard .toggle { display: none; }
-.dashboard-container { width: 95%; margin: 0 auto; }
-.project-list { margin-top: 20px; }
-.project-list-container { cursor: pointer; min-height: 150px; box-shadow: 1px 2px 4px #ccc; }
-.container-main { width: calc(100% - 230px); margin-left: 230px; padding: 85px 15px 15px; }
-.container-main.dashboard { width: 100%; margin-left: 0; }
-.nav.side-menu > li > a { border-left: 3px solid transparent; }
-.nav.side-menu > li:hover > a, .nav.side-menu > li.active > a { color: #ffab00; font-weight: 500; background: #33495d; border-left: 3px solid #ffab00; }
-.site_title, .site_title:hover, .site_title:focus { color: #ffab00; }
-.nav.side-menu > li:hover .child_menu > li:hover > a { color: #ffab00; }
-.nav-md ul.nav.child_menu li.active:before, .nav-md ul.nav.child_menu li:hover:before { background: #FF9800; }
-.nav-md ul.nav.child_menu li.active:after, .nav-md ul.nav.child_menu li:hover:after { border-left: 1px solid #FF9800; }
-.nav-md ul.nav.child_menu li.active a { color: #ffab00; }
-.test-case-main .x_title { white-space: nowrap; min-height: 45px; }
-.test-case-main h2 { text-overflow: inherit; word-wrap: break-word; margin: 5px 0 6px; float: left; display: inline-block; white-space: normal; width: 100%; max-height: 78px; }
-.test-case-main .panel_toolbox { animation-duration: 0.5s; display: none; vertical-align: top; position: absolute; top: 0; right: 0; background-color: #ccc; }
-.test-case-main .x_content { max-height: 108px; overflow: hidden; word-wrap: break-word; }
-.test-case-main .tile:hover .panel_toolbox { animation-duration: 0.5s; animation-fill-mode: both; animation-name: slideInRight; display: block; border-radius: 3px 0px 0px 3px; }
-
-@keyframes slideInRight {
-  0% { transform: translate3d(100%, 0, 0); visibility: visible; }
-  100% { transform: translate3d(0, 0, 0); }
+.ml0 {
+    margin-left: 0 !important;
 }
 
-.panel_toolbox > li > a:hover .fa-pencil { color: #396998; }
-.panel_toolbox > li > a:hover .fa-trash-o { color: #db2012; }
-.component-header { border-bottom: 2px solid #ececec; margin-bottom: 15px; padding-bottom: 10px; }
-.btn-primary { color: #fff; background-color: #ffab00; border-color: #ffab00; }
-.btn-primary:hover, .btn-primary:focus { color: #fff; background-color: #eea002; border-color: #eea002; }
-.test-case-main { width: 30%; float: left; display: inline-block; vertical-align: top; margin: 5px 10px; text-align: left; }
-.test-case-main .tile { min-height: 150px; }
-.project-list-container .x_content { max-height: 70px; overflow: hidden; }
-label { font-weight: normal; }
+.m0 {
+    margin: 0 !important;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.p0 {
+    padding: 0 !important
+}
+
+.mb8 {
+    margin-bottom: 8px !important;
+}
+
+.mb15 {
+    margin-bottom: 15px !important;
+}
+
+.ml230 {
+    margin-left: 230px;
+}
+
+.x_sub_title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.test-case-main .x_title {
+    min-height: 1px;
+}
+
+.x_panel {
+    border: 1px solid #73879C;
+}
+
+.x_panel:hover {
+    border: 1px solid #33495d;
+}
+
+    .x_panel:hover .x_title {
+        color: #ffa200;
+    }
+
+.x_title {
+    cursor: pointer;
+}
+
+.project .x_title {
+    cursor: auto
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.dashboard .top_nav {
+    margin-left: 0;
+}
+
+.dashboard .toggle {
+    display: none;
+}
+
+.dashboard-container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.project-list {
+    margin-top: 20px;
+}
+
+.project-list-container {
+    cursor: pointer;
+    min-height: 150px;
+    box-shadow: 1px 2px 4px #ccc;
+}
+
+.container-main {
+    width: calc(100% - 230px);
+    margin-left: 230px;
+    padding: 85px 15px 15px;
+}
+
+    .container-main.dashboard {
+        width: 100%;
+        margin-left: 0;
+    }
+
+.nav.side-menu > li > a {
+    border-left: 3px solid transparent;
+}
+
+.nav.side-menu > li:hover > a, .nav.side-menu > li.active > a {
+    color: #ffab00;
+    font-weight: 500;
+    background: #33495d;
+    border-left: 3px solid #ffab00;
+}
+
+.site_title, .site_title:hover, .site_title:focus {
+    color: #ffab00;
+}
+
+.nav.side-menu > li:hover .child_menu > li:hover > a {
+    color: #ffab00;
+}
+
+.nav-md ul.nav.child_menu li.active:before, .nav-md ul.nav.child_menu li:hover:before {
+    background: #FF9800;
+}
+
+.nav-md ul.nav.child_menu li.active:after, .nav-md ul.nav.child_menu li:hover:after {
+    border-left: 1px solid #FF9800;
+}
+
+.nav-md ul.nav.child_menu li.active a {
+    color: #ffab00;
+}
+
+.test-case-main .x_title {
+    white-space: nowrap;
+}
+
+.test-case-main h2 {
+    text-overflow: inherit;
+    word-wrap: break-word;
+    margin: 5px 0 6px;
+    float: left;
+    display: inline-block;
+    white-space: normal;
+    width: 100%;
+    max-height: 78px;
+}
+
+.test-case-main .panel_toolbox {
+    animation-duration: 0.5s;
+    display: none;
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ccc;
+}
+
+.test-case-main .x_content {
+    max-height: 108px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.test-case-main .tile:hover .panel_toolbox {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: slideInRight;
+    display: block;
+    border-radius: 3px 0px 0px 3px;
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.panel_toolbox > li > a:hover .fa-pencil {
+    color: #396998;
+}
+
+.panel_toolbox > li > a:hover .fa-trash-o {
+    color: #db2012;
+}
+
+.component-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #ffab00;
+    border-color: #ffab00;
+}
+
+    .btn-primary:active, .btn-primary:hover, .btn-primary:focus {
+        color: #fff;
+        background-color: #ffab00 !important;
+        border-color: #ffab00 !important;
+    }
+
+.test-case-main {
+    width: 30%;
+    float: left;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px 10px;
+    text-align: left;
+}
+
+.test-case-main .tile {
+    min-height: 150px;
+}
+
+.project-list-container .x_content {
+    max-height: 70px;
+    overflow: hidden;
+}
+
+label {
+    font-weight: normal;
+}
+
+/* Create testcase accordion */
+.accordion ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+}
+
+.accordion ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    float: left;
+    width: 100%;
+}
+
+.accordion ul li h2 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    line-height: 25px;
+    background: #33495d;
+    border: 1px solid #33495d;
+    color: #fff;
+    float: left;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.plus {
+    width: 25px;
+    border-radius: 100%;
+    line-height: 25px;
+    text-align: center;
+    float: right;
+}
+
+form {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0px;
+    float: left;
+}
+
+form input {
+    width: 100%;
+    padding: 5px;
+    height: 34px;
+    line-height: 16px;
+    color: #33495d;
+}
+
+.accordion ul li i {
+    color: #fff;
+}
+/* Sub accordion */
+ul.sub-accordion li i {
+    color: #33495d
+}
+
+.user-reg {
+    padding: 20px 10px 5px;
+    border: 1px solid #33495d;
+    float: left;
+    width: 100%;
+}
+
+ul.sub-accordion {
+    background: #fff;
+    max-height: 250px;
+    overflow: auto;
+}
+
+ul.sub-accordion li {
+    border-bottom: 1px solid #33495d;
+    margin-bottom: 0;
+}
+
+.sub-accordion li:last-child {
+    border-bottom: none;
+}
+
+ul.sub-accordion li span {
+    line-height: 16px;
+}
+
+ul.sub-accordion li h3 {
+    color: #33495d;
+    padding: 10px;
+    margin: 0;
+    background: #fff;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.form-group {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    height: 34px;
+    padding: 5px;
+    line-height: 16px;
+}
+
+.form-group label {
+    text-align: right;
+    color: #33495d;
+    padding-right: 10px;
+}
+
+.form-group.right {
+    float: right;
+    width: auto;
+}
+
+.form-group button {
+    padding: 6px 12px;
+    margin-right: 15px;
+}
+
+ul.user-list {
+    border: 0 !important;
+    margin-top: 15px;
+    text-align: center;
+    float: left;
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.user-list span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center
+}
+
+    .user-list span.bor-left {
+        right: 0;
+        left: initial;
+    }
+
+ul.user-list li {
+    padding: 0 50px;
+    text-align: left;
+    position: relative;
+    margin: 0 0 10px;
+    border: 1px solid #33495d;
+}
+
+ul.user-list li :last-child {
+    margin-bottom: 0;
+}
+
+.user-list span, .user-list p {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #33495d;
+    display: inline-block;
+    margin: 0;
+    min-width: 50px;
+}
+
+.user-list span.bor-right {
+    border-right: 1px solid #33495d;
+    float: left;
+}
+
+.user-list span.bor-left {
+    border-left: 1px solid #33495d;
+    float: right;
+}
+
+.user-list span i {
+    color: #33495d !important;
+    font-size: 20px !important;
+}
+
+.user-list p {
+    display: inline-block;
+    text-align: left;
+    padding-left: 15px;
+}
+.md2-dialog-body .form-group {
+    margin: 0;
+}
+
+
+.assigned-testcases {
+    padding: 0 10px;
+    margin: 0;
+    float: left;
+    width: 100%;
+    list-style-type: none;
+}
+
+.assigned-testcases li {
+    padding: 0px;
+    margin: 0 0 15px;
+    float: left;
+    width: 100%;
+    border: 1px solid #33495d;
+    list-style-type: none;
+}
+
+/* Assing testcases */
+.assigned-testcases li h2 {
+    line-height: 40px;
+    padding-left: 15px;
+    font-size: 16px;
+    margin: 0;
+    float: left;
+    width: 100%;
+    color: #33495d;
+}
+
+.assigned-testcases li h2 i {
+    float: right;
+    display: block;
+    font-size: 20px !important;
+    padding: 10px 15px;
+    line-height: 20px;
+    text-align: center;
+    border-left: 1px solid #33495d;
+}
+
+/* Welcome Page */
+.welcome-page {
+    background: #33495d;
+    margin: 20%;
+    text-align: center
+}
+
+.welcome-page h1 {
+    text-align: center;
+    color: #fff;
+}
+
+.welcome-page a {
+    text-align: center;
+    display: inline-block;
+    background: #ffa200;
+    color: #fff;
+    border-radius: 3px;
+    line-height:22px;
+    font-size:14px;
+    text-decoration: none;
+    padding: 6px 12px;
+}
+
+.welcome-page a:hover {
+    text-decoration: underline;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mb0 {
+    margin-bottom: 0 !important;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-secondary {
+    background: #33495d;
+    color: #fff;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    color: #fff;
+}
+
+/* MD2 dialog box */
+div.md2-dialog-header .md2-dialog-title, .md2-dialog-header {
+    background: #33495d !important;
+    padding: 10px;
+    font-size: 22px;
+}
+
+div.md2-dialog-header {
+    padding-left: 0
+}
+
+.md2-dialog-header .close {
+    top: 15px !important;
+}
+
+.custom-search-form {
+    position: relative;
+}
+
+.custom-search-form .sub-accordion {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 1px solid #ccc;
+    max-height: 250px;
+    overflow: auto;
+}
