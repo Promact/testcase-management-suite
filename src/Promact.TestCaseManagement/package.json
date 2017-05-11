@@ -3,25 +3,38 @@
   "name": "asp.net",
   "private": true,
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "build:aot": "ngc -p wwwroot/tsconfig-aot.json && node wwwroot/copy-dist-files && rollup -c wwwroot/rollup-config.js"
   },
   "dependencies": {
-    "@angular/common": "~2.4.0",
-    "@angular/compiler": "~2.4.0",
-    "@angular/core": "~2.4.0",
-    "@angular/forms": "~2.4.0",
-    "@angular/http": "~2.4.0",
-    "@angular/platform-browser": "~2.4.0",
-    "@angular/platform-browser-dynamic": "~2.4.0",
-    "@angular/router": "~3.4.0",
-
-    "systemjs": "0.19.41",
+    "@angular/animations": "^4.1.0",
+    "@angular/common": "^4.1.0",
+    "@angular/compiler": "^4.1.0",
+    "@angular/compiler-cli": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/forms": "^4.1.0",
+    "@angular/http": "^4.1.0",
+    "@angular/material": "2.0.0-beta.3",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
+    "@angular/platform-server": "^4.1.0",
+    "@angular/router": "^4.1.0",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
+    "hammerjs": "^2.0.8",
+    "md2": "0.0.19",
     "reflect-metadata": "^0.1.9",
     "rxjs": "5.0.2",
-    "zone.js": "^0.7.4"
+    "systemjs": "0.19.41",
+    "typescript": "^2.3.1",
+    "zone.js": "^0.8.9"
   },
   "devDependencies": {
-    "typescript": "2.1.5"
+    "@types/node": "^7.0.3",
+    "rollup": "^0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^1.0.2"
   }
 }

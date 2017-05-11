@@ -1,0 +1,34 @@
+<div class="col-md-3 left_col menu_fixed">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a [routerLink]="['/dashboard']" class="site_title"><span>Test Case Mgmt</span></a>
+    </div>
+    <div class="clearfix"></div>
+    <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <ul class="nav side-menu">
+          <li [routerLinkActive]="['active']">
+            <a (click)="subOptionShow = !subOptionShow">
+              Test Case
+              <span class="fa fa-chevron-down" *ngIf="!subOptionShow"></span>
+              <span class="fa fa-chevron-up" *ngIf="subOptionShow"></span>
+            </a>
+            <ul [hidden]="!subOptionShow" class="nav child_menu">
+              <li [routerLinkActive]="['active']"><a [routerLink]="['/projects']">Option 1</a></li>
+              <li><a>Option 2</a></li>
+              <li><a>Option 3</a></li>
+            </ul>
+          </li>
+          <li [routerLinkActive]="['active']" (click)="subOptionShow=false">
+            <a [routerLink]="['/modules']"> Module </a>
+          </li>
+          <li [routerLinkActive]="['active']" (click)="subOptionShow=false">
+            <a [routerLink]="['/scenarios']"> Scenario </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- /sidebar menu -->
+  </div>
+</div>

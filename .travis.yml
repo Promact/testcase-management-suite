@@ -1,11 +1,13 @@
 language: csharp
-node_js:
-  - node
 os: linux
 mono: none
 dist: trusty
 sudo: required
-dotnet: 1.0.0-preview2-1-003177
+dotnet: 1.0.3
+before_install:
+  - nvm install 7.9.0
+  - nvm use 7.9.0
+  - npm install -g npm
 install:
   - dotnet restore
   - cd ./src/Promact.TestCaseManagement && npm install
@@ -15,5 +17,5 @@ notifications:
     on_success: change
     on_failure: always
 script:
-  - dotnet build ../../src/**/project.json --configuration Release
-  - npm run tsc
+  - dotnet build --configuration Release
+  - npm run build:aot

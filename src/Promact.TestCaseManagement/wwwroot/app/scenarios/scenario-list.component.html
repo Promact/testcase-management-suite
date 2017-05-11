@@ -1,0 +1,60 @@
+﻿<div class="component-main" [ngClass]="{'open': !newModule}">
+    <!-- Main Title -->
+    <div class="row component-header p0">
+        <div class="col-md-7">
+            <h3 class="m0">Scenarios</h3>
+        </div>
+        <div class="sidebar-search col-xs-3">
+            <div class="input-group custom-search-form">
+                <input class="form-control" placeholder="Search..." type="text">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <!-- Add Btn -->
+        <div class="col-md-2 p0 text-right">
+            <button class="btn btn-primary" color="accent" (click)="open(custom)">
+                Add New Scenario
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Module List -->
+        <div class="test-case-main" *ngFor="let module of moduleList; let i = index">
+            <div class="x_panel tile overflow_hidden">
+                <div class="x_title x_sub_title" [routerLink]="['assigntestcases']">
+                    <h2>{{ module.name }} {{ i+1 }}</h2>
+                    <ul class="nav panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-pencil"></i></a>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-trash-o"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {{ module.des }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MD2 Dialog Box -->
+    <md2-dialog #custom [title]="title">    
+        <div class="form-group">
+            <div class="row">
+                <label class="col-xs-3">Name:</label>
+                <input type="text" class="col-xs-7" />
+            </div>
+        </div>
+        <md2-dialog-footer>
+            <button button="primary" class="btn btn-primary" (click)="close(custom)">Save</button>
+            <button button (click)="close(custom)" class="btn btn-secondary">Cancel</button>
+        </md2-dialog-footer>
+    </md2-dialog>
+</div>

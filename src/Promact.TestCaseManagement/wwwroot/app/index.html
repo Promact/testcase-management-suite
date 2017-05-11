@@ -1,0 +1,14 @@
+﻿<div class="container body">
+  <div class="main_container">
+    <!--side panel-->
+    <sidebar-cmp *ngIf="!isDashboard"></sidebar-cmp>
+    <!-- top navigation -->
+    <top-nav [ngClass]="{'dashboard':isDashboard}"></top-nav>
+    <!--main container-->
+    <div class="container-main" role="main" [ngClass]="{'dashboard':isDashboard}">
+      <section id="page-wrapper" [ngClass]="{'main-dashboard-container':isDashboard, 'main-container': !isDashboard}">
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </div>
+</div>
