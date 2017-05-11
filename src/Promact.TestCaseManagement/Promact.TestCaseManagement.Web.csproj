@@ -12,92 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\app\modules\assigntestcases\assign-testcase-route.ts" />
-    <Content Include="wwwroot\app\modules\assigntestcases\module-testcase-assignment.component.js" />
-    <Content Include="wwwroot\app\modules\assigntestcases\module-testcase-assignment.component.js.map" />
-    <Content Include="wwwroot\app\modules\assigntestcases\module-testcase-assignment.component.ts" />
-    <Content Include="wwwroot\app\modules\assigntestcases\module-testcase-assignment.html" />
-    <Content Include="wwwroot\app\modules\assigntestcases\scenario-testcase-assignment.component.js" />
-    <Content Include="wwwroot\app\modules\assigntestcases\scenario-testcase-assignment.component.js.map" />
-    <Content Include="wwwroot\app\modules\assigntestcases\scenario-testcase-assignment.component.ts" />
-    <Content Include="wwwroot\app\modules\assigntestcases\scenario-testcase-assignment.html" />
-    <Content Include="wwwroot\app\modules\assigntestcases\module-testcase-assignment.js.map" />
-    <Content Include="wwwroot\app\modules\assigntestcases\TextFile1.txt" />
-    <Content Include="wwwroot\app\modules\module-service.ts" />
-    <Content Include="wwwroot\app\modules\module.service.js" />
-    <Content Include="wwwroot\app\modules\module.service.js.map" />
-    <Content Include="wwwroot\app\modules\module.service.ts" />
-    <Content Include="wwwroot\app\scenarios\assigntestcases\scenario-testcase-assignment.component.js" />
-    <Content Include="wwwroot\app\scenarios\assigntestcases\scenario-testcase-assignment.component.js.map" />
-    <Content Include="wwwroot\app\scenarios\assigntestcases\scenario-testcase-assignment.component.ts" />
-    <Content Include="wwwroot\app\scenarios\assigntestcases\scenario-testcase-assignment.html" />
-    <Content Include="wwwroot\app\scenarios\scenario-list.component.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenario-route.js" />
-    <Content Include="wwwroot\app\scenarios\scenario-route.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenario-route.ts" />
-    <Content Include="wwwroot\app\scenarios\scenario-list.component.html">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\scenario-list.component.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\module-list.component.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\scenario-list.component.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\module.service.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules-route.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules-route.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules-route.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules.component.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules.component.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules.component.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\scenario.component.js" />
-    <Content Include="wwwroot\app\scenarios\scenario.component.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenario.component.ts" />
-    <Content Include="wwwroot\app\scenarios\scenarios-list.component.js" />
-    <Content Include="wwwroot\app\scenarios\scenarios-list.component.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenarios-list.component.ts" />
-    <Content Include="wwwroot\app\scenarios\scenarios.component.js" />
-    <Content Include="wwwroot\app\scenarios\scenarios.component.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenarios.component.ts" />
-    <Content Include="wwwroot\app\scenarios\scenario.html">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\scenario.module.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\modules.module.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\scenarios.module.js" />
-    <Content Include="wwwroot\app\scenarios\scenarios.module.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenarios.module.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\app\scenarios\scenarios-route.js" />
-    <Content Include="wwwroot\app\scenarios\scenarios-route.js.map" />
-    <Content Include="wwwroot\app\scenarios\scenarios-route.ts" />
-  </ItemGroup>
-
- 
-  <ItemGroup>
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
@@ -134,10 +48,6 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\app\NewFolder\" />
   </ItemGroup>
 
 </Project>
