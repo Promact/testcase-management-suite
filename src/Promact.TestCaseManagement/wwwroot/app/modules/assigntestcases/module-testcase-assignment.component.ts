@@ -14,5 +14,7 @@ export class ModuleTestcaseAssignComponent {
         { title: "Testcase" }
     ];
     search = true;
-
+    tooltip = "Add";
+    delay: number = 1 * 1000;
+    position = "above";
 }

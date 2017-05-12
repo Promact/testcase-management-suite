@@ -13,5 +13,9 @@ export class ScenarioTestcaseAssignComponent {
         { title: "Testcase" },
         { title: "Testcase" }
     ];
+
+    tooltip = "Add";
+    delay: number = 1 * 1000;
+    position = "above";
     search = true;
 }

@@ -1,13 +1,10 @@
-﻿<div class="component-main" ng-reflect-klass="component-main" ng-reflect-ng-class="[object Object]">
-    <div class="row component-header ">
-        <div class="col-md-7 ">
+﻿<div class="component-main">
+    <div class="row component-header">
+        <div class="col-md-7">
             <h3 class="m0 mb8"><span [routerLink]="['../../modules']" class="cursor-pointer">Modules</span> > Module1 </h3>
         </div>
     </div>
     <div class="row">
-        <!--bindings={
-          "ng-reflect-ng-for-of": "[object Object],[object Object"
-        }-->
         <div class="sidebar-search col-xs-12 mt5 mb15">
             <div class="input-group custom-search-form m0">
                 <input class="form-control" placeholder="Search..." type="text" (focus)="search = false" (blur)="search = true" />
@@ -17,13 +14,11 @@
                     </button>
                 </span>
                 <ul class="sub-accordion" [hidden]="search">
-                    <li><h3><span>1. </span> User must be registered<span class="plus" ng-reflect-position="above" ng-reflect-show-delay="1000" ng-reflect-message="Add" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><i class="fa fa-plus" ng-reflect-klass="fa" ng-reflect-ng-class="[object Object]"></i></span></h3></li>
-                    <li><h3><span>2.3 </span> User must be registered and active<span class="plus" ng-reflect-position="above" ng-reflect-show-delay="1000" ng-reflect-message="Add" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><i class="fa fa-plus" ng-reflect-klass="fa" ng-reflect-ng-class="[object Object]"></i></span></h3></li>
+                    <li><h3><span>1. </span> User must be registered<span class="plus" [position]="position" [delay]="1000" [tooltip]="tooltip" ><i class="fa fa-plus"></i></span></h3></li>
+                    <li><h3><span>2.3 </span> User must be registered and active<span class="plus" [position]="position" [delay]="1000" [tooltip]="tooltip"><i class="fa fa-plus"></i></span></h3></li>
                 </ul>
             </div>
         </div>
-
-
         <ul class="assigned-testcases">
             <li *ngFor="let testcases of assignTestcase let i = index">
                 <h2>{{testcases.title}} {{i+1}}<i class="fa fa-close right"></i></h2>
