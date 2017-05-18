@@ -1,0 +1,36 @@
+﻿<div class="component-main">
+    <!-- Main Title -->
+    <div class="row component-header">
+        <div class="col-md-7">
+            <h3 class="m0 mb8"><span [routerLink]="['../../scenarios']" class="cursor-pointer">Scenarios</span> > Scenario 1</h3>
+        </div>
+    </div>
+    <div class="row">
+        <!--bindings={
+          "ng-reflect-ng-for-of": "[object Object],[object Object"
+        }-->
+
+        <!-- Search Testcases -->
+        <div class="sidebar-search col-xs-12 mt5 mb15">
+            <div class="input-group custom-search-form m0">
+                <input class="form-control" placeholder="Search..." type="text" (focus)="search = false" (blur)="search = true" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+                <ul class="sub-accordion" [hidden]="search">
+                    <li><h3><span>1. </span> User must be registered<span class="plus" attr.[tooltip]="tooltip" attr.[position]="position" attr.[delay]="1000"><i class="fa fa-plus"></i></span></h3></li>
+                    <li><h3><span>2.3 </span> User must be registered and active<span class="plus" attr.[tooltip]="tooltip" attr.[position]="position" attr.[delay]="1000"><i class="fa fa-plus"></i></span></h3></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Assigned Testcases -->
+        <ul class="assigned-testcases">
+            <li *ngFor="let testcases of assignTestcase let i = index">
+                <h2>{{testcases.title}} {{i+1}}<i class="fa fa-close right"></i></h2>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -12,7 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "DefaultConnection": "Server=PR1C4R3Y2016;Database=TestCaseManagement;User id=sa;Password=Promact201617",
+        "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=TestCaseManagement;Trusted_Connection=True;",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
